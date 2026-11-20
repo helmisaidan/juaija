@@ -838,3 +838,8 @@ body[data-theme="dark"] .wallet-nav-link:hover{background:#8295d8!important;colo
 /* Saved-item artwork always occupies one square crop, never a stretched slot. */
 .saved-item-thumb{display:block!important;flex:0 0 48px!important;width:48px!important;height:48px!important;overflow:hidden!important;border-radius:6px!important}
 .saved-item-thumb img{display:block!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;border-radius:0!important}
+
+/* The brand belongs to the desktop sidebar column, not the page-content rail. */
+@media(min-width:1000px){
+  .topbar-inner{width:100%!important;max-width:none!important;margin:0!important;padding:0 28px!important}
+}
