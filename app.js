@@ -500,7 +500,7 @@
     const signup=sessionStorage.getItem('juaija.authView')==='signup';
     $('#signupForm').hidden=!signup;$('#loginForm').hidden=signup;$('.demo-card').hidden=signup;$('.auth-divider').hidden=signup;
     const title=$('#authFormTitle');title.dataset.i18n=signup?'create_account':'sign_in_title';title.textContent=t(title.dataset.i18n);
-    $('.signup-prompt').innerHTML=signup?`<span>${t('account_exists')}</span> <button id="showSignup">${t('sign_in')}</button>`:`<span>${t('new_to_juaija')}</span> <button id="showSignup">${t('create_account')}</button>`;
+    $('.signup-prompt').innerHTML=signup?`<span data-i18n="account_exists">${t('account_exists')}</span> <button id="showSignup" data-i18n="sign_in">${t('sign_in')}</button>`:`<span data-i18n="new_to_juaija">${t('new_to_juaija')}</span> <button id="showSignup" data-i18n="create_account">${t('create_account')}</button>`;
   }
   function updateIdentity(){
     const user=currentUser();
@@ -741,7 +741,7 @@
     const normalized=identity.trim().replace(/^@/,'').toLowerCase();
     const user=state.users.find(candidate=>candidate.username.toLowerCase()===normalized||candidate.email.toLowerCase()===identity.trim().toLowerCase());
     if(!user || user.password!==password){ setRuntimeText($('#authError'),'auth_bad_credentials'); return false; }
-    state.currentUserId=user.id; persist(); showApp(); toast('auth_login_ok'); return true;
+    state.currentUserId=user.id; persist(); history.replaceState(null,'',`${location.pathname}${location.search}#home`); showApp(); toast('auth_login_ok'); return true;
   }
   function register(form){
     clearFieldErrors(form); setRuntimeText($('#authError'),'');
@@ -755,7 +755,7 @@
     if(!valid)return;
     
     const user={id:uid('user'),username,email,password,bioKey:'new_member_bio'};
-    state.users.push(user); state.currentUserId=user.id; persist(); showApp(); toast('account_created');
+    state.users.push(user); state.currentUserId=user.id; persist(); history.replaceState(null,'',`${location.pathname}${location.search}#home`); showApp(); toast('account_created');
   }
   function toggleFavorite(id){
     const idx=state.favorites.indexOf(id);
@@ -1011,7 +1011,7 @@
       if(event.target.closest('#openWalletTopUp,#openSettingsWalletTopUp')){openWalletTopUp();return;}
       if(event.target.closest('#privacyDetailsButton')){openPrivacyModal();return;}
       if(event.target.closest('#markAllRead')){state.notifications.forEach(n=>n.read=true);persist();renderNotifications();toast('marked_read');return;}
-      if(event.target.closest('#signOutButton')){state.currentUserId=null;persist();showAuth();return;}
+      if(event.target.closest('#signOutButton')){state.currentUserId=null;history.replaceState(null,'',`${location.pathname}${location.search}#home`);persist();showAuth();return;}
       if(event.target.closest('#resetDemoButton')){if(confirm(t('reset_confirm'))){state=freshState();StudentVerification.migrate(state);JuaijaOrders.migrate(state);persist();showApp();toast('reset_done');}return;}
       if(event.target.closest('#clearFilters')){marketState={...marketState,category:'all',search:'',page:1};$('#marketSearch').value='';renderMarketplace();return;}
       if(event.target.closest('#prevPage')){marketState.page=Math.max(1,marketState.page-1);renderMarketplace();return;}
