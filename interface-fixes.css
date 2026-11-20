@@ -821,3 +821,20 @@ body[data-theme="dark"] .auth-screen,body[data-theme="dark"] .auth-main{backgrou
 body[data-theme="dark"] .auth-screen .demo-card{background:#0d1019!important;border-color:#8295d8!important;color:#fff!important}
 body[data-theme="dark"] .auth-screen .demo-card *{color:#fff!important}
 body[data-theme="dark"] .auth-legal-footer,body[data-theme="dark"] .auth-legal-footer *,body[data-theme="dark"] #authCopyrightYear{color:#fff!important;background:transparent!important}
+
+/* Desktop header follows the exact content rails used beside the sidebar. */
+@media(min-width:1000px){
+  .topbar-inner{width:auto!important;max-width:none!important;margin:0 24px 0 240px!important;padding:0 24px!important}
+}
+
+/* Keep the juaija Pay balance recognisable without making the whole item coloured. */
+.wallet-nav-link #walletNavBalance{display:inline-flex!important;align-items:center!important;justify-content:center!important;margin-left:5px!important;padding:3px 7px!important;border-radius:999px!important;background:#8295d8!important;color:#fff!important;font-size:11px!important;font-weight:800!important;line-height:1.1!important}
+.wallet-nav-link:hover{background:#8295d8!important;color:#fff!important}
+.wallet-nav-link:hover #walletNavBalance{background:#fff!important;color:#8295d8!important}
+.wallet-nav-link.active{background:#8295d8!important;color:#fff!important}
+.wallet-nav-link.active #walletNavBalance{background:#fff!important;color:#8295d8!important}
+body[data-theme="dark"] .wallet-nav-link:hover{background:#8295d8!important;color:#fff!important}
+
+/* Saved-item artwork always occupies one square crop, never a stretched slot. */
+.saved-item-thumb{display:block!important;flex:0 0 48px!important;width:48px!important;height:48px!important;overflow:hidden!important;border-radius:6px!important}
+.saved-item-thumb img{display:block!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;border-radius:0!important}
