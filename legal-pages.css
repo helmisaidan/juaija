@@ -27,3 +27,10 @@ body.legal-page{padding:48px 24px!important;font-family:Arial,sans-serif!importa
 }
 @media(max-width:380px){.legal-page .legal-content{padding:22px 16px!important}.legal-page .legal-top{gap:12px!important}.legal-page .legal-brand{gap:8px!important}.legal-page .legal-brand strong{font-size:22px!important}}
 .support-whatsapp{border-radius:999px!important;background:#25d366!important;border-color:#25d366!important;color:#fff!important;padding-inline:22px!important}.support-whatsapp:hover{background:#1ebd5a!important;border-color:#1ebd5a!important}
+
+/* Legal pages read the same saved appearance setting as the marketplace. */
+body.legal-page[data-theme="dark"]{background:#000!important;color:#fff!important}
+body.legal-page[data-theme="dark"] .legal-content{background:#0d1019!important;color:#fff!important;border-color:#8295d8!important}
+body.legal-page[data-theme="dark"] .legal-brand,body.legal-page[data-theme="dark"] .legal-brand *,body.legal-page[data-theme="dark"] .legal-content h1,body.legal-page[data-theme="dark"] .legal-content h2,body.legal-page[data-theme="dark"] .legal-content p,body.legal-page[data-theme="dark"] .legal-publication,body.legal-page[data-theme="dark"] .legal-publication time{color:#fff!important}
+body.legal-page[data-theme="dark"] .legal-language{background:#0d1019!important;border-color:#8295d8!important}
+body.legal-page[data-theme="dark"] .legal-language button:not(.active){background:transparent!important;color:#fff!important}

@@ -4,7 +4,7 @@
   // The prototype intentionally uses browser storage so the demo needs no backend.
   const STORAGE_KEY = 'juaija.app.v1';
   const DEFAULT_USER = {
-    id: 'demo-user', username: 'alyarahman', email: 'alya@juaija.my', password: 'juaija123', verified:false,
+    id: 'demo-user', username: 'zulhelmi', email: 'zulhelmi@juaija.my', password: 'juaija123', avatar:'assets/zulhelmi.jpg', verified:false,
     bioKey: 'default_demo_bio'
   };
   const categories = [
@@ -45,11 +45,29 @@
     ['l21','Bakul laundry lipat','Rumah & dorm','Home','basket',11,22,'Good','Jia W.','Kolej Dahlia','Boleh lipat bila tak guna, ringan dan tak makan ruang.','jia'],
     ['l22','Seluar slack hitam','Fesyen','Fashion','bag',25,52,'Good','Nabila O.','Seksyen 2','Pinggang 28, potongan straight. Sudah dicuci kering.','nabila'],
     ['l23','Raket badminton beginner','Sukan','Sports','trophy',27,54,'Good','Faiz S.','Puncak Alam','Ringan dan sesuai untuk latihan santai. Grip baru ditukar.','faiz'],
-    ['l24','Pokok pothos + pasu','Lain-lain','Other','house-door',15,28,'Like new','@alyarahman','UiTM Shah Alam','Pokok mudah jaga untuk tambah hijau dalam bilik. Pasu terracotta termasuk.','demo-user']
+    ['l24','Pokok pothos + pasu','Lain-lain','Other','house-door',15,28,'Like new','@zulhelmi','UiTM Pundana','Pokok mudah jaga untuk tambah hijau dalam bilik. Pasu terracotta termasuk.','demo-user']
   ].map((row, index) => ({
     id: row[0], title: row[1], categoryLabel: row[2], category: row[3], icon: row[4], price: row[5], originalPrice: row[6],
     condition: row[7], seller: row[8], location: row[9], description: row[10], userId: row[11], createdAt: Date.now() - (index * 3 + 2) * 3600_000,
-    likes: 14 + ((index * 7) % 53), image: ''
+    likes: 14 + ((index * 7) % 53), image: row[0]==='l16'?'https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=1000&q=85':''
+  }));
+
+  const sampleSellerAccounts = [
+    ['mira','mira_n','mira@juaija.my',true], ['afiq','afiq_r','afiq@juaija.my',false],
+    ['nadia','nadia_k','nadia@juaija.my',true], ['sofia','sofia_m','sofia@juaija.my',true],
+    ['haziq','haziq_a','haziq@juaija.my',false], ['yana','yana_f','yana@juaija.my',true],
+    ['daniel','daniel_t','daniel@juaija.my',false], ['aina','aina_s','aina@juaija.my',true],
+    ['amir','amir_h','amir@juaija.my',false], ['izzah','izzah_z','izzah@juaija.my',true],
+    ['raihan','raihan_d','raihan@juaija.my',false], ['farah','farah_l','farah@juaija.my',true],
+    ['ikmal','ikmal_p','ikmal@juaija.my',false], ['nurin','nurin_e','nurin@juaija.my',true],
+    ['syafiq','syafiq_b','syafiq@juaija.my',false], ['kavitha','kavitha_r','kavitha@juaija.my',true],
+    ['luqman','luqman_j','luqman@juaija.my',false], ['hakim','hakim_w','hakim@juaija.my',true],
+    ['melati','melati_c','melati@juaija.my',false], ['arif','arif_m','arif@juaija.my',true],
+    ['jia','jia_w','jia@juaija.my',false], ['nabila','nabila_o','nabila@juaija.my',true],
+    ['faiz','faiz_s','faiz@juaija.my',false]
+  ].map(([id,username,email,verified]) => ({
+    id, username, email, password:'juaija123', bioKey:'new_member_bio',
+    ...(verified ? {verification:{status:'approved',session:2,academicYear:2025,semesters:6,startMonth:'2026-03',letter:{id:`preset-letter-${id}`,name:`${username}-offer-letter.pdf`},source:'preset'}} : {})
   }));
 
   // Demo listing copy follows the selected interface language; user-created copy stays as entered.
@@ -87,7 +105,7 @@
     l13:{ms:'Seksyen 2',en:'Section 2'},l14:{ms:'Kolej Dahlia',en:'Dahlia College'},l15:{ms:'UiTM Shah Alam',en:'UiTM Shah Alam'},
     l16:{ms:'Puncak Alam',en:'Puncak Alam'},l17:{ms:'Kolej Perindu',en:'Perindu College'},l18:{ms:'Seksyen 7',en:'Section 7'},
     l19:{ms:'Kolej Mawar',en:'Mawar College'},l20:{ms:'UiTM Shah Alam',en:'UiTM Shah Alam'},l21:{ms:'Kolej Dahlia',en:'Dahlia College'},
-    l22:{ms:'Seksyen 2',en:'Section 2'},l23:{ms:'Puncak Alam',en:'Puncak Alam'},l24:{ms:'UiTM Shah Alam',en:'UiTM Shah Alam'}
+    l22:{ms:'Seksyen 2',en:'Section 2'},l23:{ms:'Puncak Alam',en:'Puncak Alam'},l24:{ms:'UiTM Pundana',en:'UiTM Pundana'}
   };
 
   // UI copy is kept in one place so the BM/English switch stays consistent.
@@ -101,6 +119,8 @@
       tagline:'Good finds, student prices.', nav_home:'Overview', nav_explore:'Explore', nav_sell:'Sell an item', orders:'Orders', verify_student:'Student verification', your_orders:'YOUR ORDERS', all_orders:'All orders', active_orders:'In progress', completed_orders:'Completed', no_orders:'No orders yet', orders_empty_copy:'Orders you place will appear here.', order_seller:'Seller', order_buyer:'Buyer', order_pending:'Pending', order_done:'Completed', item_unavailable:'Item unavailable', student_safety:'COMMUNITY SAFETY', student_email:'UiTM student email', verify_button:'Verify email', verification_warning:'This verification checks the email format only; it does not confirm mailbox ownership. The badge may be removed if the email is found to be invalid.', verification_complete:'Student email verified', verify_intro:'Verify your student status with a UiTM email using your 10-digit matric number.', verification_email_error:'Use the format 10 digits@student.uitm.edu.my.', verification_saved:'Student email verified.', my_overview:'Account summary', my_listings:'My listings', my_orders:'My orders', order_created:'Order added. Contact the seller to arrange handoff.', account_exists:'Already have an account?', hello:'Hey', home_intro:'Here’s what’s moving around the campus community this week.', start_selling:'Start selling', community_badge:'CAMPUS COMMUNITY · LIVE', hero_kicker:'Old things, new chances.', hero_title:'Sell pre-loved goods<br><em>with ease.</em>', hero_desc:'Sell what you no longer need, find what you do - at prices made for student budgets.', browse_market:'Explore marketplace', less_waste:'less waste', overview_label:'COMMUNITY SNAPSHOT', community_overview:'Community overview', updated_now:'Updated just now', active_listings:'Active listings', saved_by_students:'Student savings', successful_handoffs:'Successful handoffs', items_given_life:'Items given new life', items:'items', little_by_little:'Small things add up.', vs_last_week:'vs last week', this_month:'this month', market_pulse:'MARKETPLACE PULSE', activity_trend:'Marketplace activity', week:'Week', month:'Month', new_listings:'New listings', student_savings:'Student savings', saved_this_week:'saved this week', chart_insight:'Buying and selling peaked on Wednesday. A great time to list something!', trending_now:'TRENDING NOW', top_categories:'Popular categories', category_activity:'Most active around campus.', category_note:'Books & notes changed hands fastest this week.', picked_for_you:'PICKED FOR YOU', fresh_finds:'Good finds nearby', see_all:'See all', marketplace_label:'MARKETPLACE', find_a_good_thing:'Find a good thing.', explore_intro:'Pre-loved finds, fair prices, right around you.', sell_an_item:'Sell an item', search_placeholder:'Search books, lamps, clothes...', sort_by:'Sort:', sort_newest:'Newest', sort_price_low:'Price: low to high', sort_price_high:'Price: high to low', sort_popular:'Most liked', show:'Show', nothing_found:'No matching items found.', try_other_search:'Try another search term or category.', clear_filters:'Clear filters', seller_studio:'SELLER STUDIO', sell_something:'Sell a thing. Make room.', sell_intro:'Something you no longer use might be exactly what someone needs.', seller_tip:'Listings with clear photos sell 2× faster.', item_details:'Item details', required_fields:'Fields marked * are required.', item_title:'Item name *', category:'Category *', choose_category:'Choose a category', condition:'Condition *', choose_condition:'Choose condition', selling_price:'Selling price (RM) *', original_price:'Original price (RM)', description:'Description *', pickup_location:'Pickup location *', item_photo:'Item photo', add_photo:'Add a photo', photo_hint:'JPG, PNG · max 2 MB', seller_privacy:'Your personal contact details stay private.', publish_listing:'Publish listing', your_impact:'YOUR IMPACT', items_on_market:'of your items on the marketplace', sell_encouragement:'Every item sold helps someone save and keeps good things in use.', earnings:'Potential earnings', quick_tip:'QUICK TIP', tip_title:'Tell its little story.', tip_desc:'Be honest about condition and price it fairly. Buyers like knowing exactly what they’ll get.', community_member:'juaija COMMUNITY MEMBER', your_profile:'YOUR PROFILE', edit_profile:'Edit profile', listings:'Listings', items_sold:'Sold', seller_rating:'Seller rating', member_since:'Member since 2024', your_corner:'YOUR CORNER', your_listings:'Your listings', add_new:'Add new', trusted_seller:'TRUSTED SELLER', good_karma:'Good karma score', karma_copy:'Great ratings and smooth handoffs. Keep being part of a good community.', bookmarked:'BOOKMARKED', saved_items:'Saved items', find_more:'Find more', your_updates:'YOUR UPDATES', notifications:'Notifications', notification_intro:'The latest from the juaija community.', mark_all_read:'Mark all as read', all_updates:'All', unread:'Unread', good_things_happen:'GOOD THINGS HAPPEN', notification_note_title:'One small find can ease the end of the month.', notification_note_body:'Every juaija exchange helps us save and reuse what we already have.', explore_market:'Explore marketplace', make_it_yours:'MAKE IT YOURS', settings:'Settings', settings_intro:'Tune juaija to feel just right for you.', appearance:'Appearance', appearance_desc:'Choose the look that feels easy on your eyes.', light:'Light', dark:'Dark', language:'Language', language_desc:'Your preferred language across juaija.', account:'Account', account_desc:'Demo account details are stored on this device.', privacy:'Privacy & data', privacy_desc:'Personal information and platform use.', privacy_terms_note:'Profile data is used only for juaija. Users are responsible for ensuring information and listings are accurate and lawful.', reset_demo:'Reset demo data', sign_out:'Sign out', settings_card_title:'Keep it simple.<br>Make it count.', settings_card_body:'Made for a community that shares space, resources and opportunity.', crafted_for_students:'Thoughtfully made for campus communities.', footer_tagline:'Good finds, student prices.', footer_note:'Give good things a second life. Help students save.', explore:'Explore', sell:'Sell', made_for_campus:'Made for campus communities', buy_sell_repeat:'Buy. Sell. Repeat.', profile:'Profile', auth_kicker:'A COMMUNITY THAT ADDS UP', auth_visual_title:'Good things<br>shouldn’t go to waste.', auth_visual_desc:'One small sale can give someone else a little breathing room.', welcome_back:'WELCOME BACK', auth_title:'Sign in to juaija', auth_intro:'Keep finding things that are worth it.', username_or_email:'Username or email', username_label:'Username', saved_login:'Sign-in details', saved_login_hint:'Use this account for the demonstration', continue_demo:'Continue with this account', password:'Password', sign_in:'Sign in', sign_in_title:'Sign in', about:'About', terms:'Terms', lecturer_demo:'Lecturer demo account', ready_to_use:'Ready to use right away', active:'ACTIVE', demo_username:'USERNAME', demo_password:'PASSWORD', continue_as_demo:'Continue with demo account', or:'or', new_to_juaija:'New to juaija?', create_account:'Create account', unique_username:'Unique username', email:'Email', password_min:'Password (min. 8 characters)', local_demo_notice:'This project account is stored locally for demonstration.', auth_bad_credentials:'That username/email or password is incorrect.', auth_unique_username:'This username is already taken.', auth_unique_email:'This email is already in use.', auth_username_rules:'Use 3-20 characters: letters, numbers or underscores.', auth_email_invalid:'Enter a valid email address.', auth_password_short:'Password must be at least 8 characters.', auth_login_ok:'Welcome to juaija.', listing_created:'Listing published!', listing_title_error:'Enter an item name (up to 60 characters).', listing_category_error:'Choose an item category.', listing_condition_error:'Choose an item condition.', listing_price_error:'Enter a valid selling price (over RM0).', listing_original_error:'Original price must be equal to or higher than the selling price.', listing_description_error:'Enter a description (up to 500 characters).', listing_location_error:'Enter a pickup location.', image_type_error:'Choose a JPG, PNG or WebP image.', image_size_error:'Maximum image size is 2 MB.', image_read_error:'Could not read that image. Try another file.', storage_error:'Browser storage is full. Try a smaller image or remove a listing.', saved_toast:'Item saved for later.', unsaved_toast:'Item removed from saved items.', contact_sent:'Interest sent to the seller (demo simulation).', profile_saved:'Profile updated.', reset_confirm:'Reset all demo data in this browser? Local changes will be lost.', reset_done:'Demo data restored.', marked_read:'All notifications marked as read.', copied:'Demo details copied.', demo_user_label:'Demo account', demo_listing:'Demo listing', state_like_new:'Like new', state_good:'Good', state_fair:'Fair', edit_your_profile:'Edit your profile', full_name:'Display name', campus:'Campus / location', short_bio:'Short bio', cancel:'Cancel', save_changes:'Save changes', details:'Item details', interested:'I’m interested', contact_simulated:'Contact seller', condition_label:'Condition', location_label:'Pickup location', seller_label:'Seller', likes_label:'likes', page_items:'items', showing:'Showing', of:'of', page:'Page', marked:'READ', new_notification_listing:'A new listing you might like.', notif_demo_title:'Welcome to juaija!', notif_demo_body:'Give good things a second life. Your demo account is ready.', notif_trend_title:'Books & notes are trending', notif_trend_body:'This category is most active this week - more good finds just arrived.', notif_saved_title:'Your saved finds are waiting', notif_saved_body:'Save your favourites so they’re easy to find later.', joined_now:'Just now', hours_ago:'hours ago', days_ago:'days ago', read_more:'Mark as read', change_saved:'Settings saved.', selling_price_short:'Selling price', sort_oldest:'Oldest'
     }
   };
+  Object.assign(messages.ms,{wallet_insufficient:'Baki juaija Pay tidak mencukupi.',wallet_topup_saved:'Tambah nilai berjaya.',wallet_payment_saved:'Pembayaran disahkan. Dana ditahan sehingga serahan selesai.',wallet_short:'Bayar',wallet_current_balance:'BAKI SEMASA',wallet_add_money:'Tambah nilai',wallet_amount:'Amaun (RM)',wallet_bank:'Bank',wallet_online_banking:'Perbankan dalam talian',wallet_confirm_topup:'Sahkan tambah nilai',wallet_pay_from:'Bayar dari dompet',wallet_balance:'Baki dompet',wallet_amount_due:'Jumlah perlu dibayar',wallet_topup_prompt:'Tambah {amount} untuk teruskan.',wallet_secure_note:'Bayaran dipegang dengan selamat dan dilepaskan kepada penjual selepas penerimaan disahkan.',bookmarked:'DISUKAI',saved_items:'Barang disukai'});
+  Object.assign(messages.en,{wallet_insufficient:'Your juaija Pay balance is insufficient.',wallet_topup_saved:'Top-up completed.',wallet_payment_saved:'Payment confirmed. Funds are held until handoff is complete.',wallet_short:'Pay',wallet_current_balance:'CURRENT BALANCE',wallet_add_money:'Add money',wallet_amount:'Amount (RM)',wallet_bank:'Bank',wallet_online_banking:'Online banking',wallet_confirm_topup:'Confirm top-up',wallet_pay_from:'Pay from wallet',wallet_balance:'Wallet balance',wallet_amount_due:'Amount due',wallet_topup_prompt:'Add {amount} to continue.',wallet_secure_note:'Payment is held securely and released to the seller after you confirm receipt.',bookmarked:'LIKED',saved_items:'Liked items'});
 
   // Keep every copy key available in both supported languages, including legacy keys in saved UI state.
   Object.assign(messages.ms, {
@@ -211,14 +231,15 @@
   });
   Object.assign(messages.ms,{image_size_error:'Jumlah saiz gambar tidak boleh melebihi 2 MB.',image_count_error:'Pilih maksimum empat gambar.'});
   Object.assign(messages.en,{image_size_error:'The total image size cannot exceed 2 MB.',image_count_error:'Choose no more than four images.'});
-  Object.assign(messages.ms,{saved_login:'Akaun tersimpan',saved_login_hint:'Gunakan butiran ini untuk log masuk',continue_demo:'Teruskan dengan akaun tersimpan',notif_demo_body:'Selamat datang ke juaija. Mula teroka barang atau terbitkan iklan pertama awak.',account_desc:'',account_week:'7 hari',account_month:'30 hari',activities_recorded:'aktiviti direkodkan',no_recent_activity:'Belum ada aktiviti dalam tempoh ini.',verify_settings_desc:'Sahkan e-mel institusi untuk mendapatkan lencana pelajar.',orders_empty_copy:'Pesanan pembelian dan jualan akan muncul di sini. Teroka barang untuk membuat pesanan pertama.',new_listings:'Iklan baharu',market_items_available:'Barang tersedia',price_difference:'Jumlah diskaun tersedia',activity_period_total:'Jumlah aktiviti dalam {period}',chart_insight_dynamic:'Paling aktif pada {day}: {count} aktiviti.',category_note_dynamic:'Kategori paling banyak diiklankan: {category} ({count}).',no_chart_activity:'Belum ada aktiviti pasaran dalam tempoh ini.',items_handed_over:'Barang selesai diserahkan',verified_student:'Pelajar disahkan',verification_notification_title:'Status pelajar disahkan',verification_notification_body:'E-mel UiTM awak telah disahkan dan lencana pelajar sudah dipaparkan.',order_complete_notification_title:'Pesanan selesai',order_complete_notification_body:'Urusan untuk {item} telah ditandakan selesai.',mark_order_complete:'Tandakan selesai',order_completed:'Pesanan ditandakan selesai.'});
-  Object.assign(messages.en,{saved_login:'Saved account',saved_login_hint:'Use these details to sign in',continue_demo:'Continue with saved account',notif_demo_body:'Welcome to juaija. Explore items or publish your first listing.',account_desc:'',account_week:'7 days',account_month:'30 days',activities_recorded:'activities recorded',no_recent_activity:'No activity in this period yet.',verify_settings_desc:'Verify an institutional email to get the student badge.',orders_empty_copy:'Purchases and sales will appear here. Explore items to place your first order.',new_listings:'New listings',market_items_available:'Items available',price_difference:'Available savings',activity_period_total:'Activities in {period}',chart_insight_dynamic:'Most active on {day}: {count} activities.',category_note_dynamic:'Most listed category: {category} ({count}).',no_chart_activity:'No marketplace activity during this period.',items_handed_over:'Items handed over',verified_student:'Verified student',verification_notification_title:'Student status verified',verification_notification_body:'Your UiTM email is verified and your student badge is now visible.',order_complete_notification_title:'Order completed',order_complete_notification_body:'The order for {item} was marked complete.',mark_order_complete:'Mark complete',order_completed:'Order marked complete.'});
-  Object.assign(messages.ms,{saves_activity:'Simpanan baharu',chart_sources:'Sumber data: rekod iklan, pesanan dan simpanan dalam browser.'});
-  Object.assign(messages.en,{saves_activity:'New saves',chart_sources:'Sources: listing, order and saved activity records in this browser.'});
+  Object.assign(messages.ms,{saved_login:'Akaun tersimpan',saved_login_hint:'Gunakan butiran ini untuk log masuk',continue_demo:'Teruskan dengan akaun tersimpan',notif_demo_body:'Selamat datang ke juaija. Mula teroka barang atau terbitkan iklan pertama awak.',account_desc:'',account_week:'7 hari',account_month:'30 hari',activities_recorded:'aktiviti direkodkan',no_recent_activity:'Belum ada aktiviti dalam tempoh ini.',verify_settings_desc:'Sahkan e-mel institusi untuk mendapatkan lencana pelajar.',orders_empty_copy:'Pesanan pembelian dan jualan akan muncul di sini. Teroka barang untuk membuat pesanan pertama.',new_listings:'Iklan baharu',market_items_available:'Barang tersedia',price_difference:'Jumlah diskaun tersedia',activity_period_total:'Jumlah aktiviti dalam {period}',chart_insight_dynamic:'Paling aktif pada {day}: {count} aktiviti.',category_note_dynamic:'Kategori paling banyak diiklankan: {category} ({count}).',no_chart_activity:'Belum ada aktiviti pasaran dalam tempoh ini.',items_handed_over:'Barang selesai diserahkan',verified_student:'Pelajar disahkan',verification_notification_title:'Status pelajar disahkan',verification_notification_body:'E-mel UiTM awak telah disahkan dan lencana pelajar sudah dipaparkan.',order_complete_notification_title:'Pesanan selesai',order_complete_notification_body:'Urusan untuk {item} telah ditandakan selesai.',mark_order_complete:'Tandakan selesai',order_completed:'Pesanan ditandakan selesai.',bookmarked:'DISUKAI',saved_items:'Barang disukai'});
+  Object.assign(messages.en,{saved_login:'Saved account',saved_login_hint:'Use these details to sign in',continue_demo:'Continue with saved account',notif_demo_body:'Welcome to juaija. Explore items or publish your first listing.',account_desc:'',account_week:'7 days',account_month:'30 days',activities_recorded:'activities recorded',no_recent_activity:'No activity in this period yet.',verify_settings_desc:'Verify an institutional email to get the student badge.',orders_empty_copy:'Purchases and sales will appear here. Explore items to place your first order.',new_listings:'New listings',market_items_available:'Items available',price_difference:'Available savings',activity_period_total:'Activities in {period}',chart_insight_dynamic:'Most active on {day}: {count} activities.',category_note_dynamic:'Most listed category: {category} ({count}).',no_chart_activity:'No marketplace activity during this period.',items_handed_over:'Items handed over',verified_student:'Verified student',verification_notification_title:'Student status verified',verification_notification_body:'Your UiTM email is verified and your student badge is now visible.',order_complete_notification_title:'Order completed',order_complete_notification_body:'The order for {item} was marked complete.',mark_order_complete:'Mark complete',order_completed:'Order marked complete.',bookmarked:'LIKED',saved_items:'Liked items'});
+  Object.assign(messages.ms,{saves_activity:'Barang simpanan',chart_sources:'Sumber data: rekod iklan, pesanan dan barang simpanan dalam browser.'});
+  Object.assign(messages.en,{saves_activity:'Saved items',chart_sources:'Sources: listing, order and saved-item activity in this browser.'});
   Object.assign(messages.ms,{dashboard:'Dashboard',verified_sellers_only:'Pelajar disahkan',verified_account_title:'Akaun pelajar disahkan',verified_account_body:'Identiti pelajar UiTM untuk akaun ini telah disahkan.',verified_account_pending:'Akaun ini belum disahkan sebagai pelajar.',get_verified:'Dapatkan pengesahan',notification_detail:'Butiran notifikasi',marked:'Dibaca'});
   Object.assign(messages.en,{dashboard:'Dashboard',verified_sellers_only:'Verified students',verified_account_title:'Verified student account',verified_account_body:'This account has a verified UiTM student identity.',verified_account_pending:'This account is not yet verified as a student.',get_verified:'Get verified',notification_detail:'Notification details',marked:'Read'});
-  Object.assign(messages.ms,{my_account_data:'Peribadi',market_data:'Global',personal_money_flow:'ALIRAN DUIT AWAK',personal_finance_title:'Ringkasan jual beli peribadi',all_time:'Semua',current_balance:'Baki bersih',spending:'Perbelanjaan',purchase_savings:'Jimat berbanding harga asal',listing_value:'Nilai listing aktif',average_sale:'Purata jualan',edit_listing:'Edit listing',update_listing:'Kemas kini listing',listing_updated:'Listing berjaya dikemas kini',product_details:'Butiran barang',good_things_happen:'PUSAT NOTIFIKASI',notification_note_title:'Pesanan, listing dan pengesahan.',notification_note_body:'Semua perkembangan penting juaija disusun di satu tempat.',delivery_method:'Kaedah serahan',meetup_only:'COD / jumpa sahaja',post_available:'Pos juga tersedia',change_avatar:'Tukar avatar',avatar_hint:'JPG, PNG atau WebP',username_info_title:'Panduan nama pengguna',fresh_finds:'Cadangan untuk awak'});
-  Object.assign(messages.en,{my_account_data:'Personal',market_data:'Global',personal_money_flow:'YOUR MONEY FLOW',personal_finance_title:'Personal buying and selling summary',all_time:'All',current_balance:'Net balance',spending:'Spending',purchase_savings:'Saved versus original price',listing_value:'Active listing value',average_sale:'Average sale',edit_listing:'Edit listing',update_listing:'Update listing',listing_updated:'Listing updated successfully',product_details:'Item details',good_things_happen:'NOTIFICATION CENTRE',notification_note_title:'Orders, listings and verification.',notification_note_body:'Every important juaija update, organised in one place.',delivery_method:'Delivery method',meetup_only:'COD / meet-up only',post_available:'Postage available',change_avatar:'Change avatar',avatar_hint:'JPG, PNG or WebP',username_info_title:'Username guide',fresh_finds:'Recommended for you'});
+  Object.assign(messages.ms,{my_account_data:'Peribadi',market_data:'Pasaran',personal_money_flow:'ALIRAN DUIT AWAK',personal_finance_title:'Ringkasan jual beli peribadi',all_time:'Semua',current_balance:'Baki bersih',spending:'Perbelanjaan',purchase_savings:'Jimat berbanding harga asal',listing_value:'Nilai iklan aktif',average_sale:'Purata jualan',edit_listing:'Edit iklan',update_listing:'Kemas kini iklan',listing_updated:'Iklan berjaya dikemas kini',product_details:'Butiran barang',good_things_happen:'PUSAT NOTIFIKASI',notification_note_title:'Pesanan, senarai dan pengesahan.',notification_note_body:'Semua perkembangan penting juaija disusun di satu tempat.',delivery_method:'Kaedah serahan',meetup_only:'Jumpa',post_available:'Pos juga tersedia',change_avatar:'Tukar avatar',avatar_hint:'JPG, PNG atau WebP',username_info_title:'Panduan nama pengguna',fresh_finds:'Cadangan untuk awak'});
+  Object.assign(messages.en,{my_account_data:'Personal',market_data:'Global',personal_money_flow:'YOUR MONEY FLOW',personal_finance_title:'Personal buying and selling summary',all_time:'All',current_balance:'Net balance',spending:'Spending',purchase_savings:'Saved versus original price',listing_value:'Active listing value',average_sale:'Average sale',edit_listing:'Edit listing',update_listing:'Update listing',listing_updated:'Listing updated successfully',product_details:'Item details',good_things_happen:'NOTIFICATION CENTRE',notification_note_title:'Orders, listings and verification.',notification_note_body:'Every important juaija update, organised in one place.',delivery_method:'Delivery method',meetup_only:'Meet up',post_available:'Postage available',change_avatar:'Change avatar',avatar_hint:'JPG, PNG or WebP',username_info_title:'Username guide',fresh_finds:'Recommended for you',listing_stock:'Stock',listing_status:'Status',listing_published:'Published',listing_draft:'Draft'});
+  Object.assign(messages.ms,{listing_stock:'Stok',listing_status:'Status',listing_published:'Diterbitkan',listing_draft:'Draf'});
 
   Object.assign(messages.ms,JuaijaOrders.messages.ms,StudentVerification.messages.ms,{order_oldest:'Terlama'});
   Object.assign(messages.en,JuaijaOrders.messages.en,StudentVerification.messages.en,{order_oldest:'Oldest'});
@@ -237,7 +258,57 @@
     Sports:['https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&q=85','https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=85'],
     Other:['https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?auto=format&fit=crop&w=1000&q=85','https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1000&q=85']
   };
-  const freshState = () => ({ users:[{...DEFAULT_USER}], currentUserId:DEFAULT_USER.id, listings:sampleListings.map(x=>({...x,image:x.image||productPhotos[x.category]})), favorites:[], orders:[], notifications:defaultNotifications(), activityEvents:[], settings:{lang:'ms',theme:'light'}, profileEdits:{} });
+  const listingGalleryPhotos={
+    'demo-lamp':['https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=1000&q=85','https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=1000&q=85'],
+    'demo-bag':['https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1000&q=85','https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?auto=format&fit=crop&w=1000&q=85'],
+    'demo-notes':['https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1000&q=85','https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=1000&q=85'],
+    'demo-keyboard':['https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=1000&q=85','https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&w=1000&q=85'],
+    'demo-racket':['https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=1000&q=85','https://images.unsplash.com/photo-1613918431703-aa50889e3be9?auto=format&fit=crop&w=1000&q=85'],
+    'demo-mirror':['https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=1000&q=85','https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1000&q=85'],
+    'demo-cardigan':['https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=1000&q=85','https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=1000&q=85'],
+    'demo-calculator':['https://images.unsplash.com/photo-1509223197845-458d87318791?auto=format&fit=crop&w=1000&q=85','https://images.unsplash.com/photo-1560785496-3c9d27877182?auto=format&fit=crop&w=1000&q=85']
+  };
+  function seedDemoAccount(demoState){
+    const now=Date.now();
+    const ownListings=[
+      ['demo-lamp','Lampu belajar LED putih','Home','lightbulb',18,39,'Like new','Lampu meja dengan tiga mod cahaya. Sesuai untuk ulang kaji malam.'],
+      ['demo-bag','Beg galas Fjallraven mini','Fashion','bag',55,95,'Good','Ringan, muat tablet dan buku nota. Zip masih elok.'],
+      ['demo-notes','Nota statistik semester 3','Books','journal-text',12,25,'Good','Nota berwarna dengan contoh pengiraan dan latihan akhir bab.'],
+      ['demo-keyboard','Papan kekunci Bluetooth','Electronics','keyboard',48,89,'Like new','Boleh sambung ke iPad atau laptop. Kabel pengecas disertakan.'],
+      ['demo-racket','Raket badminton Yonex','Sports','trophy',42,78,'Good','Sesuai untuk latihan kolej. Tali dan grip masih kemas.'],
+      ['demo-mirror','Cermin berdiri kecil','Home','house-door',20,36,'Good','Cermin ringan untuk bilik asrama, boleh diletak atas meja.'],
+      ['demo-cardigan','Cardigan kelabu saiz M','Fashion','bag',26,60,'Like new','Pakai dua kali sahaja. Kain lembut dan selesa.'],
+      ['demo-calculator','Kalkulator saintifik Casio','Electronics','calculator',32,58,'Good','Masih berfungsi baik, termasuk penutup asal.']
+    ].map(([id,title,category,icon,price,originalPrice,condition,description],index)=>({id,title,category,categoryLabel:categoryName[category].ms,icon,price,originalPrice,condition,seller:'@zulhelmi',location:'UiTM Pundana',description,userId:DEFAULT_USER.id,createdAt:now-(index+1)*6*3600_000,likes:8+index*5,image:listingGalleryPhotos[id][0],images:listingGalleryPhotos[id]}));
+    demoState.listings=demoState.listings||[];
+    ownListings.forEach(item=>{if(!demoState.listings.some(existing=>existing.id===item.id))demoState.listings.push(item);});
+    const orders=[
+      {id:'demo-order-buying',listingId:'l01',buyerId:DEFAULT_USER.id,sellerId:'mira',buyerUsername:'zulhelmi',sellerUsername:'mira_n',title:'Calculus: Early Transcendentals',price:38,image:productPhotos.Books,createdAt:now-2*86400_000,updatedAt:now-2*86400_000,status:'pending'},
+      {id:'demo-order-complete',listingId:'l18',buyerId:DEFAULT_USER.id,sellerId:'hakim',buyerUsername:'zulhelmi',sellerUsername:'hakim_w',title:'Jersey futsal biru',price:20,image:productPhotos.Sports,createdAt:now-12*86400_000,updatedAt:now-10*86400_000,status:'done'},
+      {id:'demo-order-selling',listingId:'l24',buyerId:'nadia',sellerId:DEFAULT_USER.id,buyerUsername:'nadia_k',sellerUsername:'zulhelmi',title:'Pokok pothos + pasu',price:15,image:productPhotos.Other,createdAt:now-86400_000,updatedAt:now-86400_000,status:'pending'},
+      {id:'demo-order-mouse',listingId:'l16',buyerId:DEFAULT_USER.id,sellerId:'kavitha',buyerUsername:'zulhelmi',sellerUsername:'kavitha_r',title:'Mouse wireless senyap',price:17,image:productPhotos.Electronics,createdAt:now-3*86400_000,updatedAt:now-3*86400_000,status:'pending'},
+      {id:'demo-order-shirt',listingId:'l14',buyerId:DEFAULT_USER.id,sellerId:'nurin',buyerUsername:'zulhelmi',sellerUsername:'nurin_e',title:'Kemeja linen putih',price:24,image:productPhotos.Fashion,createdAt:now-5*86400_000,updatedAt:now-5*86400_000,status:'pending'},
+      {id:'demo-order-lamp',listingId:'demo-lamp',buyerId:'afiq',sellerId:DEFAULT_USER.id,buyerUsername:'afiq_r',sellerUsername:'zulhelmi',title:'Lampu belajar LED putih',price:18,image:productPhotos.Home,createdAt:now-4*86400_000,updatedAt:now-4*86400_000,status:'pending'},
+      {id:'demo-order-bag',listingId:'demo-bag',buyerId:'sofia',sellerId:DEFAULT_USER.id,buyerUsername:'sofia_m',sellerUsername:'zulhelmi',title:'Beg galas Fjallraven mini',price:55,image:productPhotos.Fashion,createdAt:now-7*86400_000,updatedAt:now-7*86400_000,status:'pending'}
+    ];
+    demoState.favorites=[...new Set([...(demoState.favorites||[]),'l02','l03','l04','l06','l07','l09','l11','l13','l15','l20','l22','l23'])];
+    demoState.orders=demoState.orders||[];
+    orders.forEach(order=>{if(!demoState.orders.some(existing=>existing.id===order.id))demoState.orders.push(order);});
+    demoState.notifications=demoState.notifications||[];
+    [
+      {id:'demo-notification-listing',titleKey:'listing_live_title',bodyKey:'listing_live_body',params:{item:'Pokok pothos + pasu'},tone:'mint',icon:'stars',time:now-3*3600_000,read:true},
+      {id:'demo-notification-order',titleKey:'order_notification_title',bodyKey:'order_notification_body',params:{id:'demo-order-buying'},tone:'lilac',icon:'bag',time:now-2*3600_000,read:false},
+      {id:'demo-notification-verified',titleKey:'verification_notification_title',bodyKey:'verification_notification_body',tone:'peach',icon:'patch-check',time:now-86400_000,read:true},
+      {id:'demo-notification-saved',titleKey:'notif_saved_title',bodyKey:'notif_saved_body',tone:'mint',icon:'heart',time:now-5*3600_000,read:false},
+      {id:'demo-notification-trend',titleKey:'notif_trend_title',bodyKey:'notif_trend_body',tone:'lilac',icon:'stars',time:now-8*3600_000,read:true},
+      {id:'demo-notification-sale',titleKey:'order_notification_title',bodyKey:'order_notification_body',params:{id:'demo-order-lamp'},tone:'peach',icon:'bag',time:now-30*3600_000,read:false},
+      {id:'demo-notification-listing-two',titleKey:'listing_live_title',bodyKey:'listing_live_body',params:{item:'Lampu belajar LED putih'},tone:'mint',icon:'stars',time:now-40*3600_000,read:true}
+    ].forEach(notification=>{if(!demoState.notifications.some(existing=>existing.id===notification.id))demoState.notifications.push(notification);});
+    demoState.notifications.filter(notification=>notification.titleKey==='notif_demo_title').forEach(notification=>{notification.time=now-21*86400_000;notification.read=true;});
+    const wallet=demoState.wallets[DEFAULT_USER.id]||(demoState.wallets[DEFAULT_USER.id]={balance:0,transactions:[]});
+    if(Number(wallet.balance||0)<180){wallet.balance=180;wallet.transactions=wallet.transactions||[];if(!wallet.transactions.some(transaction=>transaction.id==='demo-wallet-topup'))wallet.transactions.push({id:'demo-wallet-topup',type:'topup',amount:180,bank:'Online banking',at:now-5*86400_000});}
+  }
+  const freshState = () => {const demoState={users:[{...DEFAULT_USER},...sampleSellerAccounts.map(user=>({...user}))],currentUserId:DEFAULT_USER.id,listings:sampleListings.map(x=>({...x,image:x.image||productPhotos[x.category]})),favorites:[],orders:[],notifications:defaultNotifications(),activityEvents:[],settings:{lang:'ms',theme:'light'},profileEdits:{},wallets:{[DEFAULT_USER.id]:{balance:0,transactions:[]}}};seedDemoAccount(demoState);return demoState;};
   let state = loadState();
   let currentPage = 'home';
   let ordersController, verificationController;
@@ -249,6 +320,10 @@
   let editingListingId = null;
   let uploadedImage = '';
   let uploadedImages = [];
+  let profileListingsPage = 1;
+  const profileListingsPerPage = 6;
+  let savedItemsPage = 1;
+  let savedItemsPerPage = 15;
 
   const $ = (sel, root=document) => root.querySelector(sel);
   const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
@@ -274,7 +349,7 @@
   const avatarUrl = user => user?.avatar || 'assets/avatar-cartoon.svg';
   const sellerHandle = name => String(name||'student').replace(/^@/,'').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'');
   const ICON_ALIASES = {'\u2733':'stars','\u2726':'stars','\u2727':'stars','\u2197':'arrow-up-right','\u2661':'heart','\u2665':'heart-fill'};
-  const ICON_NAMES = new Set(['arrow-up-right','bag','battery-half','bell','bell-slash','book-half','box-seam','calculator','calendar3','chevron-left','chevron-right','cpu','dumbbell','edit','eye','eye-slash','fan','geo-alt','gear','grid-3x3-gap','headphones','heart','heart-fill','house','house-door','journal-text','keyboard','lightbulb','list-ul','pencil','person','plus-lg','search','stars','trophy','x-lg']);
+  const ICON_NAMES = new Set(['arrow-left','arrow-up-right','bag','battery-half','bell','bell-slash','book-half','box-seam','calculator','calendar3','chevron-left','chevron-right','cpu','dumbbell','edit','eye','eye-slash','fan','geo-alt','gear','grid-3x3-gap','headphones','heart','heart-fill','house','house-door','journal-text','keyboard','lightbulb','list-ul','pencil','person','plus-lg','search','stars','trophy','x-lg']);
   const CATEGORY_ICONS = {Books:'book-half',Electronics:'cpu',Fashion:'bag',Home:'house-door',Sports:'trophy',Other:'box-seam'};
   const iconMarkup = (name, extraClass='') => { const key=ICON_ALIASES[name] || (ICON_NAMES.has(name)?name:'stars'); return `<i class="bi bi-${key}${extraClass?' '+extraClass:''}" aria-hidden="true"></i>`; };
   const productIcon = item => iconMarkup(ICON_NAMES.has(item.icon)?item.icon:(CATEGORY_ICONS[item.category]||'box-seam'));
@@ -286,10 +361,14 @@
       const base = freshState();
       const merged = {...base,...saved, settings:{...base.settings,...saved.settings}};
       if (!Array.isArray(merged.users) || !merged.users.some(u=>u.id===DEFAULT_USER.id)) merged.users = [{...DEFAULT_USER}, ...(merged.users||[])];
+      sampleSellerAccounts.forEach(user=>{if(!merged.users.some(existing=>existing.id===user.id))merged.users.push({...user});});
       if (!Array.isArray(merged.listings)) merged.listings = base.listings;
-      merged.listings.forEach(item=>{if(!item.image)item.image=productPhotos[item.category];});
+      merged.listings.forEach(item=>{if(item.id==='l16')item.image='https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=1000&q=85';else if(!item.image)item.image=productPhotos[item.category];});
       if (!Array.isArray(merged.favorites)) merged.favorites = [];
       if (!Array.isArray(merged.orders)) merged.orders = [];
+      if (!merged.wallets || typeof merged.wallets!=='object') merged.wallets = {};
+      merged.users.forEach(user=>{if(!merged.wallets[user.id])merged.wallets[user.id]={balance:0,transactions:[]};if(!Array.isArray(merged.wallets[user.id].transactions))merged.wallets[user.id].transactions=[];});
+      seedDemoAccount(merged);
       if (!Array.isArray(merged.activityEvents)) merged.activityEvents = [];
       if (!Array.isArray(merged.notifications)) merged.notifications = defaultNotifications();
       merged.notifications = merged.notifications.filter(notification=>!(
@@ -314,9 +393,23 @@
       });
       merged.users.forEach(user=>{
         delete user.name;delete user.initials;delete user.campus;
-        if(user.id===DEFAULT_USER.id&&user.bio==='Student yang percaya barang baik patut dapat peluang kedua.'){delete user.bio;user.bioKey='default_demo_bio';}
+        if(user.id===DEFAULT_USER.id){
+          if(!user.username||user.username==='alyarahman')user.username=DEFAULT_USER.username;
+          if(!user.email||user.email==='alya@juaija.my')user.email=DEFAULT_USER.email;
+          user.avatar=DEFAULT_USER.avatar;
+          if(user.bio==='Student yang percaya barang baik patut dapat peluang kedua.'){delete user.bio;user.bioKey='default_demo_bio';}
+        }
         if(user.bio==='Baru menyertai komuniti juaija.'||user.bio==='New to the juaija community.'){delete user.bio;user.bioKey='new_member_bio';}
       });
+      const demoUser=merged.users.find(user=>user.id===DEFAULT_USER.id)||DEFAULT_USER;
+      merged.listings.filter(item=>item.userId===DEFAULT_USER.id).forEach(item=>{
+        item.seller=`@${demoUser.username}`;
+        item.location='UiTM Pundana';
+        if(String(item.id).startsWith('demo-')){
+          if(listingGalleryPhotos[item.id]){item.image=listingGalleryPhotos[item.id][0];item.images=[...listingGalleryPhotos[item.id]];}
+        }
+      });
+      merged.orders.forEach(order=>{if(order.buyerId===DEFAULT_USER.id)order.buyerUsername='zulhelmi';if(order.sellerId===DEFAULT_USER.id)order.sellerUsername='zulhelmi';});
       if (merged.currentUserId !== null && !merged.users.some(u=>u.id===merged.currentUserId)) merged.currentUserId = DEFAULT_USER.id;
       return merged;
     } catch { return freshState(); }
@@ -338,6 +431,12 @@
     image.addEventListener('error',()=>{image.remove();element.classList.remove('has-photo');},{once:true});
     element.replaceChildren(image);
     element.classList.add('has-photo');
+  }
+  function updateAvatarFromFile(file, onComplete){
+    if(!file||!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>1024*1024)return;
+    const reader=new FileReader();
+    reader.onload=()=>{currentUser().avatar=String(reader.result);if(!persist())return;updateIdentity();onComplete?.();toast('change_saved');};
+    reader.readAsDataURL(file);
   }
   function applyIcons(){
     const icons={search:'search',bell:'bell',settings:'gear',grid:'grid-3x3-gap',list:'list-ul',user:'person',home:'house',edit:'pencil',calendar:'calendar3',plus:'plus-lg',bag:'bag'};
@@ -396,8 +495,8 @@
   function showAuth(){
     $('#app').hidden=true; $('#authScreen').hidden=false;
     updateIdentity(); applyTheme(); applyLanguage();
-    $('#loginForm [name="identity"]').value='@alyarahman'; $('#loginForm [name="password"]').value='juaija123';
-    $('#demoUsername').textContent='@alyarahman'; setRuntimeText($('#authError'),'');
+    $('#loginForm [name="identity"]').value='@zulhelmi'; $('#loginForm [name="password"]').value='juaija123';
+    $('#demoUsername').textContent='@zulhelmi'; setRuntimeText($('#authError'),'');
     const signup=sessionStorage.getItem('juaija.authView')==='signup';
     $('#signupForm').hidden=!signup;$('#loginForm').hidden=signup;$('.demo-card').hidden=signup;$('.auth-divider').hidden=signup;
     const title=$('#authFormTitle');title.dataset.i18n=signup?'create_account':'sign_in_title';title.textContent=t(title.dataset.i18n);
@@ -413,14 +512,14 @@
     setAvatar($("#profileAvatar"),user); setAvatar($("#settingsAvatar"),user);
     $("#profileTitle").innerHTML=`@${escapeHtml(user.username)}${badge}`;
     $("#profileBio").textContent=user.bioKey?t(user.bioKey):(user.bio||""); $("#settingsUsername").innerHTML=`@${escapeHtml(user.username)}${badge}`; $("#settingsEmail").textContent=user.email;
-    $('#profileSoldCount').textContent=state.orders.filter(order=>order.sellerId===user.id&&order.status==='done').length; $('#profileRating').textContent='—';
-    $('#myListingTotal').textContent=state.listings.filter(item=>item.userId===user.id).length; $('#myOrderTotal').textContent=state.orders.filter(order=>order.buyerId===user.id||order.sellerId===user.id).length; $('#mySavedTotal').textContent=state.favorites.length;
+    $('#profileSoldCount').textContent=state.orders.filter(order=>order.sellerId===user.id&&order.status==='done').length;
+    $('#myListingTotal').textContent=state.listings.filter(item=>item.userId===user.id).length; $('#myOrderTotal').textContent=state.orders.filter(order=>order.status!=='cancelled'&&(order.buyerId===user.id||order.sellerId===user.id)).length; $('#mySavedTotal').textContent=state.favorites.length;
     renderVerification();
   }
   function toast(messageKey, title='juaija'){
     const container=$('#toastContainer'); if(!container)return;
     const toastEl=document.createElement('div'); toastEl.className='toast show'; toastEl.setAttribute('role','status');
-    toastEl.innerHTML=`<div class="toast-header"><span class="demo-icon me-2">${iconMarkup('stars')}</span><strong class="me-auto">${escapeHtml(title)}</strong><small data-i18n-runtime="time_now">${escapeHtml(t('time_now'))}</small><button type="button" class="btn-close ms-2" data-i18n-aria-label="close" data-i18n-title="close" aria-label="${escapeHtml(t('close'))}" title="${escapeHtml(t('close'))}"></button></div><div class="toast-body" data-i18n-runtime="${escapeHtml(messageKey)}">${escapeHtml(t(messageKey))}</div>`;
+    toastEl.innerHTML=`<div class="toast-header"><img class="toast-logo" src="assets/logo.png" alt=""><strong class="me-auto">${escapeHtml(title)}</strong><small data-i18n-runtime="time_now">${escapeHtml(t('time_now'))}</small><button type="button" class="btn-close ms-2" data-i18n-aria-label="close" data-i18n-title="close" aria-label="${escapeHtml(t('close'))}" title="${escapeHtml(t('close'))}"></button></div><div class="toast-body" data-i18n-runtime="${escapeHtml(messageKey)}">${escapeHtml(t(messageKey))}</div>`;
     toastEl.querySelector('.btn-close').textContent='×'; container.append(toastEl); toastEl.querySelector('.btn-close').addEventListener('click',()=>toastEl.remove());
     setTimeout(()=>toastEl.remove(),4200);
   }
@@ -443,14 +542,14 @@
     const verified=StudentVerification.isActive(author);
     const title=listingCopy(item,'title');
     const savings=item.originalPrice>item.price?Math.round((1-item.price/item.originalPrice)*100):0;
-    return `<article class="listing-card" data-listing-id="${escapeHtml(item.id)}"><button class="favorite-button ${saved?'active':''}" data-action="favorite" data-id="${escapeHtml(item.id)}" aria-label="${escapeHtml(t(saved?'remove_saved':'save_item'))}" title="${escapeHtml(t(saved?'remove_saved':'save_item'))}">${saved?iconMarkup('heart-fill'):iconMarkup('heart')}</button><div class="listing-visual ${toneClass(item.category)}" data-action="detail" data-id="${escapeHtml(item.id)}" role="button" tabindex="0"><span class="condition-tag">${escapeHtml(conditionLabel(item.condition))}</span>${item.image?`<span class="product-icon" style="display:none">${productIcon(item)}</span><img src="${item.image}" alt="${escapeHtml(title)}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0">`:`<span class="product-icon">${productIcon(item)}</span>`}</div><div class="listing-body" data-action="detail" data-id="${escapeHtml(item.id)}" role="button" tabindex="0"><p class="listing-category">${escapeHtml(getCategoryLabel(item))}</p><h3 class="listing-title" title="${escapeHtml(title)}">${escapeHtml(title)}</h3><div class="listing-price-row">${item.originalPrice>item.price?`<span class="listing-saving">−${savings}%</span><span class="listing-original">${money(item.originalPrice)}</span>`:''}<span class="listing-price">${money(item.price)}</span></div><div class="listing-meta"><span class="seller-mini"><span class="seller-mini-avatar"><img src="${avatarUrl(seller)}" alt=""></span><span class="seller-mini-identity"><span class="seller-mini-name">${escapeHtml(seller)}</span>${verified?verifiedBadge(author):''}</span></span><span class="listing-location">${iconMarkup('geo-alt')}<span class="listing-location-text">${escapeHtml(listingCopy(item,'location')||t('campus'))}</span></span></div></div></article>`;
+    return `<article class="listing-card" data-listing-id="${escapeHtml(item.id)}"><button class="favorite-button ${saved?'active':''}" data-action="favorite" data-id="${escapeHtml(item.id)}" aria-label="${escapeHtml(t(saved?'remove_saved':'save_item'))}" title="${escapeHtml(t(saved?'remove_saved':'save_item'))}">${saved?iconMarkup('heart-fill'):iconMarkup('heart')}</button><div class="listing-visual ${toneClass(item.category)}" data-action="detail" data-id="${escapeHtml(item.id)}" role="button" tabindex="0"><span class="condition-tag">${escapeHtml(conditionLabel(item.condition))}</span>${item.image?`<span class="product-icon" style="display:none">${productIcon(item)}</span><img src="${item.image}" alt="${escapeHtml(title)}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0">`:`<span class="product-icon">${productIcon(item)}</span>`}${item.originalPrice>item.price?`<span class="listing-saving">−${savings}%</span>`:''}</div><div class="listing-body" data-action="detail" data-id="${escapeHtml(item.id)}" role="button" tabindex="0"><p class="listing-category">${escapeHtml(getCategoryLabel(item))}</p><h3 class="listing-title" title="${escapeHtml(title)}">${escapeHtml(title)}</h3><div class="listing-price-row">${item.originalPrice>item.price?`<span class="listing-original">${money(item.originalPrice)}</span>`:''}<span class="listing-price">${money(item.price)}</span></div><div class="listing-meta"><span class="seller-mini"><span class="seller-mini-avatar"><img src="${avatarUrl(author)}" alt=""></span><span class="seller-mini-identity"><span class="seller-mini-name">${escapeHtml(seller)}</span>${verified?verifiedBadge(author):''}</span></span><span class="listing-location">${iconMarkup('geo-alt')}<span class="listing-location-text">${escapeHtml(listingCopy(item,'location')||t('campus'))}</span></span></div></div></article>`;
   }
   function renderListings(){
     $('#homeListings').innerHTML=getFilteredListings().slice(0,4).map(renderCard).join('');
     renderMarketplace(); renderProfile(); renderSellerSummary();
   }
   function getFilteredListings(){
-    let items=state.listings.filter(item=>item.status!=='sold'); const q=marketState.search.trim().toLowerCase();
+    let items=state.listings.filter(item=>item.status!=='sold'&&item.publicationStatus!=='draft'); const q=marketState.search.trim().toLowerCase();
     if(marketState.category!=='all') items=items.filter(item=>item.category===marketState.category);
     if(marketState.verifiedOnly)items=items.filter(item=>StudentVerification.isActive(state.users.find(user=>user.id===item.userId)));
     if(q) items=items.filter(item=>[listingCopy(item,'title'),listingCopy(item,'description'),listingCopy(item,'location'),item.title,item.description,item.seller,item.location,item.categoryLabel,getCategoryLabel(item)].join(' ').toLowerCase().includes(q));
@@ -483,10 +582,19 @@
   function renderProfile(){
     if(!$('#profileListings'))return;
     const own=state.listings.filter(item=>item.userId===currentUser().id).sort((a,b)=>b.createdAt-a.createdAt);
-    $('#profileListings').innerHTML=own.length?own.map(renderCard).join(''):`<div class="profile-empty">${escapeHtml(t('profile_listings_empty'))}</div>`;
-    $('#profileListingsCount').textContent=own.length; $('#savedCount').textContent=state.favorites.length;
-    const saved=state.listings.filter(item=>state.favorites.includes(item.id)).slice(0,3);
-    $('#savedItemsList').innerHTML=saved.length?saved.map(item=>`<button type="button" class="saved-item-row" data-action="detail" data-id="${escapeHtml(item.id)}"><span class="saved-item-thumb ${toneClass(item.category)}">${item.image?`<img src="${item.image}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius)">`:productIcon(item)}</span><span class="saved-item-copy"><strong>${escapeHtml(listingCopy(item,'title'))}</strong><small>${escapeHtml(getCategoryLabel(item))}</small></span><span class="saved-item-price">${money(item.price)}</span></button>`).join(''):`<p class="saved-empty">${escapeHtml(t('saved_empty'))}</p>`;
+    const profilePages=Math.max(1,Math.ceil(own.length/profileListingsPerPage)); profileListingsPage=Math.min(profileListingsPage,profilePages);
+    const visibleOwn=own.slice((profileListingsPage-1)*profileListingsPerPage,profileListingsPage*profileListingsPerPage);
+    $('#profileListings').innerHTML=own.length?visibleOwn.map(renderCard).join(''):`<div class="profile-empty">${escapeHtml(t('profile_listings_empty'))}</div>`;
+    let profilePagination=$('#profileListingsPagination');
+    if(!profilePagination){profilePagination=document.createElement('div');profilePagination.id='profileListingsPagination';profilePagination.className='profile-listings-pagination';$('#profileListings').after(profilePagination);}
+    profilePagination.innerHTML=profilePages>1?`<button type="button" class="button button-outline" data-profile-page="previous" ${profileListingsPage===1?'disabled':''} aria-label="Previous page"><i class="bi bi-chevron-left" aria-hidden="true"></i></button><span>${profileListingsPage} / ${profilePages}</span><button type="button" class="button button-outline" data-profile-page="next" ${profileListingsPage===profilePages?'disabled':''} aria-label="Next page"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>`:'';
+    $('#profileListingsCount').textContent=own.length; const savedCount=$('#savedCount span'); if(savedCount)savedCount.textContent=state.favorites.length;
+    const saved=state.listings.filter(item=>state.favorites.includes(item.id));
+    const totalPages=Math.max(1,Math.ceil(saved.length/savedItemsPerPage)); savedItemsPage=Math.min(savedItemsPage,totalPages);
+    const savedPage=saved.slice((savedItemsPage-1)*savedItemsPerPage,savedItemsPage*savedItemsPerPage);
+    $('#savedItemsList').innerHTML=savedPage.length?savedPage.map(item=>`<button type="button" class="saved-item-row" data-action="detail" data-id="${escapeHtml(item.id)}"><span class="saved-item-thumb ${toneClass(item.category)}">${item.image?`<img src="${item.image}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius)">`:productIcon(item)}</span><span class="saved-item-copy"><strong>${escapeHtml(listingCopy(item,'title'))}</strong><small>${escapeHtml(getCategoryLabel(item))}</small></span><span class="saved-item-price">${money(item.price)}</span></button>`).join(''):`<p class="saved-empty">${escapeHtml(t('saved_empty'))}</p>`;
+    const savedShow=$('#savedItemsShow'); if(savedShow)savedShow.value=String(savedItemsPerPage);
+    const savedPagination=$('#savedItemsPagination'); if(savedPagination)savedPagination.innerHTML=totalPages>1?`<button type="button" class="button button-outline" data-saved-page="previous" ${savedItemsPage===1?'disabled':''} aria-label="Previous page"><i class="bi bi-chevron-left" aria-hidden="true"></i></button><span>${savedItemsPage} / ${totalPages}</span><button type="button" class="button button-outline" data-saved-page="next" ${savedItemsPage===totalPages?'disabled':''} aria-label="Next page"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>`:'';
     updateIdentity();
   }
   function renderSellerSummary(){
@@ -496,7 +604,7 @@
   }
   function renderNotifications(){
     if(!$('#notificationList'))return;
-    const visible=state.notifications.filter(n=>notifFilter==='all'||!n.read);
+    const visible=state.notifications.filter(n=>notifFilter==='all'||!n.read).sort((a,b)=>Number(b.time||0)-Number(a.time||0));
     if($('#allNotifCount'))$('#allNotifCount').textContent=state.notifications.length;if($('#unreadCount'))$('#unreadCount').textContent=state.notifications.filter(n=>!n.read).length;
     $$('.notif-tab').forEach(button=>button.classList.toggle('active',button.dataset.notifFilter===notifFilter));
     $('#notificationList').innerHTML=visible.length?visible.map(notification=>{
@@ -596,7 +704,7 @@
     const periodSavings=periodPurchases.reduce((sum,order)=>{const item=state.listings.find(row=>row.id===order.listingId);return sum+Math.max(0,Number(item?.originalPrice||order.price||0)-Number(order.price||0));},0);
     const balance=periodIncome-periodSpending,max=Math.max(periodIncome,periodSpending,periodSavings,1),incomeShare=Math.round(periodIncome/max*100),spendingShare=Math.round(periodSpending/max*100),savingsShare=Math.round(periodSavings/max*100);
     $('#financeBalance').textContent=money(balance); $('#financeIncome').textContent=money(periodIncome); $('#financeSpending').textContent=money(periodSpending); $('#financeSavings').textContent=money(periodSavings);
-    $('#financeIncomeBar').style.width=`${incomeShare}%`; $('#financeSpendingBar').style.width=`${spendingShare}%`; $('#financeSavingsBar').style.width=`${savingsShare}%`;
+    $('#financeIncomeBar').style.height=`${incomeShare}%`; $('#financeSpendingBar').style.height=`${spendingShare}%`; $('#financeSavingsBar').style.height=`${savingsShare}%`;
     $('#financeRing').style.setProperty('--income-share',`${periodIncome||periodSpending?Math.round(periodIncome/Math.max(periodIncome+periodSpending,1)*100):0}%`);
     $('#activeListingValue').textContent=money(listingValue); $('#personalSoldCount').textContent=sales.length; $('#averageSaleValue').textContent=money(sales.length?income/sales.length:0);
     $('#personalDashboardPanel').hidden=dashboardScope!=='personal'; $('#marketDashboardPanel').hidden=dashboardScope!=='market'; $('#marketMetricGrid').hidden=dashboardScope!=='market';
@@ -605,9 +713,11 @@
     $$('[data-dashboard-scope]').forEach(button=>{const active=button.dataset.dashboardScope===dashboardScope;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));});
     $$('[data-finance-period]').forEach(button=>button.classList.toggle('active',button.dataset.financePeriod===financePeriod));
   }
+  function walletFor(userId=currentUser().id){state.wallets=state.wallets||{};return state.wallets[userId]||(state.wallets[userId]={balance:0,transactions:[]});}
+  function renderWallet(){const amount=walletFor().balance,value=money(amount),compact=amount>=1000?`RM ${new Intl.NumberFormat(state.settings.lang==='ms'?'ms-MY':'en-MY',{notation:'compact',maximumFractionDigits:1}).format(amount)}`:value;$$('#walletBalance,#settingsWalletBalance,#walletBalancePage').forEach(balance=>balance.textContent=value);const navBalance=$('#walletNavBalance');if(navBalance)navBalance.textContent=compact;}
   function renderAll(){
     if(StudentVerification.synchronize(state))persist();
-    updateIdentity(); renderListings(); renderCategoryChart(); renderChart(); renderCommunityMetrics(); renderPersonalDashboard(); renderNotifications(); updateNotificationDot();
+    updateIdentity(); renderListings(); renderCategoryChart(); renderChart(); renderCommunityMetrics(); renderPersonalDashboard(); renderWallet(); renderNotifications(); updateNotificationDot();
     renderOrders(); renderVerification();
     if($('#marketSearch')) renderMarketplace();
   }
@@ -659,11 +769,23 @@
     document.body.classList.add('modal-open');
     wrap.addEventListener('click',event=>{if(event.target===wrap)closeModal();});
     wrap.querySelectorAll('[data-close-modal]').forEach(close=>{
-      if(close.matches('.dialog-close'))close.textContent='×';
       close.type='button';
       close.addEventListener('click',closeModal);
     });
     return wrap;
+  }
+  function openWalletTopUp(returnToItemId=''){
+    const wrap=openModal(`<form class="dialog-card wallet-dialog" id="walletTopUpForm" novalidate><button type="button" class="dialog-close" data-close-modal aria-label="${escapeHtml(t('close_dialog'))}">${iconMarkup('x-lg')}</button><p class="eyebrow">juaija Pay</p><h2>${escapeHtml(t('wallet_add_money'))}</h2><label class="form-field"><span>${escapeHtml(t('wallet_amount'))}</span><input name="amount" type="number" min="1" step="1" value="20" required></label><label class="form-field"><span>${escapeHtml(t('wallet_bank'))}</span><select name="bank"><option>${escapeHtml(t('wallet_online_banking'))}</option></select></label><div class="dialog-actions"><button type="button" class="button button-outline" data-close-modal>${escapeHtml(t('cancel'))}</button><button type="submit" class="button button-primary">${escapeHtml(t('wallet_confirm_topup'))}</button></div></form>`);
+    wrap.querySelector('#walletTopUpForm').addEventListener('submit',event=>{event.preventDefault();const amount=Number(event.currentTarget.elements.amount.value);if(!Number.isFinite(amount)||amount<=0)return;const entry=walletFor();entry.balance+=amount;entry.transactions.unshift({id:uid('topup'),type:'topup',amount,bank:event.currentTarget.elements.bank.value,at:Date.now()});if(!persist())return;closeModal();renderAll();toast('wallet_topup_saved');if(returnToItemId){const item=state.listings.find(row=>row.id===returnToItemId);if(item)openPayCheckout(item);}});
+  }
+  function openPayCheckout(item){
+    const available=walletFor().balance,amount=Number(item.price||0),insufficient=available<amount;
+    const methods=String(item.delivery||'meetup').split(','); const canPost=methods.includes('post');
+    const deliveryControl=canPost?`<fieldset class="checkout-delivery"><legend>${escapeHtml(t('delivery_method'))}</legend><label><input type="radio" name="deliveryMethod" value="meetup" checked> ${escapeHtml(t('delivery_meetup'))}</label><label><input type="radio" name="deliveryMethod" value="post"> ${escapeHtml(t('delivery_post'))}</label><label class="checkout-address" hidden><span>${escapeHtml(t('delivery_address'))}</span><textarea name="deliveryAddress" rows="2" maxlength="180"></textarea></label></fieldset>`:`<p class="wallet-note">${escapeHtml(t('delivery_method'))}: ${escapeHtml(t('delivery_meetup'))}</p>`;
+    const wrap=openModal(`<article class="dialog-card wallet-dialog pay-checkout" role="dialog" aria-modal="true"><button type="button" class="dialog-close" data-close-modal aria-label="${escapeHtml(t('close_dialog'))}">${iconMarkup('x-lg')}</button><p class="eyebrow">juaija Pay</p><h2>${escapeHtml(t('wallet_pay_from'))}</h2><p class="wallet-item">${escapeHtml(listingCopy(item,'title'))}</p><div class="wallet-payment-summary"><span>${escapeHtml(t('wallet_balance'))}<strong>${money(available)}</strong></span><span>${escapeHtml(t('wallet_amount_due'))}<strong>${money(amount)}</strong></span></div><label class="form-field"><span>${state.settings.lang==='ms'?'Nombor WhatsApp':'WhatsApp number'}</span><input name="contactPhone" type="tel" inputmode="tel" placeholder="0123456789" required></label>${deliveryControl}${insufficient?`<p class="wallet-warning">${escapeHtml(format('wallet_topup_prompt',{amount:money(amount-available)}))}</p>`:`<p class="wallet-note">${escapeHtml(t('wallet_secure_note'))}</p>`}<div class="dialog-actions">${insufficient?`<button type="button" class="button button-primary" data-wallet-topup="${escapeHtml(item.id)}">${escapeHtml(t('wallet_add_money'))}</button>`:`<button type="button" class="button button-primary" data-wallet-pay="${escapeHtml(item.id)}">${escapeHtml(t('wallet_pay_from'))} ${money(amount)}</button>`}</div></article>`);
+    wrap.querySelector('[data-wallet-topup]')?.addEventListener('click',()=>openWalletTopUp(item.id));
+    wrap.querySelectorAll('[name="deliveryMethod"]').forEach(control=>control.addEventListener('change',event=>{const address=wrap.querySelector('.checkout-address');if(address)address.hidden=event.target.value!=='post';}));
+    wrap.querySelector('[data-wallet-pay]')?.addEventListener('click',()=>{const method=wrap.querySelector('[name="deliveryMethod"]:checked')?.value||'meetup',address=String(wrap.querySelector('[name="deliveryAddress"]')?.value||'').trim(),phone=String(wrap.querySelector('[name="contactPhone"]')?.value||'').trim();if(!/^\+?[0-9][0-9\s-]{7,14}$/.test(phone)){wrap.querySelector('[name="contactPhone"]')?.focus();return;}if(method==='post'&&!address){wrap.querySelector('[name="deliveryAddress"]')?.focus();return;}if(ordersController.pay(item.id,{method,address,phone})){closeModal();setPage('orders');}});
   }
   function setupListingGallery(root, gallery, title) {
   const image = root.querySelector('#detailGalleryImage');
@@ -692,13 +814,13 @@
   const seller=author?('@'+author.username):('@'+sellerHandle(item.seller));
   const saved=state.favorites.includes(id);
   const itemTitle=listingCopy(item,'title'), itemDescription=listingCopy(item,'description'), itemLocation=listingCopy(item,'location')||t('campus');
-  const demoPhotos=String(item.id).startsWith('l')?(productGalleryPhotos[item.category]||[]):[];
+  const demoPhotos=listingGalleryPhotos[item.id] || (String(item.id).startsWith('l')?(productGalleryPhotos[item.category]||[]):[]);
   const gallery=[...new Set([...(Array.isArray(item.images)&&item.images.length?item.images:[item.image]),...demoPhotos].filter(Boolean))].slice(0,4);
   if(!gallery.length)gallery.push('');
   const avatarInitial=(seller.replace(/^@/,'')[0]||'j').toLowerCase(),isOwnListing=item.userId===currentUser().id;
   const existingOrder=state.orders.some(order=>order.listingId===id&&order.buyerId===currentUser().id&&['pending','accepted'].includes(order.status));
   const unavailable=['sold','reserved'].includes(item.status);
-  const orderAction=isOwnListing?`<div class="dialog-actions"><button type="button" class="button button-primary" data-action="edit-listing" data-id="${escapeHtml(id)}">${iconMarkup('edit')} ${escapeHtml(t('edit_listing'))}</button></div>`:existingOrder?`<div class="dialog-actions"><button type="button" class="button button-primary" data-action="view-orders">${escapeHtml(t('order_view'))}</button></div>`:`<div class="dialog-actions"><button type="button" class="button button-primary" data-action="contact-seller" data-id="${escapeHtml(id)}" ${unavailable?'disabled':''}>${escapeHtml(t(unavailable?'order_unavailable':'order_place'))}</button></div>`;
+  const orderAction=isOwnListing?`<div class="dialog-actions"><button type="button" class="button button-primary" data-action="edit-listing" data-id="${escapeHtml(id)}">${iconMarkup('edit')} ${escapeHtml(t('edit_listing'))}</button></div>`:existingOrder?`<div class="dialog-actions"><button type="button" class="button button-primary" data-action="view-orders">${escapeHtml(t('order_view'))}</button></div>`:`<div class="dialog-actions"><button type="button" class="button button-primary" data-action="pay-listing" data-id="${escapeHtml(id)}" ${unavailable?'disabled':''}>${escapeHtml(t(unavailable?'order_unavailable':'order_place'))}</button></div>`;
 
   const wrap=openModal(`
     <article class="dialog-card product-dialog" role="dialog" aria-modal="true" aria-label="${escapeHtml(itemTitle)}">
@@ -718,16 +840,17 @@
         <h2 class="detail-title">${escapeHtml(itemTitle)}</h2>
         <p class="detail-description">${escapeHtml(itemDescription)}</p>
         <div class="detail-info-row">
-          <button type="button" class="detail-meta-link" data-action="browse-category" data-category="${escapeHtml(item.category)}"><span>${escapeHtml(t('category').replace(/\s*\*$/,''))}:</span> ${escapeHtml(getCategoryLabel(item))}</button>
-          <span class="detail-info-pill detail-condition-pill">${escapeHtml(conditionLabel(item.condition))}</span>
-          <span class="detail-info-pill">${iconMarkup('heart')} ${item.likes||0} ${escapeHtml(t('likes_label'))}</span>
-          <span class="detail-info-pill detail-location">${iconMarkup('geo-alt')} ${escapeHtml(itemLocation)}</span>
-        </div>
-        <div class="detail-seller">
-          <span class="avatar detail-avatar has-photo" data-fallback="${escapeHtml(avatarInitial)}"><img src="${avatarUrl(seller)}" alt=""></span>
-          <span class="detail-seller-copy"><strong>${escapeHtml(seller)}${verifiedBadge(author)}</strong><small>${escapeHtml(t('seller_label'))} · ${escapeHtml(itemLocation)}</small></span>
+          <div class="detail-info-item"><span class="detail-info-label">${escapeHtml(t('category').replace(/\s*\*$/,''))}:</span><button type="button" class="detail-meta-link" data-action="browse-category" data-category="${escapeHtml(item.category)}">${escapeHtml(getCategoryLabel(item))}</button></div>
+          <div class="detail-info-item"><span class="detail-info-label">${escapeHtml(t('condition_label'))}:</span><span class="detail-info-pill detail-condition-pill">${escapeHtml(conditionLabel(item.condition))}</span></div>
+          <div class="detail-info-item"><span class="detail-info-label">${escapeHtml(t('likes_label'))}:</span><span class="detail-info-pill">${item.likes||0}</span></div>
+          <div class="detail-info-item"><span class="detail-info-label">${escapeHtml(t('listing_stock'))}:</span><span class="detail-info-pill">${Number(item.stock||1)}</span></div>
+          <div class="detail-info-item detail-location"><span class="detail-info-label">${escapeHtml(t('location_label'))}:</span><span class="detail-info-pill">${escapeHtml(itemLocation)}</span></div>
         </div>
         <div class="detail-price-row">${item.originalPrice>item.price?`<span class="listing-saving">${Math.round((1-item.price/item.originalPrice)*100)}% ${t('percent_less')}</span><del class="listing-original">${money(item.originalPrice)}</del>`:''}<strong>${money(item.price)}</strong></div>
+        <div class="detail-seller">
+          <span class="avatar detail-avatar has-photo" data-fallback="${escapeHtml(avatarInitial)}"><img src="${avatarUrl(author)}" alt=""></span>
+          <span class="detail-seller-copy"><strong>${escapeHtml(seller)}${verifiedBadge(author)}</strong><small>${escapeHtml(t('seller_label'))} · ${escapeHtml(itemLocation)}</small></span>
+        </div>
         ${orderAction}
       </div>
     </article>`);
@@ -738,17 +861,14 @@
   wrap.querySelector('[data-action="browse-category"]')?.addEventListener('click',event=>{marketState.category=event.currentTarget.dataset.category;marketState.page=1;closeModal();setPage('explore');renderMarketplace();});
   wrap.querySelector('[data-action="view-orders"]')?.addEventListener('click',()=>{closeModal();setPage('orders');});
   wrap.querySelector('[data-action="edit-listing"]')?.addEventListener('click',()=>openListingEditor(item));
-  const contactButton=wrap.querySelector('[data-action="contact-seller"]');
-  contactButton?.addEventListener('click',()=>{
-    if(ordersController.create(id)){closeModal();setPage('orders');}
-  });
+  wrap.querySelector('[data-action="pay-listing"]')?.addEventListener('click',()=>openPayCheckout(item));
 }
 
   function openListingEditor(item){
     closeModal(); editingListingId=item.id; setPage('sell');
     const form=$('#listingForm');
     form.elements.title.value=listingCopy(item,'title'); form.elements.category.value=item.category; form.elements.condition.value=item.condition;
-    form.elements.price.value=item.price; form.elements.originalPrice.value=item.originalPrice||''; form.elements.description.value=listingCopy(item,'description'); form.elements.location.value=listingCopy(item,'location');
+    form.elements.price.value=item.price; form.elements.originalPrice.value=item.originalPrice||''; form.elements.stock.value=item.stock||1; form.elements.publicationStatus.value=item.publicationStatus||'published'; form.elements.description.value=listingCopy(item,'description'); form.elements.location.value=listingCopy(item,'location');
     if(form.elements.delivery)form.elements.delivery.value=item.delivery||'meetup';
     uploadedImages=Array.isArray(item.images)&&item.images.length?[...item.images]:(item.image?[item.image]:[]); uploadedImage=uploadedImages[0]||'';
     $('#uploadPreview').innerHTML=uploadedImages.map(src=>`<img src="${escapeHtml(src)}" alt="">`).join(''); $('#descriptionCount').textContent=`${form.elements.description.value.length} / 500`;
@@ -758,8 +878,11 @@
 
   function openAccountEditor(){
     const user=currentUser();
-    const wrap=openModal(`<form class="dialog-card" id="editAccountForm" novalidate role="dialog" aria-modal="true" aria-labelledby="editAccountTitle"><button type="button" class="dialog-close" data-close-modal aria-label="${escapeHtml(t('close_dialog'))}" title="${escapeHtml(t('close_dialog'))}">${iconMarkup('x-lg')}</button><p class="eyebrow">${escapeHtml(t('account'))}</p><h2 id="editAccountTitle">${escapeHtml(t('edit_profile'))}</h2><div class="form-grid"><label class="form-field full-field"><span>${escapeHtml(t('username_label'))}</span><input name="username" value="${escapeHtml(user.username||'')}" maxlength="20" autocomplete="username" required><small class="field-error" data-error="username"></small></label><label class="form-field full-field"><span>${escapeHtml(t('email'))}</span><input name="email" type="email" value="${escapeHtml(user.email||'')}" autocomplete="email" required><small class="field-error" data-error="email"></small></label></div><div class="dialog-actions"><button type="button" class="button button-outline" data-close-modal>${escapeHtml(t('cancel'))}</button><button class="button button-primary" type="submit">${escapeHtml(t('save_changes'))}</button></div></form>`);
-    wrap.querySelector('#editAccountForm').addEventListener('submit',event=>{
+    const wrap=openModal(`<form class="dialog-card" id="editAccountForm" novalidate role="dialog" aria-modal="true" aria-labelledby="editAccountTitle"><button type="button" class="dialog-close" data-close-modal aria-label="${escapeHtml(t('close_dialog'))}" title="${escapeHtml(t('close_dialog'))}">${iconMarkup('x-lg')}</button><p class="eyebrow">${escapeHtml(t('account'))}</p><h2 id="editAccountTitle">${escapeHtml(t('edit_profile'))}</h2><div class="form-grid"><label class="form-field full-field edit-avatar-field"><span>${escapeHtml(t('change_avatar'))}</span><span class="edit-avatar-control"><span class="avatar edit-avatar-preview"></span><span><strong>${escapeHtml(t('change_avatar'))}</strong><small>${escapeHtml(t('avatar_hint'))}</small></span><input name="avatar" type="file" accept="image/png,image/jpeg,image/webp"></span></label><label class="form-field full-field"><span>${escapeHtml(t('username_label'))}</span><input name="username" value="${escapeHtml(user.username||'')}" maxlength="20" autocomplete="username" required><small class="field-error" data-error="username"></small></label><label class="form-field full-field"><span>${escapeHtml(t('email'))}</span><input name="email" type="email" value="${escapeHtml(user.email||'')}" autocomplete="email" required><small class="field-error" data-error="email"></small></label></div><div class="dialog-actions"><button type="button" class="button button-outline" data-close-modal>${escapeHtml(t('cancel'))}</button><button class="button button-primary" type="submit">${escapeHtml(t('save_changes'))}</button></div></form>`);
+    const accountForm=wrap.querySelector('#editAccountForm');
+    setAvatar(accountForm.querySelector('.edit-avatar-preview'),user);
+    accountForm.elements.avatar.addEventListener('change',event=>updateAvatarFromFile(event.target.files?.[0],()=>setAvatar(accountForm.querySelector('.edit-avatar-preview'),currentUser())));
+    accountForm.addEventListener('submit',event=>{
       event.preventDefault(); const form=event.currentTarget; clearFieldErrors(form);
       const username=form.elements.username.value.trim().replace(/^@/,'').toLowerCase();
       const email=form.elements.email.value.trim().toLowerCase(); let valid=true;
@@ -786,32 +909,49 @@
     const body=notification.bodyKey?notificationCopy(notification,notification.bodyKey):notification.bodyText;
     const time=new Intl.DateTimeFormat(state.settings.lang==='ms'?'ms-MY':'en-MY',{dateStyle:'medium',timeStyle:'short'}).format(new Date(notification.time));
     const verified=notification.titleKey==='verification_notification_title';
-    openModal(`<article class="dialog-card notification-detail-dialog ${verified?'verification-notification-dialog':''}" role="dialog" aria-modal="true" aria-labelledby="notificationDetailTitle"><button type="button" class="dialog-close" data-close-modal aria-label="${escapeHtml(t('close_dialog'))}">×</button><span class="notification-modal-icon">${verified?'<i class="bi bi-patch-check-fill"></i>':iconMarkup(notification.icon||'bell')}</span><div class="notification-modal-copy"><p class="eyebrow">${escapeHtml(t('notification_detail'))}</p><h2 id="notificationDetailTitle">${escapeHtml(title)}</h2><p>${escapeHtml(body||'')}</p><time>${escapeHtml(time)}</time></div></article>`);
+    const notificationIcon=verified?'<i class="bi bi-patch-check-fill"></i>':(notification.icon==='logo'||notification.titleKey==='notif_demo_title'?'<img src="assets/logo.png" alt="">':iconMarkup(notification.icon||'bell'));
+    openModal(`<article class="dialog-card notification-detail-dialog ${verified?'verification-notification-dialog':''}" role="dialog" aria-modal="true" aria-labelledby="notificationDetailTitle"><button type="button" class="dialog-close" data-close-modal aria-label="${escapeHtml(t('close_dialog'))}">×</button><span class="notification-modal-icon">${notificationIcon}</span><div class="notification-modal-copy"><p class="eyebrow">${escapeHtml(t('notification_detail'))}</p><h2 id="notificationDetailTitle">${escapeHtml(title)}</h2><p>${escapeHtml(body||'')}</p><time>${escapeHtml(time)}</time></div></article>`);
   }
   function openProfileEditor(){
     const user=currentUser();
-    const wrap=openModal(`<form class="dialog-card" id="editProfileForm" novalidate><button type="button" class="dialog-close" data-close-modal aria-label="${escapeHtml(t('close_dialog'))}" title="${escapeHtml(t('close_dialog'))}">×</button><p class="eyebrow">${t('your_profile')}</p><h2>${t('edit_your_profile')}</h2><div class="form-grid"><label class="form-field full-field"><span>${t('short_bio')}</span><textarea name="bio" rows="3" maxlength="180">${escapeHtml(user.bioKey?t(user.bioKey):user.bio||'')}</textarea></label></div><div class="dialog-actions"><button type="button" class="button button-outline" data-close-modal>${t('cancel')}</button><button class="button button-primary" type="submit">${t('save_changes')}</button></div></form>`);
+    const title=state.settings.lang==='ms'?'Profil awak':'Your profile';
+    const wrap=openModal(`<form class="dialog-card profile-editor-dialog" id="editProfileForm" novalidate><button type="button" class="dialog-close" data-close-modal aria-label="${escapeHtml(t('close_dialog'))}" title="${escapeHtml(t('close_dialog'))}">×</button><p class="eyebrow">${title}</p><div class="form-grid"><div class="form-field full-field edit-avatar-field"><span class="sr-only">${escapeHtml(t('change_avatar'))}</span><div class="edit-avatar-control"><span class="avatar edit-avatar-preview"></span><span><strong>${escapeHtml(t('change_avatar'))}</strong><small>${escapeHtml(t('avatar_hint'))}</small></span><button type="button" class="button button-outline avatar-file-trigger">${escapeHtml(t('change_avatar'))}</button><input class="avatar-file-input" name="avatar" type="file" accept="image/png,image/jpeg,image/webp" hidden></div></div><label class="form-field full-field"><span>${escapeHtml(t('username_label'))}</span><input name="username" value="${escapeHtml(user.username||'')}" maxlength="20" autocomplete="username" required><small class="field-error" data-error="username"></small></label><label class="form-field full-field"><span>${escapeHtml(t('email'))}</span><input name="email" type="email" value="${escapeHtml(user.email||'')}" autocomplete="email" required><small class="field-error" data-error="email"></small></label><label class="form-field full-field"><span>${t('short_bio')}</span><textarea name="bio" rows="3" maxlength="180">${escapeHtml(user.bioKey?t(user.bioKey):user.bio||'')}</textarea></label></div><div class="dialog-actions"><button type="button" class="button button-outline" data-close-modal>${t('cancel')}</button><button class="button button-primary" type="submit">${t('save_changes')}</button></div></form>`);
+    setAvatar(wrap.querySelector('.edit-avatar-preview'),user);
+    wrap.querySelector('.avatar-file-trigger').addEventListener('click',()=>wrap.querySelector('[name="avatar"]').click());
+    wrap.querySelector('[name="avatar"]').addEventListener('change',event=>updateAvatarFromFile(event.target.files?.[0],()=>setAvatar(wrap.querySelector('.edit-avatar-preview'),currentUser())));
     wrap.querySelector('#editProfileForm').addEventListener('submit',event=>{
-      event.preventDefault(); const form=event.currentTarget;
-      const target=state.users.find(u=>u.id===state.currentUserId); target.bio=form.elements.bio.value.trim(); delete target.bioKey;
-      persist(); closeModal(); renderAll(); toast('profile_saved');
+      event.preventDefault(); const form=event.currentTarget; clearFieldErrors(form);
+      const username=form.elements.username.value.trim().replace(/^@/,'').toLowerCase();
+      const email=form.elements.email.value.trim().toLowerCase(); let valid=true;
+      if(!/^(?!.*\.\.)[a-z0-9_][a-z0-9._]{1,18}[a-z0-9_]$/.test(username)){setFieldError(form,'username','auth_username_rules');valid=false;}
+      if(state.users.some(candidate=>candidate.id!==user.id&&candidate.username.toLowerCase()===username)){setFieldError(form,'username','auth_unique_username');valid=false;}
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){setFieldError(form,'email','auth_email_invalid');valid=false;}
+      if(state.users.some(candidate=>candidate.id!==user.id&&candidate.email.toLowerCase()===email)){setFieldError(form,'email','auth_unique_email');valid=false;}
+      if(!valid)return;
+      const target=state.users.find(u=>u.id===state.currentUserId),previous={username:target.username,email:target.email,bio:target.bio,bioKey:target.bioKey};
+      target.username=username; target.email=email; target.bio=form.elements.bio.value.trim(); delete target.bioKey;
+      state.listings.filter(item=>item.userId===target.id).forEach(item=>{item.seller=`@${username}`;});
+      if(!persist()){Object.assign(target,previous);return;}
+      closeModal(); renderAll(); toast('profile_saved');
     });
   }
   function validateListing(form){
     clearFieldErrors(form); let valid=true;
-    const title=form.elements.title.value.trim(),category=form.elements.category.value,condition=form.elements.condition.value,price=Number(form.elements.price.value),originalRaw=form.elements.originalPrice.value,original=Number(originalRaw),description=form.elements.description.value.trim(),location=form.elements.location.value.trim();
+    const title=form.elements.title.value.trim(),category=form.elements.category.value,condition=form.elements.condition.value,price=Number(form.elements.price.value),originalRaw=form.elements.originalPrice.value,original=Number(originalRaw),stock=Number(form.elements.stock.value),description=form.elements.description.value.trim(),location=form.elements.location.value.trim();
     if(!title||title.length>60){setFieldError(form,'title','listing_title_error');valid=false;}
     if(!category){setFieldError(form,'category','listing_category_error');valid=false;}
     if(!condition){setFieldError(form,'condition','listing_condition_error');valid=false;}
     if(!Number.isFinite(price)||price<=0){setFieldError(form,'price','listing_price_error');valid=false;}
     if(originalRaw&&(!Number.isFinite(original)||original<price)){setFieldError(form,'originalPrice','listing_original_error');valid=false;}
+    if(!Number.isInteger(stock)||stock<1){form.elements.stock.focus();valid=false;}
     if(!description||description.length>500){setFieldError(form,'description','listing_description_error');valid=false;}
     if(!location){setFieldError(form,'location','listing_location_error');valid=false;}
     return valid;
   }
   function handleListingSubmit(event){
     event.preventDefault(); const form=event.currentTarget; if(!validateListing(form)){const first=$('.is-invalid',form);first?.focus();return;}
-    const values={title:form.elements.title.value.trim(),category:form.elements.category.value,categoryLabel:getCategoryLabel({category:form.elements.category.value}),condition:form.elements.condition.value,price:Number(form.elements.price.value),originalPrice:Number(form.elements.originalPrice.value)||Number(form.elements.price.value),description:form.elements.description.value.trim(),location:form.elements.location.value.trim(),delivery:form.elements.delivery.value,icon:({Books:'book-half',Electronics:'cpu',Fashion:'bag',Home:'lightbulb',Sports:'trophy',Other:'box-seam'})[form.elements.category.value],seller:currentUserName(),userId:currentUser().id,image:uploadedImage,images:[...uploadedImages]};
+    const delivery=[...form.querySelectorAll('[name="delivery"]:checked')].map(input=>input.value).join(',');
+    const values={title:form.elements.title.value.trim(),category:form.elements.category.value,categoryLabel:getCategoryLabel({category:form.elements.category.value}),condition:form.elements.condition.value,price:Number(form.elements.price.value),originalPrice:Number(form.elements.originalPrice.value)||Number(form.elements.price.value),stock:Number(form.elements.stock.value),publicationStatus:form.elements.publicationStatus.value,description:form.elements.description.value.trim(),location:form.elements.location.value.trim(),delivery,icon:({Books:'book-half',Electronics:'cpu',Fashion:'bag',Home:'lightbulb',Sports:'trophy',Other:'box-seam'})[form.elements.category.value],seller:currentUserName(),userId:currentUser().id,image:uploadedImage,images:[...uploadedImages]};
     const editing=editingListingId&&state.listings.find(row=>row.id===editingListingId); let item;
     if(editing){Object.assign(editing,values);item=editing;}else{item={id:uid('item'),...values,createdAt:Date.now(),likes:0};state.listings.unshift(item);}
     if(!persist()){if(!editing)state.listings.shift();return;}
@@ -861,12 +1001,14 @@
       const passwordToggle=event.target.closest('.password-toggle');
       if(passwordToggle){const input=passwordToggle.parentElement.querySelector('input');const visible=input.type==='password';input.type=visible?'text':'password';passwordToggle.innerHTML=`<i class="bi bi-${visible?'eye-slash-fill':'eye-fill'}"></i>`;passwordToggle.setAttribute('aria-pressed',String(visible));passwordToggle.dataset.i18nAriaLabel=visible?'hide_password':'show_password';passwordToggle.dataset.i18nTitle=visible?'hide_password':'show_password';passwordToggle.setAttribute('aria-label',t(passwordToggle.dataset.i18nAriaLabel));passwordToggle.setAttribute('title',t(passwordToggle.dataset.i18nTitle));return;}
       const demoLogin=event.target.closest('#demoLoginButton');
-      if(demoLogin){login('alyarahman','juaija123');return;}
+      if(demoLogin){login('zulhelmi','juaija123');return;}
       const signup=event.target.closest('#showSignup');
       if(signup){const form=$('#signupForm');const loggingIn=!form.hidden;form.hidden=loggingIn;$('#loginForm').hidden=!loggingIn;$('.demo-card').hidden=!loggingIn;$('.auth-divider').hidden=!loggingIn;sessionStorage.setItem('juaija.authView',loggingIn?'login':'signup');const title=$('#authFormTitle');if(title){title.dataset.i18n=loggingIn?'sign_in_title':'create_account';title.textContent=t(title.dataset.i18n);}$('.signup-prompt').innerHTML=loggingIn?`<span data-i18n="new_to_juaija">${t('new_to_juaija')}</span> <button id="showSignup" data-i18n="create_account">${t('create_account')}</button>`:`<span data-i18n="account_exists">${t('account_exists')}</span> <button id="showSignup" data-i18n="sign_in">${t('sign_in')}</button>`;setRuntimeText($('#authError'),'');return;}
       if(event.target.closest('#usernameInfoButton')){openModal(`<article class="dialog-card username-info-dialog"><button class="dialog-close" data-close-modal aria-label="${escapeHtml(t('close_dialog'))}">×</button><i class="bi bi-info-circle-fill"></i><h2>${escapeHtml(t('username_info_title'))}</h2><p>${escapeHtml(t('username_rules_hint'))}</p></article>`);return;}
-      if(event.target.closest('#editProfileButton')){openProfileEditor();return;}
+      if(event.target.closest('#editProfileButton,#settingsEditProfileButton')){openProfileEditor();return;}
+      if(event.target.closest('[data-profile-name-info]')){const note=event.target.closest('#editProfileForm')?.querySelector('.profile-name-info-copy');if(note)note.hidden=!note.hidden;return;}
       if(event.target.closest('#editAccountButton')){openAccountEditor();return;}
+      if(event.target.closest('#openWalletTopUp,#openSettingsWalletTopUp')){openWalletTopUp();return;}
       if(event.target.closest('#privacyDetailsButton')){openPrivacyModal();return;}
       if(event.target.closest('#markAllRead')){state.notifications.forEach(n=>n.read=true);persist();renderNotifications();toast('marked_read');return;}
       if(event.target.closest('#signOutButton')){state.currentUserId=null;persist();showAuth();return;}
@@ -874,6 +1016,10 @@
       if(event.target.closest('#clearFilters')){marketState={...marketState,category:'all',search:'',page:1};$('#marketSearch').value='';renderMarketplace();return;}
       if(event.target.closest('#prevPage')){marketState.page=Math.max(1,marketState.page-1);renderMarketplace();return;}
       if(event.target.closest('#nextPage')){marketState.page+=1;renderMarketplace();return;}
+      const profilePageButton=event.target.closest('[data-profile-page]');
+      if(profilePageButton){profileListingsPage+=profilePageButton.dataset.profilePage==='next'?1:-1;renderProfile();return;}
+      const savedPageButton=event.target.closest('[data-saved-page]');
+      if(savedPageButton){savedItemsPage+=savedPageButton.dataset.savedPage==='next'?1:-1;renderProfile();return;}
       if(event.target.closest('#headerSearchButton')){setPage('explore');setTimeout(()=>$('#marketSearch').focus(),100);return;}
       const contact=event.target.closest('[data-action="contact-seller"]');
       if(contact){return;}
@@ -881,10 +1027,11 @@
     $('#marketSearch').addEventListener('input',event=>{marketState.search=event.target.value;marketState.page=1;renderMarketplace();});
     $('#sortSelect').addEventListener('change',event=>{marketState.sort=event.target.value;marketState.page=1;renderMarketplace();});
     $('#showCount').addEventListener('change',event=>{marketState.perPage=Number(event.target.value);marketState.page=1;renderMarketplace();});
+    $('#savedItemsShow')?.addEventListener('change',event=>{savedItemsPerPage=Number(event.target.value);savedItemsPage=1;renderProfile();});
     $('#verifiedOnly').addEventListener('change',event=>{marketState.verifiedOnly=event.target.checked;marketState.page=1;renderMarketplace();});
     $('#listingForm').addEventListener('submit',handleListingSubmit);
     $('#itemImage').addEventListener('change',event=>handleImage(event.target.files));
-    $('#avatarImage')?.addEventListener('change',event=>{const file=event.target.files?.[0];if(!file||!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>1024*1024)return;const reader=new FileReader();reader.onload=()=>{currentUser().avatar=String(reader.result);persist();updateIdentity();toast('change_saved');};reader.readAsDataURL(file);});
+    $('#avatarImage')?.addEventListener('change',event=>updateAvatarFromFile(event.target.files?.[0]));
     $('#listingForm [name="description"]').addEventListener('input',event=>$('#descriptionCount').textContent=`${event.target.value.length} / 500`);
     $('#loginForm').addEventListener('submit',event=>{event.preventDefault();clearFieldErrors(event.currentTarget);setRuntimeText($('#authError'),'');login(event.currentTarget.elements.identity.value,event.currentTarget.elements.password.value);});
     $('#signupForm').addEventListener('submit',event=>{event.preventDefault();register(event.currentTarget);});
@@ -897,9 +1044,12 @@
 
   function init(){
     try {
+      if(!$('.mobile-sell-fab')){const sellButton=document.createElement('button');sellButton.type='button';sellButton.className='mobile-sell-fab';sellButton.dataset.page='sell';sellButton.setAttribute('aria-label',t('sell_an_item'));sellButton.title=t('sell_an_item');sellButton.innerHTML=iconMarkup('plus-lg');$('#app').append(sellButton);}
       $('#copyrightYear').textContent=new Date().getFullYear();
       $('#authCopyrightYear').textContent=new Date().getFullYear();
       StudentVerification.migrate(state);
+      const demoVerificationUser=state.users.find(user=>user.id===DEFAULT_USER.id);
+      if(demoVerificationUser?.verification?.status==='auto')demoVerificationUser.verification.status='approved';
       JuaijaOrders.migrate(state);
       const workflowApi={getState:()=>state,getUser:currentUser,t,format,escapeHtml,money,persist,onChange:renderAll,toast,uid,openModal,closeModal,badge:verifiedBadge};
       ordersController=JuaijaOrders.controller(workflowApi);

@@ -21,3 +21,793 @@ body.modal-open{overflow:hidden!important;touch-action:none}.modal-backdrop-cust
 .order-list-row{width:100%!important;display:grid!important;grid-template-columns:58px minmax(0,1fr) auto auto!important;align-items:center!important;gap:12px!important;padding:13px 10px!important;border:0!important;border-bottom:1px solid #dce2f5!important;background:transparent!important;text-align:left!important}.order-list-row .order-entry-image{width:58px!important;height:58px!important;object-fit:cover!important;border-radius:6px!important}.order-list-copy{display:grid!important;min-width:0!important}.order-list-copy strong{font-size:17px!important}.order-list-copy small{font-size:14px!important;color:#697386!important}.order-list-row time{grid-column:4!important;font-size:13px!important;color:#697386!important;text-align:right!important}.order-list-row>i{grid-column:5!important;grid-row:1/3!important}.order-detail-dialog{width:min(480px,92vw)!important;padding:26px!important;display:grid!important;gap:13px!important}.order-detail-price{font-size:27px!important}
 @media(max-width:760px){.auth-title-row{margin-bottom:18px!important}.signup-prompt{margin-top:20px!important}.header-actions #headerSearchButton{display:grid!important}.profile-trigger-name,.profile-trigger .chevron{display:none!important}.market-toolbar .toolbar-controls{grid-template-columns:minmax(0,1fr) auto!important;width:100%!important}.verified-filter{grid-column:1/-1!important}.sort-pill{min-width:0!important}.view-switch{grid-column:2!important;grid-row:2!important}.delivery-options{grid-template-columns:1fr!important}.delivery-options legend{grid-column:1!important}.appearance-settings,.language-settings{grid-template-columns:auto minmax(0,1fr) auto!important}.theme-option,.language-option{padding:7px 10px!important}.product-dialog .detail-info-row{grid-template-columns:1fr auto!important}.detail-location{grid-column:1/-1!important}.activity-heatmap{gap:4px!important;grid-template-columns:34px repeat(7,minmax(20px,1fr))!important}.activity-heatmap strong{font-size:9px!important}.order-list-row{grid-template-columns:52px minmax(0,1fr) auto!important}.order-list-row .order-entry-price{grid-column:3!important}.order-list-row .order-state{grid-column:2!important}.order-list-row time{grid-column:3!important}.order-list-row>i{display:none!important}}
 .form-field:has(>select){position:relative!important}.form-field:has(>select)::after{content:"";position:absolute;right:18px;top:50%;width:8px;height:8px;border-right:2px solid #59657a;border-bottom:2px solid #59657a;transform:rotate(45deg);pointer-events:none;z-index:2}.form-field select{appearance:none!important;-webkit-appearance:none!important;background-image:none!important;padding-right:42px!important}
+
+/* Final mobile hardening: every page remains inside a phone viewport. */
+@media (max-width:760px) {
+  html,body{overflow-x:clip!important}img,svg,video,canvas{max-width:100%!important}
+  .page,.page>*,.surface,.listing-card,.settings-main,.dialog-card,.profile-content-grid,.profile-main-info,.order-entry-copy,.notif-copy,.notification-modal-copy,.form-field,.search-field,.toolbar-controls{min-width:0!important}
+  h1,h2,h3,p,strong,small,span,a,button,label,dd{overflow-wrap:anywhere}
+  .topbar{height:64px!important}.topbar-inner{padding:0 12px!important;gap:8px!important}.brand-logo{display:block;max-width:112px!important;height:auto!important}.primary-nav{display:none!important}.header-actions{margin-left:auto!important;gap:2px!important}.header-actions .icon-button,.header-actions .profile-trigger{width:40px!important;height:40px!important;min-width:40px!important;min-height:40px!important}.header-actions .profile-trigger .avatar-small,.header-actions #headerAvatar{width:32px!important;height:32px!important}
+  .page-wrap{width:100%!important;max-width:none!important;margin:0!important;padding:18px 14px 92px!important}.page-heading,.home-heading,.section-title-row,.personal-finance-head,.card-heading{align-items:flex-start!important;flex-wrap:wrap!important}.page-heading{gap:12px!important}.page-heading>:first-child{min-width:0!important}.page-heading h1{font-size:clamp(28px,8vw,32px)!important;line-height:1.15!important}.page-heading>.button,.home-heading>.button{width:100%!important}
+  .hero-panel{display:grid!important;grid-template-columns:minmax(0,1fr)!important;min-height:0!important}.hero-copy{width:100%!important;max-width:none!important;min-height:0!important;padding:22px 18px!important}.hero-art{position:relative!important;inset:auto!important;width:100%!important;height:170px!important}.hero-product-image{width:100%!important;height:100%!important;object-fit:cover!important}
+  .personal-summary-grid,.metric-grid,.listing-grid,.profile-listing-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.market-result-row,.pagination-row,.orders-footer,.orders-pagination{align-items:flex-start!important;flex-wrap:wrap!important}.category-pills{flex-wrap:wrap!important;overflow:visible!important}.market-toolbar .toolbar-controls{grid-template-columns:minmax(0,1fr) auto!important;gap:10px!important;width:100%!important}.sort-pill{min-width:0!important;width:100%!important}.sort-pill select{min-width:0!important}.view-switch{grid-column:2!important;grid-row:2!important}.verified-filter{grid-column:1/-1!important;width:100%!important}.market-grid.listing-list-mode .listing-card{grid-template-columns:112px minmax(0,1fr)!important}.listing-list-mode .listing-visual{min-height:112px!important}
+  .sell-layout,.settings-layout,.notification-layout,.profile-content-grid{grid-template-columns:minmax(0,1fr)!important}.listing-form,#page-settings .settings-main,#page-orders .orders-panel,#page-verify .verify-card{padding:16px 14px!important}.form-actions,.dialog-actions{align-items:stretch!important}.form-actions .button,.dialog-actions .button{flex:1 1 100%!important;width:100%!important}.upload-box{align-items:flex-start!important;flex-wrap:wrap!important}.input-prefix,.student-email-input{min-width:0!important}
+  .profile-overlap{margin-left:14px!important;margin-right:14px!important}.profile-stats{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important}.notification-item{grid-template-columns:42px minmax(0,1fr)!important}.notif-icon{width:42px!important;height:42px!important;min-width:42px!important}
+  .modal-backdrop-custom{align-items:flex-start!important;overflow-y:auto!important;padding:12px!important}.modal-backdrop-custom>.dialog-card{width:100%!important;max-width:100%!important;max-height:calc(100dvh - 24px)!important;overflow-y:auto!important}.notification-detail-dialog{grid-template-columns:40px minmax(0,1fr)!important;padding:20px 16px!important}.notification-modal-icon{width:40px!important;height:40px!important}.product-dialog .detail-info-row{grid-template-columns:minmax(0,1fr)!important}.product-dialog .detail-price-row{flex-wrap:wrap!important}.product-dialog .detail-price-row .listing-original{margin-left:0!important}
+  .site-footer{padding-left:14px!important;padding-right:14px!important;padding-bottom:92px!important}.site-footer .auth-legal-footer,.site-footer .footer-main{grid-template-columns:minmax(0,1fr)!important}.auth-legal-links,.footer-links{justify-content:flex-start!important;flex-wrap:wrap!important}
+}
+@media (max-width:430px){.header-actions .notification-trigger{display:none!important}.page-wrap{padding-left:12px!important;padding-right:12px!important}.personal-summary-grid,.metric-grid,.listing-grid,.profile-listing-grid{grid-template-columns:minmax(0,1fr)!important}.listing-card .listing-visual{height:190px!important}.market-grid.listing-list-mode .listing-card{grid-template-columns:96px minmax(0,1fr)!important}.listing-list-mode .listing-visual{min-height:96px!important;height:100%!important}.finance-period-switch{width:100%!important}.finance-period-switch button{flex:1 1 0!important;min-width:0!important;padding-inline:5px!important}.profile-stats{gap:6px!important}.profile-stats strong{font-size:20px!important}.activity-heatmap{grid-template-columns:28px repeat(7,minmax(0,1fr))!important;gap:3px!important}.activity-heatmap>i,.heat-scale i{min-width:0!important}.orders-filter-pair,.verification-details,.verification-study-fields,.verification-estimate{grid-template-columns:minmax(0,1fr)!important}}
+@media (max-width:360px){.brand-logo{max-width:92px!important}.header-actions .icon-button,.header-actions .profile-trigger{width:36px!important;height:36px!important;min-width:36px!important;min-height:36px!important}.header-actions .profile-trigger .avatar-small,.header-actions #headerAvatar{width:29px!important;height:29px!important}.mobile-nav button small{font-size:10px!important}.hero-copy h2{font-size:25px!important}}
+
+/* Settings account layout: reserve separate, stable areas for each account detail. */
+#page-settings .settings-section.account-settings{display:grid!important;grid-template-columns:48px minmax(0,1fr)!important;grid-template-areas:"icon heading" "details details"!important;gap:18px 16px!important;align-items:center!important}
+#page-settings .account-settings>.settings-icon{grid-area:icon!important}
+#page-settings .account-settings>.settings-copy{grid-area:heading!important}
+#page-settings .account-settings>.account-details{grid-area:details!important;display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-areas:"avatar edit" "identities identities"!important;align-items:center!important;gap:18px!important;width:100%!important;margin:0!important}
+#page-settings .account-details>.avatar-upload-control{grid-area:avatar!important;min-width:0!important}
+#page-settings .account-details>.account-identities{grid-area:identities!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px 24px!important;min-width:0!important}
+#page-settings .account-details>.account-edit-button{grid-area:edit!important;justify-self:end!important;align-self:center!important}
+
+/* Dark mode contrast pass: all interactive and reading surfaces stay legible. */
+body[data-theme="dark"]{--paper:#000!important;--surface:#000!important;--ink:#fff!important;--muted:#c9d0dd!important;--line:#8295d8!important;background:#000!important;color:#fff!important}
+body[data-theme="dark"] .app-shell,body[data-theme="dark"] .page-wrap,body[data-theme="dark"] .topbar,body[data-theme="dark"] .site-footer,body[data-theme="dark"] .surface,body[data-theme="dark"] .listing-card,body[data-theme="dark"] .metric-card,body[data-theme="dark"] .market-toolbar,body[data-theme="dark"] .settings-main,body[data-theme="dark"] .orders-panel,body[data-theme="dark"] .verify-card,body[data-theme="dark"] .dialog-card,body[data-theme="dark"] .mobile-nav{background:#000!important;color:#fff!important;border-color:#8295d8!important}
+body[data-theme="dark"] h1,body[data-theme="dark"] h2,body[data-theme="dark"] h3,body[data-theme="dark"] p,body[data-theme="dark"] strong,body[data-theme="dark"] small,body[data-theme="dark"] label,body[data-theme="dark"] dd,body[data-theme="dark"] .settings-copy h2,body[data-theme="dark"] .account-field,body[data-theme="dark"] .account-field *,body[data-theme="dark"] .settings-verify-link,body[data-theme="dark"] .settings-verify-link *,body[data-theme="dark"] .privacy-trigger,body[data-theme="dark"] .privacy-trigger *,body[data-theme="dark"] #signOutButton,body[data-theme="dark"] #signOutButton *{color:#fff!important}
+body[data-theme="dark"] .subheading,body[data-theme="dark"] .listing-meta,body[data-theme="dark"] .listing-category,body[data-theme="dark"] .field-hint,body[data-theme="dark"] .verification-date-hint,body[data-theme="dark"] .notification-time,body[data-theme="dark"] .notification-date{color:#c9d0dd!important}
+body[data-theme="dark"] input,body[data-theme="dark"] select,body[data-theme="dark"] textarea,body[data-theme="dark"] .input-prefix,body[data-theme="dark"] .student-email-input,body[data-theme="dark"] .theme-control,body[data-theme="dark"] .language-control{background:#090909!important;color:#fff!important;border-color:#8295d8!important}
+body[data-theme="dark"] input::placeholder,body[data-theme="dark"] textarea::placeholder{color:#aeb8cb!important}
+body[data-theme="dark"] .button-outline,body[data-theme="dark"] .theme-option,body[data-theme="dark"] .language-option,body[data-theme="dark"] .view-button,body[data-theme="dark"] .pager,body[data-theme="dark"] .category-pill,body[data-theme="dark"] .orders-tab{background:#000!important;color:#fff!important;border-color:#8295d8!important}
+body[data-theme="dark"] .button-primary,body[data-theme="dark"] .theme-option.active,body[data-theme="dark"] .language-option.active,body[data-theme="dark"] .view-button.active,body[data-theme="dark"] .category-pill.active,body[data-theme="dark"] .orders-tab.active{background:#8295d8!important;color:#fff!important}
+body[data-theme="dark"] .button-primary *,body[data-theme="dark"] .theme-option.active *,body[data-theme="dark"] .language-option.active *,body[data-theme="dark"] .view-button.active *,body[data-theme="dark"] .category-pill.active *,body[data-theme="dark"] .orders-tab.active *{color:#fff!important}
+body[data-theme="dark"] .settings-aside,body[data-theme="dark"] .hero-panel,body[data-theme="dark"] .hero-art,body[data-theme="dark"] .notification-aside,body[data-theme="dark"] .tip-card{background:#8295d8!important;color:#fff!important}
+body[data-theme="dark"] .settings-aside *,body[data-theme="dark"] .hero-panel *,body[data-theme="dark"] .hero-art *,body[data-theme="dark"] .notification-aside *,body[data-theme="dark"] .tip-card *{color:#fff!important}
+body[data-theme="dark"] .finance-ring>div,body[data-theme="dark"] .finance-mini-grid>div,body[data-theme="dark"] .verification-estimate{background:#121624!important;color:#fff!important}
+body[data-theme="dark"] .settings-divider,body[data-theme="dark"] .listing-meta,body[data-theme="dark"] .order-entry,body[data-theme="dark"] .verification-review-card{border-color:#8295d8!important}
+@media (max-width:760px){#page-settings .settings-section.account-settings{grid-template-columns:42px minmax(0,1fr)!important;gap:16px 12px!important}#page-settings .account-settings>.account-details{grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"avatar" "identities" "edit"!important;gap:16px!important}#page-settings .account-details>.account-identities{grid-template-columns:minmax(0,1fr)!important;gap:10px!important}#page-settings .account-details>.account-edit-button{justify-self:start!important}}
+
+/* Dashboard dark mode: remove the remaining light card and control surfaces. */
+body[data-theme="dark"] #page-home .personal-summary-grid>article,
+body[data-theme="dark"] #page-home .personal-finance-card,
+body[data-theme="dark"] #page-home .dashboard-grid>article,
+body[data-theme="dark"] #page-home .metric-card,
+body[data-theme="dark"] #page-home .listing-card,
+body[data-theme="dark"] #page-home .finance-mini-grid>div,
+body[data-theme="dark"] #page-home .finance-ring>div,
+body[data-theme="dark"] #page-home .dashboard-scope-switch,
+body[data-theme="dark"] #page-home .finance-period-switch,
+body[data-theme="dark"] #page-home .segmented,
+body[data-theme="dark"] #page-home .category-pill,
+body[data-theme="dark"] #page-home .pager,
+body[data-theme="dark"] #page-home .empty-state { background:#0d1019!important; color:#fff!important; border-color:#8295d8!important; }
+body[data-theme="dark"] #page-home .personal-summary-grid>article *,
+body[data-theme="dark"] #page-home .personal-finance-card *,
+body[data-theme="dark"] #page-home .dashboard-grid>article:not(.hero-panel) *,
+body[data-theme="dark"] #page-home .metric-card *,
+body[data-theme="dark"] #page-home .listing-card .listing-body *,
+body[data-theme="dark"] #page-home .finance-mini-grid>div *,
+body[data-theme="dark"] #page-home .dashboard-scope-switch *,
+body[data-theme="dark"] #page-home .finance-period-switch *,
+body[data-theme="dark"] #page-home .segmented *,
+body[data-theme="dark"] #page-home .category-pill *,
+body[data-theme="dark"] #page-home .pager * { color:#fff!important; }
+body[data-theme="dark"] #page-home .finance-mini-grid>div { border-left-color:#8295d8!important; }
+body[data-theme="dark"] #page-home .finance-track { background:#252b3b!important; }
+body[data-theme="dark"] #page-home .finance-ring { background:conic-gradient(#8295d8 0 var(--income-share),#252b3b var(--income-share) 100%)!important; }
+body[data-theme="dark"] #page-home .listing-meta { border-color:#8295d8!important; }
+body[data-theme="dark"] #page-home .listing-saving,
+body[data-theme="dark"] #page-home .dashboard-scope-switch button.active,
+body[data-theme="dark"] #page-home .finance-period-switch button.active,
+body[data-theme="dark"] #page-home .segment.active,
+body[data-theme="dark"] #page-home .category-pill.active { background:#8295d8!important; color:#fff!important; }
+body[data-theme="dark"] #page-home .dashboard-scope-switch button:not(.active),
+body[data-theme="dark"] #page-home .finance-period-switch button:not(.active),
+body[data-theme="dark"] #page-home .segment:not(.active) { background:transparent!important; color:#fff!important; }
+body[data-theme="dark"] .site-footer,body[data-theme="dark"] .site-footer *,body[data-theme="dark"] #copyrightYear { background-color:transparent!important; color:#fff!important; }
+
+/* Listing cards: keep price information readable and place discount on the image. */
+.listing-visual>.listing-saving{position:absolute!important;z-index:3!important;left:10px!important;bottom:10px!important;margin:0!important;min-height:28px!important;padding:4px 8px!important;line-height:1.2!important;color:#fff!important;background:#8295d8!important;border-radius:6px!important}
+.listing-card .listing-price-row{justify-content:flex-start!important;gap:8px!important;min-width:0!important}
+.listing-card .listing-price-row .listing-original{order:0!important;flex:none!important}
+.listing-card .listing-price-row .listing-price{order:0!important;margin-left:0!important;flex:none!important}
+.listing-card .listing-meta{grid-template-columns:minmax(0,1fr)!important;align-items:start!important;gap:6px!important}
+.listing-card .listing-location{grid-column:1!important;justify-content:flex-start!important;max-width:100%!important}
+.listing-card .listing-location-text{white-space:nowrap!important}
+
+/* Settings is a single reading flow: the brand panel follows the controls. */
+#page-settings .settings-layout{grid-template-columns:minmax(0,1fr)!important;gap:18px!important}
+#page-settings .settings-aside{order:2!important;min-height:190px!important;width:100%!important}
+#page-settings .account-details>.account-identities{grid-template-columns:minmax(0,1fr)!important;gap:12px!important}
+.edit-avatar-control{display:flex!important;align-items:center!important;gap:12px!important;min-width:0!important}.edit-avatar-preview{width:52px!important;height:52px!important}.edit-avatar-control>span:nth-child(2){display:grid!important;gap:3px!important;min-width:0!important}.edit-avatar-control strong{font-size:16px!important}.edit-avatar-control small{font-size:14px!important}.edit-avatar-control input{min-width:0!important;max-width:100%!important;font-size:14px!important}
+.header-actions .profile-trigger{width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;padding:0!important}.header-actions .profile-trigger .avatar-small,.header-actions #headerAvatar{width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important}
+
+/* Product detail dialog follows the gallery height and supports the active theme. */
+@media(min-width:761px){.modal-backdrop-custom .dialog-card.product-dialog{height:min(92dvh,520px,47vw)!important;max-height:min(92dvh,520px,47vw)!important;align-items:stretch!important}.product-dialog>.detail-gallery{height:100%!important;aspect-ratio:auto!important}.product-dialog>.detail-content{height:100%!important;min-height:0!important;overflow-y:auto!important}}
+body[data-theme="dark"] .modal-backdrop-custom .dialog-card.product-dialog,body[data-theme="dark"] .product-dialog>.detail-content{background:#0d1019!important;color:#fff!important}
+body[data-theme="dark"] .product-dialog .detail-title,body[data-theme="dark"] .product-dialog .detail-description,body[data-theme="dark"] .product-dialog .detail-meta-link,body[data-theme="dark"] .product-dialog .detail-info-pill,body[data-theme="dark"] .product-dialog .detail-seller-copy strong,body[data-theme="dark"] .product-dialog .detail-seller-copy small,body[data-theme="dark"] .product-dialog .detail-price-row strong,body[data-theme="dark"] .product-dialog .listing-original{color:#fff!important}
+body[data-theme="dark"] .product-dialog .detail-meta-link span,body[data-theme="dark"] .product-dialog .detail-info-pill i{color:#c9d0dd!important}
+body[data-theme="dark"] .product-dialog .detail-seller,body[data-theme="dark"] .product-dialog .detail-price-row{border-color:#8295d8!important}
+
+/* Sell and select controls: one arrow per control and no light surfaces in dark mode. */
+#page-sell .sell-layout{grid-template-columns:minmax(0,1fr)!important;gap:20px!important}
+#page-sell .sell-aside{order:2!important;width:100%!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px!important}
+#page-sell .sell-aside>article{min-width:0!important;margin:0!important}
+
+/* Browser arrows are suppressed globally; each containing control draws exactly one. */
+select,#sortSelect,.form-field select,.orders-tools select,.show-count select,.orders-page-size select{appearance:none!important;-webkit-appearance:none!important;background-image:none!important;background-repeat:no-repeat!important;padding-right:42px!important}
+.form-field:has(>select),.orders-filter-pair .form-field,.sort-pill,.show-count,.orders-page-size{position:relative!important}
+.form-field:has(>select)::after,.orders-filter-pair .form-field::after,.sort-pill::after,.show-count::after,.orders-page-size::after{content:""!important;position:absolute!important;width:8px!important;height:8px!important;border-right:2px solid #59657a!important;border-bottom:2px solid #59657a!important;transform:rotate(45deg)!important;pointer-events:none!important;z-index:2!important}
+.form-field:has(>select)::after{right:18px!important;top:50%!important;bottom:auto!important}
+.orders-filter-pair .form-field::after{right:18px!important;top:50%!important;bottom:auto!important}
+.sort-pill::after{right:17px!important;top:50%!important;bottom:auto!important;margin-top:-5px!important}
+.show-count::after,.orders-page-size::after{right:8px!important;top:50%!important;margin-top:-5px!important}
+.show-count select,.orders-page-size select{padding-right:26px!important}
+
+body[data-theme="dark"] #page-sell .seller-card,
+body[data-theme="dark"] #page-sell .input-prefix,
+body[data-theme="dark"] #page-sell .upload-box,
+body[data-theme="dark"] #page-explore .sort-pill{background:#0d1019!important;color:#fff!important;border-color:#8295d8!important}
+body[data-theme="dark"] #page-sell .seller-card *,
+body[data-theme="dark"] #page-sell .input-prefix>span,
+body[data-theme="dark"] #page-sell .upload-box *,
+body[data-theme="dark"] #page-explore .sort-pill *,
+body[data-theme="dark"] #page-explore .show-count *{color:#fff!important}
+body[data-theme="dark"] #page-sell .upload-box{border:2px dashed #8295d8!important}
+body[data-theme="dark"] #page-sell .input-prefix input{background:transparent!important;color:#fff!important}
+body[data-theme="dark"] #page-sell select option,
+body[data-theme="dark"] #page-explore select option,
+body[data-theme="dark"] #page-orders select option,
+body[data-theme="dark"] #page-verify select option{background:#0d1019!important;color:#fff!important}
+body[data-theme="dark"] .form-field:has(>select)::after,
+body[data-theme="dark"] .orders-filter-pair .form-field::after,
+body[data-theme="dark"] .sort-pill::after,
+body[data-theme="dark"] .show-count::after,
+body[data-theme="dark"] .orders-page-size::after{border-color:#fff!important}
+
+@media(max-width:760px){
+  #page-sell .sell-aside{grid-template-columns:minmax(0,1fr)!important}
+}
+
+/* Account modal avatar input gets its own line instead of competing with the copy. */
+#editAccountForm .edit-avatar-control{display:grid!important;grid-template-columns:52px minmax(0,1fr)!important;gap:10px 14px!important;align-items:center!important}
+#editAccountForm .edit-avatar-control>.edit-avatar-preview{grid-column:1!important;grid-row:1!important}
+#editAccountForm .edit-avatar-control>span:nth-child(2){grid-column:2!important;grid-row:1!important}
+#editAccountForm .edit-avatar-control>input{grid-column:1/-1!important;grid-row:2!important;width:100%!important;max-width:100%!important}
+
+/* Flexible filter row never pushes label text outside its buttons. */
+#page-explore .category-pills{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))!important}
+#page-explore .category-pill{overflow-wrap:anywhere!important}
+#page-explore .sort-pill select{background:transparent!important}
+
+/* Order content aligns from the top, with seller as a normal single line. */
+.order-detail-dialog{min-height:0!important;align-content:start!important}
+.order-seller-line{margin:0!important;font-size:16px!important}.order-seller-line strong{font-size:inherit!important}
+.order-detail-facts{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+
+/* Local wallet surfaces. */
+.wallet-card{display:grid!important;gap:9px!important;padding:20px!important}.wallet-card h3{font-size:22px!important}.wallet-card>strong{font-size:30px!important;color:#8295d8!important}.wallet-card .button{width:100%!important}.wallet-note{color:#697386!important;font-size:14px!important}
+.wallet-dialog{width:min(460px,92vw)!important;display:grid!important;gap:16px!important;padding:28px!important}.wallet-dialog h2{font-size:26px!important}.wallet-dialog .form-field{display:grid!important;gap:7px!important}.wallet-dialog input,.wallet-dialog select{min-height:48px!important}.wallet-payment-summary{display:grid!important;gap:10px!important;padding:14px!important;border:1px solid #8295d8!important;border-radius:6px!important}.wallet-payment-summary span{display:flex!important;justify-content:space-between!important;gap:14px!important}.wallet-payment-summary strong{font-size:18px!important}.wallet-warning{color:#c34848!important;margin:0!important}.wallet-item{font-weight:700!important;margin:0!important}
+body[data-theme="dark"] .wallet-card,body[data-theme="dark"] .wallet-dialog,body[data-theme="dark"] .wallet-payment-summary{background:#0d1019!important;color:#fff!important;border-color:#8295d8!important}body[data-theme="dark"] .wallet-dialog *,body[data-theme="dark"] .wallet-card *{color:#fff!important}body[data-theme="dark"] .wallet-warning{color:#ff9b9b!important}
+
+/* Final dark-surface consistency for the home dashboard and form controls. */
+body[data-theme="dark"] .text-button,body[data-theme="dark"] .text-button *{color:#fff!important}
+body[data-theme="dark"] #page-home .impact-card{background:#0d1019!important;color:#fff!important;border-color:#8295d8!important}
+body[data-theme="dark"] #page-home .impact-card *{background:transparent!important;color:#fff!important}
+body[data-theme="dark"] #page-home .impact-card .metric-symbol{background:#8295d8!important;color:#fff!important}
+
+body[data-theme="dark"] .listing-form .form-field input,
+body[data-theme="dark"] .listing-form .form-field textarea,
+body[data-theme="dark"] .listing-form .form-field select{background:#0d1019!important;color:#fff!important;border-color:#8295d8!important}
+body[data-theme="dark"] .listing-form .form-field input::placeholder,
+body[data-theme="dark"] .listing-form .form-field textarea::placeholder{color:#aeb8cb!important;opacity:1!important}
+#page-sell .input-prefix{border:1px solid #8295d8!important;background:#0d1019!important}
+#page-sell .input-prefix input,#page-sell .input-prefix input:focus{border:0!important;outline:0!important;box-shadow:none!important;border-radius:0!important;background:transparent!important}
+
+/* Form labels include a caption, so center the indicator against the 50px select itself. */
+.form-field:has(>select)::after,.orders-filter-pair .form-field::after{top:auto!important;bottom:21px!important;margin:0!important}
+
+/* Shared dense controls use the complete available row, with equal targets. */
+#page-explore .category-pills{display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:8px!important;width:100%!important}
+#page-explore .category-pill{width:100%!important;min-width:0!important;justify-content:center!important}
+#page-orders .orders-tabs{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;width:100%!important;gap:8px!important}
+#page-orders .orders-tab{width:100%!important;min-width:0!important;justify-content:center!important}
+#page-orders .orders-filter-pair .form-field select{padding-right:44px!important}
+
+/* Keep native controls visually quiet while preserving keyboard operation. */
+#sortSelect:focus,#sortSelect:focus-visible{outline:0!important;box-shadow:none!important}
+body[data-theme="dark"] input::placeholder,body[data-theme="dark"] textarea::placeholder{color:#fff!important;opacity:1!important}
+
+/* Verification actions have a deliberate, visible hover state. */
+#page-verify .verification-edit-actions .button-outline:hover{background:#8295d8!important;border-color:#8295d8!important;color:#fff!important}
+#page-verify .verification-edit-actions .button-outline:hover *{color:#fff!important}
+
+/* Product dialog: the reading column is vertical, full-width, and theme-consistent. */
+.product-dialog .detail-content{padding:26px!important;gap:15px!important}
+.product-dialog .detail-title,.product-dialog .detail-description{width:100%!important;max-width:none!important;margin-right:0!important}
+.product-dialog .detail-info-row{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:8px!important;width:100%!important}
+.product-dialog .detail-info-item{display:grid!important;grid-template-columns:130px minmax(0,1fr)!important;align-items:baseline!important;gap:12px!important;width:100%!important}
+.product-dialog .detail-info-label{color:#697386!important;font-size:15px!important;font-weight:700!important}
+.product-dialog .detail-meta-link,.product-dialog .detail-info-pill{width:auto!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;text-align:left!important}
+.product-dialog .detail-location{grid-column:auto!important;margin-top:0!important}
+.product-dialog .dialog-actions .button-primary,.product-dialog .listing-saving{background:#8295d8!important;color:#fff!important}
+.product-dialog .dialog-actions .button-primary *,.product-dialog .listing-saving *{color:#fff!important}
+body[data-theme="dark"] .product-dialog .dialog-actions .button.button-primary,body[data-theme="dark"] .product-dialog .dialog-actions .button.button-primary *,body[data-theme="dark"] .product-dialog .detail-price-row .listing-saving{color:#fff!important}
+.product-dialog .dialog-close{width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:#fff!important;text-shadow:0 1px 4px rgba(0,0,0,.65)!important}
+.product-dialog .detail-favorite{width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;color:#fff!important;text-shadow:0 1px 4px rgba(0,0,0,.65)!important}
+.product-dialog .detail-favorite.active{background:transparent!important;color:#8295d8!important}
+
+/* Order details expose a compact set of labelled facts rather than loose text. */
+.order-detail-dialog{width:min(520px,92vw)!important;display:grid!important;gap:16px!important;padding:28px!important}
+.order-detail-dialog .dialog-close{justify-self:end!important;width:32px!important;height:32px!important;min-width:32px!important;min-height:32px!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;color:inherit!important}
+.order-detail-dialog h2{margin:0!important;font-size:26px!important;line-height:1.25!important}
+.order-detail-price{font-size:30px!important;color:#8295d8!important}
+.order-detail-facts{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important;margin:0!important}
+.order-detail-facts>div{padding:12px!important;border:1px solid #8295d8!important;border-radius:6px!important}
+.order-detail-facts dt{font-size:13px!important;color:#697386!important}
+.order-detail-facts dd{margin:5px 0 0!important;font-size:16px!important;font-weight:700!important;overflow-wrap:anywhere!important}
+.order-detail-note{margin:0!important;line-height:1.5!important}
+body[data-theme="dark"] .product-dialog .detail-info-label,body[data-theme="dark"] .product-dialog .detail-meta-link,body[data-theme="dark"] .product-dialog .detail-info-pill,body[data-theme="dark"] .order-detail-dialog,body[data-theme="dark"] .order-detail-dialog h2,body[data-theme="dark"] .order-detail-dialog dt,body[data-theme="dark"] .order-detail-dialog dd,body[data-theme="dark"] .order-detail-dialog .order-detail-note{color:#fff!important}
+body[data-theme="dark"] .order-detail-facts>div{background:#0d1019!important;border-color:#8295d8!important}
+
+@media(max-width:760px){
+  #page-explore .category-pills{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #page-orders .orders-tabs{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .product-dialog .detail-info-item{grid-template-columns:1fr!important;gap:2px!important}
+  .order-detail-facts{grid-template-columns:1fr!important}
+}
+
+/* Profile uses the supplied banner as a compact visual anchor. */
+#page-profile .profile-cover{min-height:150px!important;max-height:180px!important;aspect-ratio:auto!important;background:url('assets/profile-banner.png') center 52%/cover no-repeat!important}
+#page-profile .profile-cover>*{display:none!important}
+#page-profile .profile-listing-grid{grid-template-columns:minmax(0,1fr)!important}
+#page-profile .profile-listing-grid .listing-card{min-width:0!important}
+#page-profile .saved-card{margin-top:24px!important}
+#page-profile .saved-card .saved-count{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;min-width:44px!important;min-height:36px!important;padding:6px 10px!important;background:#8295d8!important;color:#fff!important;border-radius:6px!important;font-weight:800!important}
+#page-profile .saved-card .saved-count *{color:#fff!important}
+#page-profile .saved-card .saved-count i{font-size:14px!important}
+#page-profile .profile-bio{margin:10px 0 14px!important}
+
+/* Wallet remains a profile sidebar feature on desktop and moves to Settings on mobile. */
+#page-settings .wallet-settings,#page-settings .wallet-settings-divider{display:none!important}
+
+@media(max-width:760px){
+  .topbar-inner{gap:10px!important}
+  .brand-logo{max-width:104px!important;flex:0 1 auto!important}
+  .header-actions{gap:6px!important;flex:0 0 auto!important}
+  .header-actions .icon-button,.header-actions .profile-trigger{width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important;flex:0 0 38px!important}
+  .header-actions .profile-trigger .avatar-small,.header-actions #headerAvatar{width:32px!important;height:32px!important;min-width:32px!important;min-height:32px!important}
+  #page-home .hero-panel{min-height:212px!important}
+  #page-profile .profile-cover{min-height:130px!important;max-height:150px!important}
+  #page-profile .wallet-card{display:none!important}
+  #page-settings .wallet-settings{display:grid!important;grid-template-columns:42px minmax(0,1fr)!important;gap:12px!important;align-items:center!important}
+  #page-settings .wallet-settings .settings-copy{display:grid!important;gap:2px!important}
+  #page-settings .wallet-settings .settings-copy p{display:block!important;margin:0!important}
+  #page-settings .settings-wallet-balance{grid-column:1/-1!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;padding:12px!important;border:1px solid #8295d8!important;border-radius:6px!important}
+  #page-settings .settings-wallet-balance strong{font-size:22px!important;color:#8295d8!important}
+  #page-settings .settings-wallet-balance .button{width:auto!important;min-width:0!important;flex:0 0 auto!important}
+}
+
+@media(max-width:430px){
+  .header-actions{gap:5px!important}
+  .header-actions .notification-trigger{display:none!important}
+  #page-home .hero-panel{min-height:220px!important}
+}
+
+body[data-theme="dark"] #page-profile .saved-card,
+body[data-theme="dark"] #page-settings .settings-wallet-balance{background:#0d1019!important;color:#fff!important;border-color:#8295d8!important}
+body[data-theme="dark"] #page-profile .saved-card *,
+body[data-theme="dark"] #page-settings .wallet-settings *,
+body[data-theme="dark"] #page-settings .settings-wallet-balance *{color:#fff!important}
+
+@media(min-width:1000px){
+  #page-profile .profile-content-grid{grid-template-columns:minmax(400px,1fr) minmax(220px,260px)!important}
+}
+
+/* Mobile navigation uses the same compact icon-to-label rhythm for every tab. */
+@media(max-width:760px){
+  .mobile-nav .mobile-sell{display:flex!important;place-items:initial!important;gap:2px!important}
+  .mobile-nav .mobile-sell>span:first-child{display:grid!important;width:21px!important;height:21px!important;min-height:21px!important}
+  .mobile-nav .mobile-sell small{line-height:1.1!important}
+  #page-orders .orders-footer{padding-bottom:92px!important}
+  .modal-backdrop-custom:has(.notification-detail-dialog){align-items:center!important}
+  .notification-detail-dialog{margin:auto!important}
+}
+
+/* Keep dark reading and hover states distinct without introducing light flashes. */
+body[data-theme="dark"] .notification-item:hover,
+body[data-theme="dark"] .notification-item:focus-visible{background:#171c2b!important;color:#fff!important}
+body[data-theme="dark"] .notification-item:hover *,
+body[data-theme="dark"] .notification-item:focus-visible *{color:#fff!important}
+body[data-theme="dark"] .verified-badge-button{background:#8295d8!important;color:#fff!important;border-color:#8295d8!important}
+body[data-theme="dark"] .verified-badge-button *,
+body[data-theme="dark"] .student-verified{color:#fff!important}
+
+/* Compound email control owns the outer border; its input is intentionally borderless. */
+#page-verify .student-email-input{border:1px solid #8295d8!important;background:#0d1019!important;overflow:hidden!important}
+#page-verify .student-email-input input,
+#page-verify .student-email-input input:focus{border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important}
+body[data-theme="dark"] #page-verify .student-email-input,
+body[data-theme="dark"] #page-verify .student-email-input input{color:#fff!important}
+
+/* Information modal title is compact and shares the top row with Close. */
+.verification-info-dialog{position:relative!important;padding-top:20px!important}
+.verification-info-dialog .dialog-close{position:absolute!important;top:14px!important;right:14px!important;width:32px!important;height:32px!important;min-width:32px!important;min-height:32px!important;border-radius:0!important;background:transparent!important}
+.verification-info-dialog h2{margin:0 46px 6px 0!important;font-size:18px!important;font-weight:800!important;line-height:1.25!important}
+
+.profile-editor-dialog .eyebrow{display:flex!important;align-items:center!important;gap:7px!important;margin-bottom:10px!important}
+.profile-name-info{display:inline-grid!important;place-items:center!important;width:22px!important;height:22px!important;padding:0!important;border:0!important;border-radius:50%!important;background:transparent!important;color:#8295d8!important}
+.profile-name-info i{font-size:17px!important}
+
+/* Saved results have a real page size and pagination control once the list grows. */
+#page-profile .saved-items-footer{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;margin-top:14px!important}
+#page-profile .saved-items-footer label{display:flex!important;align-items:center!important;gap:8px!important;font-size:14px!important}
+#page-profile .saved-items-footer select{min-height:36px!important;padding:5px 28px 5px 9px!important;background-position:right 10px center!important}
+#savedItemsPagination{display:flex!important;align-items:center!important;gap:7px!important}
+#savedItemsPagination .button{width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important;padding:0!important}
+
+/* The profile is a reading column now that wallet access lives in Settings. */
+#page-profile .profile-content-grid{grid-template-columns:minmax(0,1fr)!important}
+#page-profile .profile-listings-section{width:100%!important}
+#page-profile .saved-card{width:100%!important}
+
+/* juaija Pay belongs in Settings on every viewport, not in the profile sidebar. */
+#page-settings .wallet-settings,#page-settings .wallet-settings-divider{display:grid!important}
+#page-settings .wallet-settings{grid-template-columns:42px minmax(0,1fr) auto!important;gap:12px!important;align-items:center!important}
+#page-settings .wallet-settings .settings-copy{display:grid!important;gap:2px!important}
+#page-settings .wallet-settings .settings-copy p{display:block!important;margin:0!important}
+#page-settings .settings-wallet-balance{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important}
+#page-settings .settings-wallet-balance strong{font-size:22px!important;color:#8295d8!important}
+#page-settings .settings-wallet-balance .button{width:auto!important;min-width:0!important}
+@media(max-width:760px){#page-settings .wallet-settings{grid-template-columns:42px minmax(0,1fr)!important}#page-settings .settings-wallet-balance{grid-column:1/-1!important;justify-content:space-between!important}}
+
+/* Reusable verified mark: a compact icon that cannot stretch a seller row. */
+.verified-badge-button{display:inline-grid!important;place-items:center!important;width:16px!important;height:16px!important;min-width:16px!important;min-height:16px!important;margin:0 0 0 4px!important;padding:0!important;border:0!important;border-radius:50%!important;background:transparent!important;color:#8295d8!important;vertical-align:middle!important;line-height:1!important}
+.verified-badge-button .student-verified{display:block!important;margin:0!important;font-size:15px!important;line-height:1!important;color:inherit!important}
+body[data-theme="dark"] .verified-badge-button{background:transparent!important;color:#aebcff!important}
+
+/* Logo assets retain their intended bounds in transient UI. */
+.toast-header .toast-logo{display:block!important;width:28px!important;height:28px!important;min-width:28px!important;object-fit:contain!important;border-radius:4px!important}
+.toast-header strong,.toast-header small,.toast-body{font-size:15px!important}
+.toast-body{line-height:1.45!important}
+.notification-modal-icon img{display:block!important;width:32px!important;height:32px!important;max-width:32px!important;max-height:32px!important;object-fit:contain!important;border-radius:4px!important}
+
+/* Settings remains account controls only; profile editing owns avatar changes. */
+#page-settings .account-avatar-summary{display:grid!important;place-items:center!important;width:56px!important;height:56px!important}
+#page-settings .account-details{grid-template-columns:auto minmax(0,1fr)!important;grid-template-areas:"avatar identities"!important}
+#page-settings .account-avatar-summary{grid-area:avatar!important}
+#page-settings .account-identities{grid-area:identities!important}
+
+/* Theme and language controls read as one right-aligned segmented choice. */
+#page-settings .appearance-settings,#page-settings .language-settings{display:grid!important;grid-template-columns:42px minmax(0,1fr) auto!important;align-items:center!important;gap:12px!important}
+#page-settings .appearance-settings .settings-copy,#page-settings .language-settings .settings-copy{display:block!important}
+#page-settings .theme-control,#page-settings .language-control{justify-self:end!important;border-radius:999px!important;overflow:hidden!important;padding:2px!important}
+#page-settings .theme-option,#page-settings .language-option{border-radius:999px!important;min-width:52px!important}
+
+/* Dedicated juaija Pay page. */
+.wallet-page-card{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:20px!important;padding:28px!important}
+.wallet-page-card>div{display:grid!important;gap:4px!important}.wallet-page-card strong{font-size:36px!important;color:#8295d8!important}.wallet-page-card .button{width:auto!important;min-width:150px!important}
+.wallet-nav-link{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important}.wallet-nav-link small{font-size:12px!important;font-weight:800!important}
+@media(max-width:760px){.wallet-page-card{align-items:stretch!important;flex-direction:column!important}.wallet-page-card .button{width:100%!important}.wallet-nav-link{display:none!important}}
+
+/* Verification heading and status keep their icon hierarchy compact. */
+.verification-page-heading{gap:7px!important}.verification-page-heading h1{gap:8px!important}.verification-page-heading h1>i{font-size:.62em!important}.verification-info-button{width:28px!important;height:28px!important;min-width:28px!important;min-height:28px!important;margin-left:0!important;font-size:15px!important}.verification-status-title{font-size:19px!important;line-height:1.3!important;gap:7px!important}.verification-status-title>i{font-size:17px!important}
+
+/* Marketplace toolbar keeps sorting and view choice on the same row on phones. */
+@media(max-width:760px){
+  #page-explore .market-toolbar .toolbar-controls{grid-template-columns:minmax(0,1fr) auto!important;gap:8px!important}
+  #page-explore .sort-pill{grid-column:1!important;grid-row:1!important;width:100%!important}
+  #page-explore .view-switch{grid-column:2!important;grid-row:1!important;display:flex!important;gap:7px!important}
+  #page-explore .verified-filter{grid-column:1/-1!important;grid-row:2!important}
+  #page-home .personal-summary-grid>article:nth-child(3){grid-column:1/-1!important;width:100%!important}
+  #page-home{padding-bottom:0!important}
+}
+
+/* Verification badges inherit the type scale of the context they sit in. */
+.verified-badge-button{width:auto!important;height:auto!important;min-width:0!important;min-height:0!important;color:currentColor!important}
+.verified-badge-button .student-verified{font-size:1em!important;color:currentColor!important}
+#homeVerifiedBadge{margin-left:7px!important;color:#8295d8!important}
+#homeVerifiedBadge .student-verified{font-size:.72em!important}
+.seller-mini-identity .verified-badge-button,.detail-seller-copy .verified-badge-button,#settingsUsername .verified-badge-button{font-size:1em!important;color:currentColor!important}
+body[data-theme="dark"] .verified-badge-button{color:inherit!important}
+
+/* Compact, centered dialog treatment for informational and product content. */
+.modal-backdrop-custom:has(.verified-info-dialog),.modal-backdrop-custom:has(.product-dialog){align-items:center!important}
+.verified-info-dialog{position:relative!important;display:grid!important;gap:10px!important;padding:22px!important;align-content:start!important}
+.verified-info-dialog .dialog-close{position:absolute!important;top:12px!important;right:12px!important;width:32px!important;height:32px!important;min-width:32px!important;min-height:32px!important;padding:0!important}
+.verified-info-dialog .verified-info-icon{margin:0!important;font-size:28px!important;line-height:1!important}.verified-info-dialog h2{margin:0!important;font-size:24px!important;line-height:1.25!important}.verified-info-dialog p{margin:0!important;font-size:16px!important;line-height:1.45!important}
+
+/* Mobile navigation stays visually neutral; active state comes from the icon/text color. */
+@media(max-width:760px){
+  .mobile-nav{grid-template-columns:repeat(6,minmax(0,1fr))!important}
+  .mobile-nav button,.mobile-nav button small,.mobile-nav .mobile-sell small{font-weight:700!important;color:inherit!important}
+  .mobile-nav .mobile-sell>span:first-child,.mobile-nav .mobile-sell.active>span:first-child{background:transparent!important;color:inherit!important}
+  .mobile-nav .mobile-wallet{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:2px!important}
+  .mobile-nav .mobile-wallet .icon{display:grid!important;place-items:center!important;width:21px!important;height:21px!important}
+  #page-settings .settings-aside{display:none!important}
+  #page-settings{padding-bottom:0!important}
+  #page-settings .theme-control,#page-settings .language-control{grid-column:3!important;justify-self:end!important}
+  .page-wrap{padding-bottom:82px!important}
+}
+
+/* Equal-size settings switches avoid visual hierarchy where there is none. */
+#page-settings .theme-control,#page-settings .language-control{width:110px!important;height:38px!important}
+#page-settings .theme-option,#page-settings .language-option{flex:1 1 0!important;min-width:0!important;height:32px!important;padding:4px!important;font-size:14px!important}
+@media(max-width:760px){
+  #page-settings .appearance-settings>.theme-control,
+  #page-settings .language-settings>.language-control{grid-area:1/3!important;justify-self:end!important}
+}
+
+/* Settings account is a read-only summary; avatar editing belongs in Profile. */
+#page-settings .account-avatar-summary{display:none!important}
+#page-settings .account-details{display:block!important;grid-template-areas:none!important}
+#page-settings .account-details>.account-identities{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px 24px!important}
+
+/* Each segmented choice has the width its labels need, without spare end caps. */
+#page-settings .theme-control{width:150px!important}
+#page-settings .language-control{width:106px!important;padding:0!important}
+#page-settings .language-option{height:36px!important}
+#settingsUsername .student-verified{font-size:15px!important}
+
+/* List previews remain scannable; the full message is available in its dialog. */
+.notification-item .notif-copy>p{display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;overflow:hidden!important}
+
+/* The wallet balance is a compact, high-contrast amount badge in the desktop rail. */
+.wallet-nav-link #walletNavBalance{display:inline!important;margin-left:5px!important;padding:0!important;background:transparent!important;color:currentColor!important;font-size:11px!important;font-weight:700!important;line-height:1!important}
+
+/* Correct the mobile controls after earlier layout rules have been applied. */
+body[data-theme="dark"] .mobile-nav button.active,
+body[data-theme="dark"] .mobile-nav button.active small{color:#8295d8!important}
+
+#page-settings .account-avatar-summary{display:grid!important;place-items:center!important;width:44px!important;height:44px!important}
+#page-settings .account-avatar-summary .avatar{width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important}
+#page-settings .account-details{display:grid!important;grid-template-columns:44px minmax(0,1fr) auto!important;grid-template-areas:"avatar identities edit"!important;align-items:center!important;gap:12px!important}
+#page-settings .account-avatar-summary{grid-area:avatar!important}
+#page-settings .account-details>.account-identities{grid-area:identities!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px 16px!important}
+#page-settings .account-edit-button{grid-area:edit!important;justify-self:end!important;white-space:nowrap!important}
+
+#page-settings .theme-control{width:148px!important;height:38px!important;display:flex!important;gap:2px!important;padding:2px!important;box-sizing:border-box!important;border-radius:999px!important;overflow:hidden!important}
+#page-settings .theme-option{display:flex!important;align-items:center!important;justify-content:center!important;flex:1 1 0!important;min-width:0!important;min-height:32px!important;height:32px!important;padding:0!important;border-radius:999px!important;white-space:nowrap!important}
+#page-settings .language-control{width:104px!important;height:38px!important;display:flex!important;gap:2px!important;padding:2px!important;box-sizing:border-box!important;border-radius:999px!important;overflow:hidden!important}
+#page-settings .language-option{display:flex!important;align-items:center!important;justify-content:center!important;min-height:32px!important;height:32px!important;padding:0!important;border-radius:999px!important}
+
+body:not([data-theme="dark"]) #page-sell .listing-form .input-prefix{background:#fff!important;color:#000!important}
+body:not([data-theme="dark"]) #page-sell .listing-form .input-prefix>span,
+body:not([data-theme="dark"]) #page-sell .listing-form .input-prefix input{background:transparent!important;color:#000!important}
+body:not([data-theme="dark"]) .listing-form .upload-box{background:#fff!important;color:#000!important}
+body:not([data-theme="dark"]) .listing-form .upload-box strong{color:#000!important}
+body:not([data-theme="dark"]) .listing-form .upload-box small{color:#3f4652!important}
+
+.toast-header{display:flex!important;align-items:center!important;gap:10px!important}
+.toast-header .toast-logo{margin-right:2px!important}
+
+@media(max-width:760px){
+  #page-settings .account-details{grid-template-columns:44px minmax(0,1fr)!important;grid-template-areas:"avatar identities" "edit edit"!important}
+  #page-settings .account-details>.account-identities{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #page-settings .account-edit-button{justify-self:start!important}
+  .listing-form .form-actions{display:grid!important;grid-template-columns:1fr!important;gap:14px!important}
+  .listing-form .form-actions .button{grid-row:1!important;width:100%!important}
+  .listing-form .form-actions p{grid-row:2!important;margin:0!important}
+  .modal-backdrop-custom{align-items:center!important;justify-items:center!important}
+  .modal-backdrop-custom>.dialog-card{margin:auto!important}
+}
+
+/* Keep the verification mark recognisable in every seller context. */
+.verified-badge-button,.verified-badge-button .student-verified{color:#8295d8!important}
+body[data-theme="dark"] .verified-badge-button,body[data-theme="dark"] .verified-badge-button .student-verified{color:#aebcff!important}
+#settingsUsername .verified-badge-button,#settingsUsername .student-verified{font-size:14px!important}
+.detail-seller-copy .verified-badge-button,.detail-seller-copy .student-verified{font-size:13px!important}
+
+/* Active choices use the signature fill with a white foreground. */
+#page-settings .theme-option.active,#page-settings .language-option.active{background:#8295d8!important;color:#fff!important}
+#page-settings .theme-option.active *,#page-settings .language-option.active *{color:#fff!important}
+
+/* A focused banking selector remains a signature surface with readable text. */
+#walletTopUpForm select,#walletTopUpForm select:focus{background:#8295d8!important;color:#fff!important}
+#walletTopUpForm select option{background:#fff!important;color:#000!important}
+
+/* Avatar picker has a clear reading order: preview/copy, then file control. */
+.profile-editor-dialog .edit-avatar-control{display:grid!important;grid-template-columns:56px minmax(0,1fr)!important;gap:10px 12px!important;align-items:center!important}
+.profile-editor-dialog .edit-avatar-control>.avatar{grid-column:1!important;grid-row:1!important}
+.profile-editor-dialog .edit-avatar-control>span:nth-child(2){grid-column:2!important;grid-row:1!important}
+.profile-editor-dialog .edit-avatar-control>input{grid-column:1/-1!important;grid-row:2!important;width:100%!important;max-width:none!important}
+
+/* Final modal and control hierarchy: compact without hiding useful actions. */
+.profile-editor-dialog{padding:20px!important;padding-top:18px!important}
+.profile-editor-dialog>.eyebrow{margin:0 34px 12px 0!important;font-size:15px!important;font-weight:800!important;letter-spacing:.04em!important;color:var(--ink)!important}
+.profile-editor-dialog .profile-name-info{vertical-align:middle!important;font-style:normal!important;line-height:1!important;width:18px!important;height:18px!important}
+.profile-editor-dialog .profile-name-info i{font-style:normal!important;font-size:15px!important}
+.profile-name-info-copy{margin:-5px 0 10px!important;padding:8px 10px!important;border-left:3px solid #8295d8!important;background:rgba(130,149,216,.1)!important;color:var(--ink)!important;font-size:12px!important;line-height:1.35!important}
+.profile-editor-dialog .avatar-file-input{height:38px!important;padding:3px!important;font-size:0!important;color:transparent!important;background:transparent!important;border:0!important}
+.profile-editor-dialog .avatar-file-input::file-selector-button{height:32px!important;margin:0!important;padding:0 12px!important;border:1px solid #8295d8!important;border-radius:6px!important;background:#fff!important;color:#000!important;font:700 12px Arial,sans-serif!important;cursor:pointer!important}
+body[data-theme="dark"] .profile-editor-dialog .avatar-file-input::file-selector-button{background:#000!important;color:#fff!important}
+
+/* Joined controls only round their outside corners. */
+#page-settings .theme-option,#page-settings .language-option{border-radius:0!important}
+#page-settings .theme-option:first-child,#page-settings .language-option:first-child{border-radius:999px 0 0 999px!important}
+#page-settings .theme-option:last-child,#page-settings .language-option:last-child{border-radius:0 999px 999px 0!important}
+
+/* The unread indicator follows the active colour system in both themes. */
+.notification-dot{background:#8295d8!important;border-color:#fff!important}
+body[data-theme="dark"] .notification-dot{background:#aebcff!important;border-color:#000!important}
+
+/* Verification headings share one controlled type scale. */
+.verification-page-heading{align-items:center!important;gap:6px!important}
+.verification-page-heading h1{align-items:center!important;gap:7px!important;font-size:28px!important;line-height:1.1!important}
+.verification-page-heading h1>i{font-size:20px!important;line-height:1!important}
+.verification-info-button{width:21px!important;height:21px!important;min-width:21px!important;min-height:21px!important;font-size:11px!important}
+.verification-status-title{font-size:16px!important;font-weight:800!important;line-height:1.2!important}
+.verification-status-title>i{font-size:15px!important}
+.verified-info-dialog{grid-template-columns:22px minmax(0,1fr)!important;column-gap:9px!important;row-gap:10px!important;padding:20px!important}
+.verified-info-dialog .verified-info-icon{grid-column:1!important;grid-row:1!important;font-size:20px!important;color:#8295d8!important}
+.verified-info-dialog h2{grid-column:2!important;grid-row:1!important;margin:0 32px 0 0!important;font-size:17px!important;font-weight:800!important;line-height:1.2!important}
+.verified-info-dialog p,.verified-info-dialog .button{grid-column:1/-1!important}
+
+/* Orders read as an ordered workflow: search, then filters. */
+#page-orders .orders-tabs{display:none!important}
+#page-orders .orders-tools{grid-template-columns:1fr!important;gap:12px!important}
+#page-orders .orders-filter-pair{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important}
+@media(max-width:760px){#page-orders .orders-filter-pair{grid-template-columns:1fr 1fr!important}#page-orders .orders-filter-pair .form-field:last-child{grid-column:1/-1!important}}
+
+/* The order shell is not a button: only the summary opens details, while actions remain usable. */
+.order-list-row{display:grid!important;grid-template-columns:72px minmax(0,1fr) auto!important;align-items:center!important;gap:12px!important}
+.order-list-main{display:grid!important;grid-template-columns:minmax(0,1fr) auto auto auto!important;align-items:center!important;gap:12px!important;width:100%!important;padding:0!important;border:0!important;background:transparent!important;color:inherit!important;text-align:left!important}
+.order-row-actions{display:flex!important;gap:7px!important;align-items:center!important}
+.order-row-action{border:1px solid #8295d8!important;border-radius:6px!important;background:transparent!important;color:var(--ink)!important;padding:6px 9px!important;font-size:11px!important;font-weight:700!important}
+.order-row-action:hover{background:#8295d8!important;color:#fff!important}
+@media(max-width:760px){.order-list-row{grid-template-columns:56px minmax(0,1fr)!important}.order-list-main{grid-template-columns:minmax(0,1fr) auto!important;gap:6px 10px!important}.order-list-main .order-state,.order-list-main time{grid-column:1!important}.order-row-actions{grid-column:2!important;justify-self:start!important}.order-entry-price{grid-column:2!important;grid-row:1!important}}
+
+/* Profile listings are a dense catalogue at every breakpoint. */
+#page-profile .profile-listing-grid{grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:12px!important}
+#page-profile .profile-listing-grid .listing-visual{height:128px!important}
+@media(max-width:1024px){#page-profile .profile-listing-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
+@media(max-width:760px){#page-profile .profile-listing-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}#page-profile .profile-listing-grid .listing-visual{height:142px!important}}
+
+/* Verification marks remain a small inline status glyph, never a new line. */
+#profileTitle .verified-badge-button,#profileTitle .verified-badge-button .student-verified{font-size:17px!important}
+.detail-seller-copy strong,.seller-mini-identity{display:inline-flex!important;align-items:center!important;gap:3px!important;white-space:nowrap!important}
+.detail-seller-copy .verified-badge-button,.detail-seller-copy .student-verified{font-size:11px!important;flex:none!important;vertical-align:baseline!important}
+.detail-seller-copy .verified-badge-button{margin:0!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
+.product-dialog .detail-gallery .dialog-close{width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;font-size:20px!important;border-radius:50%!important;background:#fff!important;color:#000!important}
+body[data-theme="dark"] .product-dialog .detail-gallery .dialog-close{background:#000!important;color:#fff!important}
+
+/* Settings headings use the same readable weight and scale. */
+#page-settings .settings-copy h2,#page-settings #accountSettingsTitle{font-size:16px!important;font-weight:800!important;line-height:1.2!important}
+
+/* Footer remains visible on short pages such as juaija Pay. */
+.site-footer{display:block!important;margin-top:34px!important;padding:18px max(24px,calc((100% - 1152px)/2))!important;border-top:1px solid #8295d8!important}
+.site-footer .auth-legal-footer{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:16px!important;color:var(--ink)!important;font-size:12px!important}
+.site-footer .auth-legal-footer>span{display:inline!important;color:var(--ink)!important}
+@media(max-width:760px){.site-footer .auth-legal-footer{align-items:flex-start!important;flex-direction:column!important;gap:8px!important}}
+
+/* The market activity view is a heatmap, without a second competing line chart. */
+#marketDashboardPanel .area-chart-wrap{display:none!important}
+
+/* Desktop profile catalogue uses three readable columns. */
+#page-profile .profile-listing-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+@media(max-width:1024px){#page-profile .profile-listing-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:760px){#page-profile .profile-listing-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+#page-profile .profile-cover{background-size:contain!important;background-repeat:no-repeat!important;background-position:center!important;background-color:#8295d8!important}
+#page-profile .saved-items-footer+.text-button{display:flex!important;width:100%!important;justify-content:flex-end!important}
+#page-profile .saved-card .saved-count{display:flex!important;align-items:center!important;justify-content:center!important;line-height:1!important}
+#page-profile .saved-card .saved-count span{display:block!important;line-height:1!important}
+#page-profile .profile-stats>div{align-items:center!important;text-align:center!important}
+
+/* One system typeface applies to account identity and titles. */
+#profileTitle,#profileTitle *,#settingsUsername,#settingsUsername *,#headerName,#headerName *{font-family:Arial,sans-serif!important}
+#profileTitle .verified-badge-button,#profileTitle .verified-badge-button .student-verified{font-size:20px!important}
+.detail-seller-copy .verified-badge-button,.detail-seller-copy .student-verified{font-size:13px!important}
+
+/* Profile avatar picker is a compact explicit action, not a raw browser input. */
+.profile-editor-dialog .edit-avatar-control{grid-template-columns:56px minmax(0,1fr)!important;grid-template-rows:auto auto!important}
+.profile-editor-dialog .avatar-file-trigger{grid-column:1/-1!important;grid-row:2!important;justify-self:start!important;min-height:34px!important}
+.profile-editor-dialog .avatar-file-input{display:none!important}
+.profile-editor-dialog .edit-avatar-field>.sr-only{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important}
+
+/* Uploaded listing images have stable thumbnail slots. */
+#uploadPreview{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important;width:100%!important;margin-top:10px!important}
+#uploadPreview img{width:100%!important;aspect-ratio:1!important;object-fit:cover!important;border:1px solid #8295d8!important;border-radius:6px!important}
+
+/* Footer participates in the application layout and sits after the page content. */
+#app.app-shell{min-height:100dvh!important;display:flex!important;flex-direction:column!important}
+#app .page-wrap{flex:1 0 auto!important}
+#app .site-footer{margin-top:auto!important;clear:both!important;width:100%!important}
+
+/* An order row prioritises the counterparty and status without collisions. */
+.order-list-row{grid-template-columns:72px minmax(0,1fr)!important;row-gap:10px!important}
+.order-list-main{grid-template-columns:minmax(190px,1fr) auto auto!important;gap:8px 16px!important}
+.order-list-main time{grid-column:2!important;grid-row:2!important;justify-self:start!important}
+.order-list-main .order-state{grid-column:3!important;grid-row:1!important;white-space:nowrap!important}
+.order-list-main>i{grid-column:3!important;grid-row:2!important;justify-self:end!important}
+.order-row-actions{grid-column:2!important;justify-self:start!important}
+@media(max-width:760px){.order-list-main{grid-template-columns:minmax(0,1fr) auto!important;gap:6px 10px!important}.order-list-main .order-state{grid-column:1!important;grid-row:2!important}.order-list-main time{grid-column:1!important;grid-row:3!important}.order-list-main>i{grid-column:2!important;grid-row:2!important}.order-row-actions{grid-column:2!important}}
+
+/* Account summary begins flush with its panel and keeps identity with the avatar. */
+#page-settings .settings-main>.account-settings{padding-top:0!important}
+#page-settings .account-settings>.account-details{grid-template-columns:44px minmax(0,1fr)!important;grid-template-areas:"avatar identities" "edit edit"!important;gap:12px 14px!important}
+#page-settings .account-details>.account-edit-button{grid-area:edit!important;justify-self:start!important}
+
+/* Header tools stay neutral until hovered in light mode. */
+body:not([data-theme="dark"]) #headerSearchButton{color:#000!important;background:transparent!important}
+body:not([data-theme="dark"]) #headerSearchButton:hover{color:#fff!important;background:#8295d8!important}
+
+/* Verification header has a clear icon hierarchy. */
+.verification-page-heading h1>i{font-size:25px!important}
+
+/* Footer matches the compact login legal footer and does not span the desktop shell. */
+#app .site-footer{width:min(100% - 48px,1152px)!important;margin:24px auto 0!important;padding:14px 0!important;border-top:1px solid #8295d8!important}
+#app .site-footer .auth-legal-footer{font-size:11px!important}
+
+/* Price is deliberately before seller information in product details. */
+.product-dialog .detail-price-row{order:3!important}
+.product-dialog .detail-seller{order:4!important}
+.product-dialog .dialog-actions{order:5!important}
+.product-dialog .detail-content{display:flex!important;flex-direction:column!important}
+
+/* Market activity becomes a compact weekly activity summary rather than a chart surface. */
+#marketDashboardPanel .chart-card{min-height:0!important}
+#marketDashboardPanel .activity-heatmap{display:none!important}
+#marketDashboardPanel .chart-legend{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important;margin:18px 0 0!important}
+#marketDashboardPanel .chart-legend>span:not(.chart-total){display:flex!important;flex-direction:column!important;align-items:flex-start!important;padding:13px!important;border:1px solid #8295d8!important;border-radius:6px!important}
+#marketDashboardPanel .chart-total{grid-column:1/-1!important;margin:0!important;align-items:flex-start!important;padding-top:6px!important}
+#marketDashboardPanel .chart-footnote{margin-top:18px!important}
+
+/* Final profile composition: the banner art leads, while the signature stays anchored opposite it. */
+#page-profile .profile-cover{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:24px!important;padding:16px 28px!important;background:#8295d8!important;background-image:none!important}
+#page-profile .profile-cover>*{display:block!important}
+#page-profile .profile-cover-art{width:min(66%,620px)!important;height:100%!important;max-height:160px!important;object-fit:contain!important;object-position:left center!important}
+#page-profile .profile-cover-logo{width:88px!important;height:88px!important;object-fit:contain!important;flex:none!important}
+#page-profile .cover-label{position:absolute!important;left:28px!important;bottom:16px!important;color:#fff!important;text-shadow:0 1px 3px rgba(0,0,0,.25)!important}
+@media(max-width:760px){#page-profile .profile-cover{padding:10px 14px!important;gap:12px!important}#page-profile .profile-cover-art{width:72%!important;max-height:112px!important}#page-profile .profile-cover-logo{width:54px!important;height:54px!important}#page-profile .cover-label{left:14px!important;bottom:10px!important;font-size:11px!important}}
+
+/* Listing imagery has a fixed square slot in every profile breakpoint. */
+#page-profile .profile-listing-grid .listing-visual{height:auto!important;min-height:0!important;aspect-ratio:1 / 1!important}
+#page-profile .profile-listing-grid .listing-visual img{width:100%!important;height:100%!important;object-fit:cover!important}
+
+/* Profile totals read as a right-aligned summary and saved controls share one compact row. */
+#page-profile .profile-stats>div{align-items:flex-end!important;text-align:right!important}
+#page-profile .saved-items-footer{display:flex!important;align-items:center!important;width:100%!important}
+#page-profile .saved-items-footer .text-button{margin-left:auto!important;white-space:nowrap!important}
+#page-profile .saved-items-footer+#page-profile .text-button{display:none!important}
+#page-profile .saved-items-footer select{border:1px solid #8295d8!important;border-radius:6px!important;background-color:var(--surface)!important;color:var(--ink)!important}
+@media(max-width:520px){#page-profile .saved-items-footer{flex-wrap:wrap!important}#page-profile .saved-items-footer .text-button{margin-left:auto!important}}
+
+/* Status controls retain neutral surfaces until a deliberate hover. */
+#headerSearchButton{background:transparent!important}
+#headerSearchButton:hover{background:#8295d8!important;color:#fff!important}
+body[data-theme="dark"] #headerSearchButton{color:#fff!important}
+
+/* Small inline verification refinements. */
+#settingsUsername .verified-badge-button{transform:translateY(-1px)!important}
+.verification-info-button{width:24px!important;height:24px!important;min-width:24px!important;min-height:24px!important;font-size:13px!important}
+.verification-status-title>i{font-size:18px!important}
+
+/* Marketplace metrics are compact, equal cards with a real activity graph below. */
+#marketMetricGrid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important;margin:0 0 16px!important}
+#marketMetricGrid .metric-card{min-height:146px!important;padding:15px!important;display:flex!important;flex-direction:column!important;justify-content:flex-start!important}
+#marketMetricGrid .metric-top{font-size:13px!important;line-height:1.25!important;gap:8px!important;color:#8295d8!important}
+#marketMetricGrid .metric-top>span:first-child{max-width:12ch!important}
+#marketMetricGrid .metric-symbol{width:34px!important;height:34px!important;min-width:34px!important;font-size:16px!important}
+#marketMetricGrid .metric-card>strong{font-size:30px!important;line-height:1.05!important;margin-top:14px!important;color:var(--ink)!important;white-space:nowrap!important}
+#marketMetricGrid .metric-bottom{font-size:12px!important;line-height:1.35!important;margin-top:auto!important;color:#8295d8!important}
+#marketMetricGrid .impact-card{background:#8295d8!important}
+#marketMetricGrid .impact-card .metric-top,#marketMetricGrid .impact-card .metric-card>strong,#marketMetricGrid .impact-card .metric-bottom,#marketMetricGrid .impact-card strong{color:#fff!important}
+#marketMetricGrid .metric-unit{font-size:11px!important}
+@media(max-width:760px){#marketMetricGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important}#marketMetricGrid .metric-card{min-height:126px!important}#marketMetricGrid .metric-card>strong{font-size:25px!important}}
+
+/* Keep the activity data visible as the graph requested for the dashboard. */
+#marketDashboardPanel .card-heading .eyebrow{display:none!important}
+#marketDashboardPanel .area-chart-wrap{display:block!important;height:200px!important;margin-top:16px!important}
+#marketDashboardPanel .chart-card{min-height:480px!important}
+#marketDashboardPanel .chart-legend{margin-top:14px!important}
+#marketDashboardPanel .chart-source-note{display:none!important}
+
+/* Verification heading is one compact control group. */
+.verification-page-heading{justify-content:flex-start!important;align-items:center!important;gap:6px!important}
+.verification-page-heading h1{margin:0!important;gap:12px!important}
+.verification-page-heading .verification-info-button{width:20px!important;height:20px!important;min-width:20px!important;min-height:20px!important;margin:0!important;padding:0!important;font-size:11px!important;line-height:1!important}
+.verification-info-dialog{padding:22px 26px 26px!important}
+.verification-info-dialog .dialog-close{top:14px!important;right:18px!important}
+.verification-info-dialog h2{margin:0 46px 16px 0!important;padding:0!important;line-height:1.2!important}
+.verification-info-dialog p{margin:0 0 14px!important}
+
+/* Profile cover artwork touches the left edge; the legacy community label is removed. */
+#page-profile .profile-cover{padding:0 18px 0 0!important}
+#page-profile .profile-cover-art{align-self:stretch!important;width:72%!important;max-height:none!important;object-fit:cover!important;object-position:left center!important}
+#page-profile .cover-label{display:none!important}
+@media(max-width:760px){#page-profile .profile-cover{padding-right:10px!important}#page-profile .profile-cover-art{width:76%!important}}
+
+/* Header utilities only receive the signature fill on hover. */
+#headerSearchButton,.notification-trigger{background:transparent!important}
+#headerSearchButton:hover,.notification-trigger:hover{background:#8295d8!important;color:#fff!important}
+body[data-theme="dark"] .notification-trigger{color:#fff!important}
+
+/* Order metadata is kept out of the content column. */
+.order-list-row{grid-template-columns:72px minmax(0,1fr)!important;grid-template-rows:auto auto!important}
+.order-list-main{grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:auto auto auto!important;gap:4px 14px!important}
+.order-list-main .order-list-copy{grid-column:1!important;grid-row:1!important}
+.order-list-main .order-state{grid-column:1!important;grid-row:2!important;justify-self:start!important}
+.order-list-main .order-entry-price{grid-column:2!important;grid-row:2!important;justify-self:end!important}
+.order-list-main time{grid-column:2!important;grid-row:3!important;justify-self:end!important}
+.order-list-main>i{grid-column:2!important;grid-row:1!important;justify-self:end!important}
+.order-row-actions{grid-column:1!important;grid-row:2!important;justify-self:start!important;margin-top:4px!important}
+@media(max-width:760px){.order-list-row{grid-template-columns:56px minmax(0,1fr)!important}.order-row-actions{grid-column:1!important;grid-row:2!important}.order-list-main{grid-column:2!important}}
+
+/* Financial figures are amounts, not completion progress: present them as readable summaries. */
+.finance-ring{width:210px!important;height:auto!important;min-height:132px!important;padding:20px!important;border-radius:6px!important;background:var(--surface)!important;box-shadow:none!important;border:1px solid #8295d8!important}
+.finance-ring>div{min-height:90px!important;background:transparent!important;border-radius:0!important}
+.finance-ring strong{font-size:30px!important}.finance-ring span{font-weight:700!important;color:#8295d8!important}
+.finance-bars{gap:10px!important}.finance-row{padding:13px 14px!important;border:1px solid #8295d8!important;border-radius:6px!important;background:var(--surface)!important}
+.finance-row>div{margin:0!important}.finance-track{display:none!important}
+@media(max-width:760px){.finance-ring{width:100%!important;min-height:110px!important}}
+
+/* The sell hint is a centred, concise callout. */
+.tip-card{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important}
+.tip-card .tip-star{position:static!important;margin:0 0 10px!important}.tip-card .tip-dash{display:none!important}
+.tip-card p,.tip-card h3{max-width:28ch!important}
+
+/* Verification instructions are sequential steps. */
+.verification-info-dialog ol{margin:0 0 18px!important;padding-left:22px!important;display:grid!important;gap:10px!important}
+.verification-info-dialog li{padding-left:4px!important}
+
+/* The personal financial view is an actual value-scaled bar chart. */
+.personal-finance-layout{grid-template-columns:180px minmax(0,1fr)!important;align-items:stretch!important}
+.finance-ring{width:auto!important;min-height:244px!important;display:flex!important;align-items:center!important;justify-content:center!important}
+.finance-ring>div{min-height:0!important}
+.finance-chart{min-height:244px!important;display:flex!important;flex-direction:column!important;border:1px solid #8295d8!important;border-radius:6px!important;padding:16px!important;background:var(--surface)!important}
+.finance-chart-head{display:flex!important;align-items:flex-start!important;justify-content:space-between!important;gap:16px!important}
+.finance-chart-head strong{font-size:14px!important}.finance-chart-head small{font-size:11px!important;color:#8295d8!important;max-width:250px!important;text-align:right!important}
+.finance-chart-bars{flex:1!important;min-height:160px!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:28px!important;align-items:end!important;padding:14px 12px 0!important;border-bottom:1px solid #8295d8!important}
+.finance-chart-bars>div{height:100%!important;display:grid!important;grid-template-rows:auto 1fr auto!important;gap:8px!important;text-align:center!important;align-items:end!important}
+.finance-chart-bars strong{font-size:15px!important;white-space:nowrap!important}.finance-chart-bars i{display:block!important;width:100%!important;min-height:6px!important;border-radius:4px 4px 0 0!important;align-self:end!important;transition:height .25s!important}.finance-chart-bars i.income{background:#8295d8!important}.finance-chart-bars i.spending{background:#242936!important}.finance-chart-bars i.savings{background:#2f8c78!important}.finance-chart-bars span{font-size:12px!important;line-height:1.25!important;color:#8295d8!important}
+@media(max-width:760px){.personal-finance-layout{grid-template-columns:1fr!important}.finance-ring{min-height:110px!important}.finance-chart{min-height:260px!important}.finance-chart-head{display:block!important}.finance-chart-head small{display:block!important;text-align:left!important;margin-top:4px!important}.finance-chart-bars{gap:12px!important;padding-inline:4px!important}.finance-chart-bars span{font-size:10px!important}}
+
+/* Small profile and order alignment corrections. */
+#page-profile .profile-cover-logo{margin-right:30px!important}
+#profileTitle .verified-badge-button,#profileTitle .verified-badge-button .student-verified{font-size:24px!important}
+.order-row-actions{grid-column:2!important;grid-row:2!important;justify-self:start!important;margin-top:0!important}
+@media(max-width:760px){.order-row-actions{grid-column:2!important;grid-row:2!important}}
+
+/* Compact screens retain access to notifications and use an order row built for a narrow column. */
+@media(max-width:760px){
+  .header-actions .notification-trigger{display:grid!important}
+  .order-list-row{grid-template-columns:56px minmax(0,1fr)!important;grid-template-rows:auto auto!important;gap:10px!important;padding:12px 0!important}
+  .order-list-row .order-entry-image{grid-column:1!important;grid-row:1!important;width:56px!important;height:56px!important}
+  .order-list-main{grid-column:2!important;grid-row:1!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:auto auto auto!important;gap:4px 8px!important;min-width:0!important}
+  .order-list-main .order-list-copy{grid-column:1!important;grid-row:1!important;min-width:0!important}
+  .order-list-main .order-list-copy strong{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+  .order-list-main .order-state{grid-column:1!important;grid-row:2!important;font-size:12px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+  .order-list-main .order-entry-price{grid-column:2!important;grid-row:2!important;white-space:nowrap!important}
+  .order-list-main time{grid-column:2!important;grid-row:3!important;font-size:11px!important;white-space:nowrap!important}
+  .order-list-main>i{grid-column:2!important;grid-row:1!important}
+  .order-row-actions{grid-column:2!important;grid-row:2!important;justify-self:start!important;margin:0!important}
+  .order-row-action{white-space:nowrap!important}
+  #page-settings .account-details>.account-identities{grid-template-columns:minmax(0,1fr)!important;gap:10px!important;width:100%!important}
+  #page-settings .account-field{width:100%!important}
+}
+
+/* Final mobile catalogue and profile rules. */
+@media(max-width:760px){
+  #marketGrid.market-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+  #marketGrid.market-grid .listing-visual{height:auto!important;aspect-ratio:1 / 1!important}
+  #page-profile .profile-cover{min-height:130px!important;height:130px!important}
+  #page-profile .profile-cover-art{height:100%!important;min-height:0!important;object-fit:cover!important}
+  #profileTitle .verified-badge-button,#profileTitle .verified-badge-button .student-verified{font-size:18px!important}
+  #page-profile .profile-main-info{position:relative!important}
+  #page-profile .profile-name-row .button{position:absolute!important;top:-42px!important;right:0!important}
+  #page-profile .profile-stats{width:100%!important;justify-content:flex-start!important;gap:48px!important;text-align:left!important}
+  #page-profile .profile-stats>div{align-items:flex-start!important;text-align:left!important}
+  .mobile-nav{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+  .mobile-nav .mobile-sell{display:none!important}
+  .mobile-sell-fab{position:fixed!important;z-index:35!important;right:14px!important;bottom:76px!important;width:54px!important;height:54px!important;border:0!important;border-radius:50%!important;background:#8295d8!important;color:#fff!important;display:grid!important;place-items:center!important;box-shadow:0 10px 24px rgba(0,0,0,.25)!important;font-size:25px!important}
+}
+@media(min-width:761px){.mobile-sell-fab{display:none!important}}
+
+/* Profile listings are paged instead of expanding indefinitely. */
+.profile-listings-pagination{display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;margin:16px 0 28px!important}.profile-listings-pagination:empty{display:none!important}.profile-listings-pagination .button{width:36px!important;min-width:36px!important;padding:0!important}
+
+/* Keep the financial dashboard as one legible chart surface. */
+.personal-finance-layout{grid-template-columns:minmax(0,1fr)!important;gap:0!important}
+.finance-ring{display:none!important}
+.finance-chart{min-height:265px!important;border:0!important;background:transparent!important;padding:0!important}
+.finance-chart-head{display:none!important}
+.finance-chart-bars{min-height:265px!important;gap:34px!important;padding:22px 28px 0!important;border-bottom:1px solid #8295d8!important;background:transparent!important}
+.finance-chart-bars>div{grid-template-rows:auto 1fr auto!important;gap:10px!important}.finance-chart-bars strong{font-size:17px!important}.finance-chart-bars span{font-size:13px!important;min-height:34px!important;display:flex!important;align-items:flex-start!important;justify-content:center!important}
+@media(max-width:760px){.finance-chart{min-height:235px!important}.finance-chart-bars{min-height:235px!important;gap:14px!important;padding:18px 8px 0!important}.finance-chart-bars strong{font-size:14px!important}.finance-chart-bars span{font-size:10px!important;min-height:30px!important}.personal-finance-card{padding:16px!important}}

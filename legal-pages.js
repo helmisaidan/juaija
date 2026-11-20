@@ -1,10 +1,13 @@
 (() => {
   'use strict';
   let lang = 'ms';
+  let theme = 'light';
   try {
     const saved = JSON.parse(localStorage.getItem('juaija.app.v1') || '{}');
     if (saved.settings?.lang === 'en') lang = 'en';
+    if (saved.settings?.theme === 'dark') theme = 'dark';
   } catch {}
+  document.body.dataset.theme = theme;
   const page = document.body.dataset.legalPage;
   const copy = {
     ms: {about:'Tentang', terms:'Terma dan Privasi', language:'Bahasa', published:'Tarikh diterbitkan:'},
