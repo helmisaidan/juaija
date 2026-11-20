@@ -10,18 +10,18 @@ Open `index.html` in Google Chrome. The app is a static site and does not need a
 
 The demo account is saved in the browser and is signed in automatically on first launch.
 
-- Username: `alyarahman`
-- Email: `alya@juaija.my`
+- Username: `zulhelmi`
+- Email: `zulhelmi@juaija.my`
 - Password: `juaija123`
 
 The sign-in page also includes a one-click demo login. New accounts use a unique username, email and password. Account, listing, favorite, notification, language, and theme changes persist in `localStorage` for that browser.
 
 ## Features
 
-- Home dashboard with a multi-source marketplace activity chart (listings, orders, and saves), category activity, marketplace summary metrics, and featured listings.
+- Home dashboard with a multi-source marketplace activity chart (listings, orders, and saved items), category activity, marketplace summary metrics, and featured listings.
 - Marketplace search, category filters, sorting, 20/40 item page size, pagination, and grid/list views.
 - Listing creation with required-field validation, price checks, pickup location, optional image upload, and local persistence.
-- Listing detail view, saved items, seller profile, notification inbox, profile editing, and settings.
+- Listing detail view with multiple product photos, saved items, seller profile, notification inbox, profile editing, and settings.
 - Bahasa Melayu default with English option, plus light and dark appearances.
 - Responsive navigation, page metadata, and a structured footer.
 
@@ -33,13 +33,13 @@ The sign-in page also includes a one-click demo login. New accounts use a unique
 
 ## Orders and student verification
 
-- Orders retain their ID, item name and agreed price. The seller accepts or declines a pending order; acceptance reserves the item. Only the buyer can confirm receipt and complete an accepted order. Cancellation releases the reservation. Completion closes competing pending requests for the same item.
+- Orders retain their ID, item name, agreed price, chosen delivery method, pickup/postage address, and WhatsApp contact number. The seller accepts or declines a pending order; acceptance reserves the item. Only the buyer can confirm receipt and complete an accepted order. Cancellation releases the reservation. Completion closes competing pending requests for the same item.
 - The Orders page supports status and purchase/sale filters, name/ID search, sorting and 10/20/50 rows per page.
 - Student verification requires a 10-digit UiTM student number, an offer letter (PDF/JPG/PNG, up to 5 MB), the intake and duration, and confirmation of active student status. The form reads PDF text or performs OCR locally in the browser, then lets the student check/correct the extracted fields. If extraction is unavailable, the student enters the details from the uploaded letter for admin review.
 - PDF.js 4.10.38 and Tesseract.js 5.1.1 are loaded from jsDelivr on demand. OCR language assets require internet access. Documents are not sent to an OCR service. The first six PDF pages are read.
 - Offer letters are stored in IndexedDB; application metadata remains in localStorage. Successful submission activates a provisional badge. Admin approval retains it; revocation removes it. Expiry is checked on startup, on visibility changes and every minute while the page is open. Badge rendering also checks the current date directly.
 - Each semester is six months. Session 1 defaults to October of the academic year's first year; Session 2 defaults to March of the following year. The starting month can be corrected to match the letter. The badge expires at midnight Malaysia time following the final study month.
-- The requested preset for `@alyarahman` is Session 2 2025/2026, six semesters: 1 March 2026 through 28 February 2029. No uploaded letter is invented; the preset displays “Not uploaded yet” until a real letter is submitted.
+- The requested preset for `@zulhelmi` is Session 2 2025/2026, six semesters: 1 March 2026 through 28 February 2029. The prototype includes the supplied offer-letter file for the demonstration account.
 
 ### Separate local admin account
 

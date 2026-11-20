@@ -811,3 +811,13 @@ body[data-theme="dark"] .notification-trigger{color:#fff!important}
 .finance-chart-bars{min-height:265px!important;gap:34px!important;padding:22px 28px 0!important;border-bottom:1px solid #8295d8!important;background:transparent!important}
 .finance-chart-bars>div{grid-template-rows:auto 1fr auto!important;gap:10px!important}.finance-chart-bars strong{font-size:17px!important}.finance-chart-bars span{font-size:13px!important;min-height:34px!important;display:flex!important;align-items:flex-start!important;justify-content:center!important}
 @media(max-width:760px){.finance-chart{min-height:235px!important}.finance-chart-bars{min-height:235px!important;gap:14px!important;padding:18px 8px 0!important}.finance-chart-bars strong{font-size:14px!important}.finance-chart-bars span{font-size:10px!important;min-height:30px!important}.personal-finance-card{padding:16px!important}}
+
+/* Auth is a separate surface from the signed-in application. */
+#app[hidden]{display:none!important}
+.auth-language{display:flex!important;align-items:center!important;border:1px solid #8295d8!important;border-radius:6px!important;padding:3px!important;gap:3px!important;background:transparent!important}
+.auth-language button{min-width:38px!important;border:0!important;border-radius:4px!important;background:transparent!important;color:var(--ink)!important;font-weight:700!important}
+.auth-language button.active{background:#8295d8!important;color:#fff!important}
+body[data-theme="dark"] .auth-screen,body[data-theme="dark"] .auth-main{background:#000!important;color:#fff!important}
+body[data-theme="dark"] .auth-screen .demo-card{background:#0d1019!important;border-color:#8295d8!important;color:#fff!important}
+body[data-theme="dark"] .auth-screen .demo-card *{color:#fff!important}
+body[data-theme="dark"] .auth-legal-footer,body[data-theme="dark"] .auth-legal-footer *,body[data-theme="dark"] #authCopyrightYear{color:#fff!important;background:transparent!important}
