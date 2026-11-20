@@ -1,0 +1,134 @@
+/* Settings details begin below the section icon and title, at the left edge. */
+#page-settings .settings-section.account-settings,
+#page-settings .settings-section.appearance-settings,
+#page-settings .settings-section.language-settings {
+  display: grid !important;
+  grid-template-columns: 48px minmax(0, 1fr) !important;
+  gap: 18px 16px !important;
+  align-items: center !important;
+}
+
+#page-settings .account-settings > .settings-icon,
+#page-settings .appearance-settings > .settings-icon,
+#page-settings .language-settings > .settings-icon {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+}
+
+#page-settings .account-settings > .settings-copy,
+#page-settings .appearance-settings > .settings-copy,
+#page-settings .language-settings > .settings-copy {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  min-width: 0 !important;
+}
+
+#page-settings .account-settings > .account-details,
+#page-settings .appearance-settings > .theme-control,
+#page-settings .language-settings > .language-control {
+  grid-column: 1 / -1 !important;
+  grid-row: 2 !important;
+  justify-self: start !important;
+  margin: 0 !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+#page-settings .account-settings > .account-details {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  width: 100% !important;
+  gap: 18px !important;
+}
+
+#page-settings .theme-control {
+  width: auto !important;
+  justify-content: flex-start !important;
+  flex-wrap: wrap !important;
+}
+
+#page-settings .theme-option {
+  flex: 0 1 auto !important;
+  min-width: 116px !important;
+  min-height: 48px !important;
+  color: #000 !important;
+  background: #fff !important;
+}
+
+/* The swatch must not put a white square behind a white active icon. */
+#page-settings .theme-option .theme-swatch {
+  width: 26px !important;
+  height: 26px !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: inherit !important;
+}
+
+#page-settings .theme-option .theme-swatch i,
+#page-settings .theme-option .theme-swatch i::before,
+#page-settings .theme-option > span {
+  color: inherit !important;
+}
+
+#page-settings .theme-option .theme-swatch i {
+  font-size: 23px !important;
+  line-height: 1 !important;
+}
+
+#page-settings .theme-swatch svg {
+  display: block;
+  width: 25px;
+  height: 25px;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+body[data-theme="dark"] #page-settings .theme-option {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+#page-settings .theme-option.active,
+#page-settings .theme-option:hover,
+body[data-theme="dark"] #page-settings .theme-option.active,
+body[data-theme="dark"] #page-settings .theme-option:hover {
+  background: #8295d8 !important;
+  color: #fff !important;
+}
+
+#page-settings .theme-option.active *,
+#page-settings .theme-option:hover * {
+  color: #fff !important;
+}
+
+#page-settings .privacy-trigger,
+#page-settings .privacy-trigger:hover,
+body[data-theme="dark"] #page-settings .privacy-trigger {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+@media (max-width: 760px) {
+  #page-settings .settings-section.account-settings,
+  #page-settings .settings-section.appearance-settings,
+  #page-settings .settings-section.language-settings {
+    grid-template-columns: 42px minmax(0, 1fr) !important;
+    gap: 16px 12px !important;
+  }
+
+  #page-settings .account-settings > .account-details {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 16px !important;
+  }
+
+  #page-settings .account-edit-button {
+    justify-self: start !important;
+  }
+}

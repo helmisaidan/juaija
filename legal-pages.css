@@ -1,0 +1,29 @@
+/* Shared presentation for About and Terms, after the application stylesheet. */
+body.legal-page{padding:48px 24px!important;font-family:Arial,sans-serif!important}
+.legal-page .legal-content{padding:36px 40px!important;gap:28px!important;min-width:0!important}
+.legal-page .legal-top{gap:20px!important;flex-wrap:wrap}
+.legal-page .legal-brand{display:inline-flex!important;align-items:center!important;gap:12px!important;color:#000!important;text-decoration:none!important}
+.legal-page .legal-brand img{width:44px!important;height:44px!important;border-radius:var(--radius)!important;object-fit:cover!important;flex:none}
+.legal-page .legal-brand strong{font-size:24px!important;font-weight:800!important;line-height:1!important}
+.legal-page .legal-language{margin-left:auto;flex:none}
+.legal-page .legal-copy{display:grid;gap:24px;min-width:0}
+.legal-page .legal-copy[hidden]{display:none!important}
+.legal-page .legal-section{display:grid;gap:12px;min-width:0}
+.legal-page .legal-content h1{font-size:40px!important;line-height:1.2!important;margin:0!important}
+.legal-page .legal-content h2{font-size:24px!important;line-height:1.3!important;margin:0!important}
+.legal-page .legal-content p{font-size:18px!important;line-height:1.7!important;margin:0!important;overflow-wrap:break-word}
+.legal-page .legal-publication{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 12px;font-size:16px;line-height:1.5}
+.legal-page .legal-publication time{font-size:17px;font-weight:700}
+.legal-page .legal-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
+.legal-page .legal-content .button{justify-self:start;min-height:48px!important;padding:12px 18px!important;line-height:1.35!important;font-size:17px!important;white-space:normal!important}
+.legal-page .support-whatsapp{margin-top:6px}
+.legal-page a:hover{text-decoration:none!important}
+@media(max-width:760px){
+  body.legal-page{padding:32px 14px!important}
+  .legal-page .legal-content{padding:24px 22px!important;gap:24px!important}
+  .legal-page .legal-content h1{font-size:32px!important}
+  .legal-page .legal-content h2{font-size:22px!important}
+  .legal-page .legal-content p{font-size:17px!important}
+}
+@media(max-width:380px){.legal-page .legal-content{padding:22px 16px!important}.legal-page .legal-top{gap:12px!important}.legal-page .legal-brand{gap:8px!important}.legal-page .legal-brand strong{font-size:22px!important}}
+.support-whatsapp{border-radius:999px!important;background:#25d366!important;border-color:#25d366!important;color:#fff!important;padding-inline:22px!important}.support-whatsapp:hover{background:#1ebd5a!important;border-color:#1ebd5a!important}

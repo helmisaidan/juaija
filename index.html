@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="ms-MY">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#fff">
+    <meta name="description" data-i18n-content="meta_description" content="Pasaran kampus untuk memberi barang terpakai peluang kedua dan membantu pelajar berjimat.">
+    <meta property="og:title" data-i18n-content="og_title" content="juaija - Barang baik, harga pelajar">
+    <meta property="og:description" data-i18n-content="og_description" content="Cari barang terpakai dekat kampus, jual dengan mudah dan berjimat lebih banyak.">
+    <title data-i18n="page_title">juaija - Barang baik, harga pelajar</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      .orders-filter-pair .form-field{position:relative}
+      .orders-filter-pair .form-field::after,.sort-pill::after{content:"";position:absolute;right:17px;bottom:20px;width:7px;height:7px;border-right:2px solid #59657a;border-bottom:2px solid #59657a;transform:rotate(45deg);pointer-events:none}
+      .orders-tools select,#sortSelect{background-image:none!important}
+      .sort-pill{position:relative}.sort-pill::after{right:16px;bottom:17px}
+      @media(max-width:760px){.orders-filter-pair .form-field{grid-column:auto!important}}
+    </style>
+    <link rel="stylesheet" href="settings-feedback.css">
+    <link rel="stylesheet" href="account-flows.css">
+    <link rel="stylesheet" href="interface-fixes.css">
+    <script src="orders.js" defer></script>
+    <script src="offer-letter-reader.js" defer></script>
+    <script src="student-verification.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <script>document.documentElement.classList.add('app-booting');document.documentElement.dataset.authView=sessionStorage.getItem('juaija.authView')||'login';</script>
+    <div id="app" class="app-shell" hidden>
+      <header class="topbar">
+        <div class="topbar-inner">
+          <a href="#home" class="brand" data-page="home" data-i18n-aria-label="home_link" aria-label="Laman utama juaija"><img class="brand-logo" src="assets/logo.png" alt="juaija"></a>
+          <nav class="primary-nav" data-i18n-aria-label="main_navigation" aria-label="Navigasi utama">
+            <button class="nav-link active" data-page="home" data-i18n="nav_home">Ringkasan</button>
+            <button class="nav-link" data-page="explore" data-i18n="nav_explore">Explore</button>
+            <button class="nav-link" data-page="sell" data-i18n="nav_sell">Jual barang</button>
+            <button class="nav-link" data-page="orders" data-i18n="orders">Pesanan</button>
+            <button class="nav-link" data-page="verify" data-i18n="verify_student">Pengesahan pelajar</button>
+            <button class="nav-link" data-page="settings" data-i18n="settings" data-i18n-aria-label="settings" aria-label="Tetapan">Tetapan</button>
+          </nav>
+          <div class="header-actions">
+            <button class="icon-button" id="headerSearchButton" data-i18n-aria-label="search_items" data-i18n-title="search_items" aria-label="Cari barang" title="Cari barang"><span class="icon" data-icon="search"></span></button>
+            <button class="icon-button notification-trigger" data-page="notifications" data-i18n-aria-label="notifications" data-i18n-title="notifications" aria-label="Notifikasi" title="Notifikasi"><span class="icon" data-icon="bell"></span><span class="notification-dot" id="notificationDot"></span></button>
+            
+            <button class="profile-trigger" data-page="profile" data-i18n-aria-label="profile" aria-label="Profil"><span class="avatar avatar-small" id="headerAvatar">A</span><span class="profile-trigger-name" id="headerName">Alya</span><span class="chevron"><i class="bi bi-chevron-down" aria-hidden="true"></i></span></button>
+            
+          </div>
+        </div>
+      </header>
+
+      <main class="page-wrap">
+        <section class="page active" id="page-home" aria-labelledby="homeTitle">
+          <div class="page-heading home-heading">
+            <div><p class="eyebrow" id="homeDate">KHAMIS, 19 NOVEMBER</p><h1 id="homeTitle"><span data-i18n="hello">Hai</span>, <span id="greetingName">Alya</span><button type="button" id="homeVerifiedBadge" class="verified-badge-button" data-action="verified-info" aria-label="Pelajar disahkan" title="Pelajar disahkan" hidden><i class="bi bi-patch-check-fill student-verified" aria-hidden="true"></i></button></h1></div>
+            <button class="button button-primary" data-page="sell"><span class="button-icon"><i class="bi bi-plus-lg" aria-hidden="true"></i></span><span data-i18n="start_selling">Mula menjual</span></button>
+          </div>
+
+          <section class="personal-summary" aria-labelledby="personalSummaryTitle"><div class="section-title-row dashboard-title-row"><div><h2 id="personalSummaryTitle" data-i18n="dashboard">Dashboard</h2></div><div class="dashboard-scope-switch" role="group" aria-label="Paparan dashboard"><button type="button" class="active" data-dashboard-scope="personal" data-i18n="my_account_data">Akaun saya</button><button type="button" data-dashboard-scope="market" data-i18n="market_data">Seluruh pasaran</button></div></div><div class="personal-summary-grid"><article><span data-i18n="my_listings">Iklan saya</span><strong id="myListingTotal">0</strong></article><article><span data-i18n="my_orders">Pesanan saya</span><strong id="myOrderTotal">0</strong></article><article><span data-i18n="saved_items">Barang simpanan</span><strong id="mySavedTotal">0</strong></article></div></section>
+          <article class="surface personal-finance-card" id="personalDashboardPanel">
+            <div class="personal-finance-head"><div><p class="eyebrow" data-i18n="personal_money_flow">ALIRAN DUIT AWAK</p><h3 data-i18n="personal_finance_title">Ringkasan jual beli peribadi</h3></div><div class="finance-period-switch"><button type="button" data-finance-period="week" data-i18n="week">Minggu</button><button type="button" data-finance-period="month" data-i18n="month">Bulan</button><button type="button" class="active" data-finance-period="all" data-i18n="all_time">Sepanjang masa</button></div></div>
+            <div class="personal-finance-layout"><div class="finance-ring" id="financeRing"><div><strong id="financeBalance">RM 0</strong><span data-i18n="current_balance">Baki bersih</span></div></div><div class="finance-bars"><div class="finance-row income"><div><span><i class="bi bi-arrow-down-left"></i> <span data-i18n="earnings">Hasil jualan</span></span><strong id="financeIncome">RM 0</strong></div><span class="finance-track"><i id="financeIncomeBar"></i></span></div><div class="finance-row spending"><div><span><i class="bi bi-arrow-up-right"></i> <span data-i18n="spending">Perbelanjaan</span></span><strong id="financeSpending">RM 0</strong></div><span class="finance-track"><i id="financeSpendingBar"></i></span></div><div class="finance-row savings"><div><span><i class="bi bi-piggy-bank"></i> <span data-i18n="purchase_savings">Penjimatan pembelian</span></span><strong id="financeSavings">RM 0</strong></div><span class="finance-track"><i id="financeSavingsBar"></i></span></div></div></div>
+            <div class="finance-mini-grid"><div><span data-i18n="listing_value">Nilai listing aktif</span><strong id="activeListingValue">RM 0</strong></div><div><span data-i18n="items_sold">Terjual</span><strong id="personalSoldCount">0</strong></div><div><span data-i18n="average_sale">Purata jualan</span><strong id="averageSaleValue">RM 0</strong></div></div>
+          </article>
+          <div class="dashboard-grid" id="marketDashboardPanel" hidden>
+            <article class="surface chart-card">
+              <div class="card-heading"><div><p class="eyebrow" data-i18n="market_pulse">AKTIVITI PASARAN</p><h3 data-i18n="activity_trend">Aktiviti pasaran</h3></div><div class="segmented" role="group" data-i18n-aria-label="chart_period" aria-label="Tempoh carta"><button class="segment active" data-period="week" data-i18n="week">Minggu</button><button class="segment" data-period="month" data-i18n="month">Bulan</button></div></div>
+              <div class="chart-legend"><span><i class="legend-dot legend-listings"></i><span data-i18n="new_listings">Iklan baharu</span><strong class="chart-legend-value" id="chartListingsTotal">0</strong></span><span><i class="legend-dot legend-orders"></i><span data-i18n="orders">Pesanan</span><strong class="chart-legend-value" id="chartOrdersTotal">0</strong></span><span><i class="legend-dot legend-saves"></i><span data-i18n="saves_activity">Simpanan baharu</span><strong class="chart-legend-value" id="chartSavesTotal">0</strong></span><span class="chart-total"><strong id="chartTotal">0</strong><small id="chartTotalLabel">Jumlah aktiviti</small></span></div>
+              <div class="activity-heatmap" id="activityHeatmap" aria-label="Heatmap aktiviti pasaran"></div>
+              <div class="area-chart-wrap"><svg id="activityChart" viewBox="0 0 720 250" role="img" data-i18n-aria-label="chart_activity" aria-label="Carta aktiviti pasaran"><defs><linearGradient id="listingFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5273c5" stop-opacity=".22"/><stop offset="1" stop-color="#5273c5" stop-opacity="0"/></linearGradient><linearGradient id="orderFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#27866d" stop-opacity=".18"/><stop offset="1" stop-color="#27866d" stop-opacity="0"/></linearGradient><linearGradient id="saveFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#d58a39" stop-opacity=".18"/><stop offset="1" stop-color="#d58a39" stop-opacity="0"/></linearGradient></defs><g class="chart-grid"><line x1="42" y1="35" x2="700" y2="35"/><line x1="42" y1="90" x2="700" y2="90"/><line x1="42" y1="145" x2="700" y2="145"/><line x1="42" y1="200" x2="700" y2="200"/></g><g class="chart-y-labels" id="chartYAxis"></g><path id="areaListings" class="chart-area listing-area" d=""/><path id="lineListings" class="chart-line listing-line" d=""/><path id="areaOrders" class="chart-area order-area" d=""/><path id="lineOrders" class="chart-line order-line" d=""/><path id="areaSaves" class="chart-area save-area" d=""/><path id="lineSaves" class="chart-line save-line" d=""/><g id="chartPoints"></g><g class="chart-x-labels" id="chartLabels"></g></svg></div>
+              <div class="chart-footnote"><span class="insight-icon"><i class="bi bi-graph-up" aria-hidden="true"></i></span><span id="chartInsight">Aktiviti paling tinggi hari ini.</span><button class="plain-arrow" data-page="explore" data-i18n-aria-label="see_items" data-i18n-title="see_items" aria-label="Lihat barang"><i class="bi bi-arrow-up-right" aria-hidden="true"></i></button></div>
+              <small class="chart-source-note" data-i18n="chart_sources">Sumber data: rekod iklan, pesanan dan simpanan dalam browser.</small>
+            </article>
+            <article class="surface category-card"><div class="card-heading"><div><p class="eyebrow" data-i18n="trending_now">SEDANG TRENDING</p><h3 data-i18n="top_categories">Kategori pilihan</h3></div><button class="round-arrow" data-page="explore" data-i18n-aria-label="explore_categories" data-i18n-title="explore_categories" aria-label="Teroka kategori"><i class="bi bi-arrow-up-right" aria-hidden="true"></i></button></div><p class="small-muted" data-i18n="category_activity">Paling aktif di sekitar kampus.</p><div id="categoryBars" class="category-bars"></div><div class="category-foot"><span class="category-foot-icon" id="categoryFootIcon"><i class="bi bi-book-half" aria-hidden="true"></i></span><span id="categoryNote">Kategori paling banyak diiklankan.</span></div></article>
+          </div>
+
+          <div class="hero-panel">
+            <div class="hero-copy">
+              <div class="hero-chip"><span class="live-dot"></span><span data-i18n="community_badge">KOMUNITI KAMPUS · LIVE</span></div>
+              <p class="hero-kicker" data-i18n="hero_kicker">Barang lama, peluang baru.</p>
+              <h2 data-i18n="hero_title">Beri barang<br><em>kehidupan kedua.</em></h2>
+              <p data-i18n="hero_desc">Jual apa yang dah tak guna, cari apa yang diperlukan - dengan harga yang lebih mesra poket student.</p>
+              <button class="text-button" data-page="explore"><span data-i18n="browse_market">Teroka marketplace</span><span aria-hidden="true"><i class="bi bi-arrow-up-right" aria-hidden="true"></i></span></button>
+            </div>
+            <div class="hero-art" aria-hidden="true"><img class="hero-product-image" src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt=""></div>
+          </div>
+
+          <div class="metric-grid" id="marketMetricGrid" hidden>
+            <article class="metric-card"><div class="metric-top"><span data-i18n="active_listings">Iklan aktif</span><span class="metric-symbol"><i class="bi bi-tags" aria-hidden="true"></i></span></div><strong id="metricListings">0</strong><div class="metric-bottom"><span data-i18n="market_items_available">Barang tersedia</span></div></article>
+            <article class="metric-card"><div class="metric-top"><span data-i18n="saved_by_students">Penjimatan pelajar</span><span class="metric-symbol"><i class="bi bi-heart" aria-hidden="true"></i></span></div><strong id="metricSaved">RM 0</strong><div class="metric-bottom"><span data-i18n="price_difference">Beza daripada harga asal</span></div></article>
+            <article class="metric-card"><div class="metric-top"><span data-i18n="successful_handoffs">Pesanan selesai</span><span class="metric-symbol"><i class="bi bi-box-arrow-left" aria-hidden="true"></i></span></div><strong id="metricSales">0</strong><div class="metric-bottom"><span data-i18n="completed_orders">Selesai</span></div></article>
+            <article class="metric-card impact-card"><div class="metric-top"><span data-i18n="items_given_life">Barang diguna semula</span><span class="metric-symbol"><i class="bi bi-box-seam" aria-hidden="true"></i></span></div><strong id="metricImpact">0<span class="metric-unit"> <span data-i18n="items">barang</span></span></strong><div class="metric-bottom"><span data-i18n="items_handed_over">Barang selesai diserahkan</span></div></article>
+          </div>
+
+          <section class="section-block">
+            <div class="section-title-row"><div><p class="eyebrow" data-i18n="picked_for_you">DIPILIH UNTUK AWAK</p><h2 data-i18n="fresh_finds">Barang menarik dekat sini</h2></div><button class="text-button" data-page="explore"><span data-i18n="see_all">Lihat semua</span><span aria-hidden="true"><i class="bi bi-arrow-right" aria-hidden="true"></i></span></button></div>
+            <div class="listing-grid preview-grid" id="homeListings"></div>
+          </section>
+        </section>
+
+        <section class="page" id="page-explore" aria-labelledby="exploreTitle">
+          <div class="page-heading"><div><h1 id="exploreTitle" data-i18n="find_a_good_thing">Cari barang baik.</h1></div><button class="button button-primary" data-page="sell"><span><i class="bi bi-plus-lg" aria-hidden="true"></i></span><span data-i18n="sell_an_item">Jual barang</span></button></div>
+          <div class="market-toolbar surface">
+            <label class="search-field"><span class="icon" data-icon="search"></span><input id="marketSearch" type="search" placeholder="Cari buku, lampu, baju..." data-i18n-placeholder="search_placeholder" autocomplete="off"></label>
+            <div class="toolbar-controls"><label class="verified-filter"><input id="verifiedOnly" type="checkbox"><span><i class="bi bi-patch-check-fill" aria-hidden="true"></i> <span data-i18n="verified_sellers_only">Pelajar disahkan</span></span></label><label class="select-label sort-pill"><span data-i18n="sort_by">Susun:</span><select id="sortSelect" data-i18n-aria-label="sort_listings" aria-label="Susun iklan"><option value="newest" data-i18n="sort_newest">Terbaru</option><option value="price-low" data-i18n="sort_price_low">Harga terendah</option><option value="price-high" data-i18n="sort_price_high">Harga tertinggi</option><option value="popular" data-i18n="sort_popular">Paling diminati</option></select></label><div class="view-switch" role="group" data-i18n-aria-label="view_modes" aria-label="Paparan"><button class="view-button active" data-view="grid" data-i18n-aria-label="grid_view" data-i18n-title="grid_view" aria-label="Paparan grid"><span class="icon" data-icon="grid"></span></button><button class="view-button" data-view="list" data-i18n-aria-label="list_view" data-i18n-title="list_view" aria-label="Paparan senarai"><span class="icon" data-icon="list"></span></button></div></div>
+          </div>
+          <div class="category-pills" id="categoryPills"></div>
+          <div class="market-result-row"><p id="resultCount">Menunjukkan 20 barang</p><label class="show-count"><span data-i18n="show">Papar</span><select id="showCount"><option value="20">20</option><option value="40">40</option></select><span data-i18n="items">barang</span></label></div>
+          <div id="marketGrid" class="listing-grid market-grid"></div>
+          <div id="emptyState" class="empty-state" hidden><span class="empty-illustration"><i class="bi bi-search" aria-hidden="true"></i></span><h3 data-i18n="nothing_found">Tak jumpa barang yang sepadan.</h3><p data-i18n="try_other_search">Cuba kata kunci atau kategori lain.</p><button class="button button-soft" id="clearFilters" data-i18n="clear_filters">Kosongkan carian</button></div>
+          <div class="pagination-row"><span id="pageStatus">1-20 daripada 24 barang</span><div><button class="pager" id="prevPage" data-i18n-aria-label="previous_page" aria-label="Halaman sebelumnya"><i class="bi bi-arrow-left" aria-hidden="true"></i></button><button class="pager current-page">1</button><button class="pager" id="nextPage" data-i18n-aria-label="next_page" aria-label="Halaman seterusnya"><i class="bi bi-arrow-right" aria-hidden="true"></i></button></div></div>
+        </section>
+
+        <section class="page" id="page-sell" aria-labelledby="sellTitle">
+          <div class="page-heading"><div><h1 id="sellTitle" data-i18n="sell_something">Jual barang. Buka ruang.</h1></div><div class="seller-tip"><span><i class="bi bi-stars" aria-hidden="true"></i></span><span data-i18n="seller_tip">Listing dengan gambar jelas terjual 2× lebih cepat.</span></div></div>
+          <div class="sell-layout">
+            <form class="surface listing-form" id="listingForm" novalidate>
+              <div class="form-section-heading"><span class="step-number"><i class="bi bi-box-seam" aria-hidden="true"></i></span><div><h2 data-i18n="item_details">Butiran barang</h2><p data-i18n="required_fields">Medan bertanda * wajib diisi.</p></div></div>
+              <div class="form-grid">
+                <label class="form-field full-field"><span data-i18n="item_title">Nama barang *</span><input name="title" maxlength="60" required placeholder="Contoh: Kalkulator Casio fx-570EX" data-i18n-placeholder="title_placeholder"><small class="field-error" data-error="title"></small></label>
+                <label class="form-field"><span data-i18n="category">Kategori *</span><select name="category" required><option value="" data-i18n="choose_category">Pilih kategori</option><option value="Books">Buku & nota</option><option value="Electronics">Elektronik</option><option value="Fashion">Fesyen</option><option value="Home">Rumah & dorm</option><option value="Sports">Sukan</option><option value="Other">Lain-lain</option></select><small class="field-error" data-error="category"></small></label>
+                <label class="form-field"><span data-i18n="condition">Keadaan *</span><select name="condition" required><option value="" data-i18n="choose_condition">Pilih keadaan</option><option value="Like new">Seperti baru</option><option value="Good">Baik</option><option value="Fair">Memuaskan</option></select><small class="field-error" data-error="condition"></small></label>
+                <label class="form-field"><span data-i18n="selling_price">Harga jual (RM) *</span><div class="input-prefix"><span>RM</span><input name="price" type="number" min="1" step="0.50" required placeholder="0.00"></div><small class="field-error" data-error="price"></small></label>
+                <label class="form-field"><span data-i18n="original_price">Harga asal (RM)</span><div class="input-prefix"><span>RM</span><input name="originalPrice" type="number" min="0" step="0.50" placeholder="Pilihan" data-i18n-placeholder="original_placeholder"></div><small class="field-error" data-error="originalPrice"></small></label>
+                <label class="form-field full-field"><span data-i18n="description">Penerangan *</span><textarea name="description" rows="4" maxlength="500" required placeholder="Ceritakan keadaan barang, sebab dijual, atau apa-apa yang pembeli patut tahu..." data-i18n-placeholder="description_placeholder"></textarea><span class="field-hint"><span class="field-error" data-error="description"></span><span id="descriptionCount">0 / 500</span></span></label>
+                <label class="form-field full-field"><span data-i18n="pickup_location">Lokasi serahan *</span><input name="location" maxlength="60" required placeholder="Contoh: Kolej Mawar, UiTM Shah Alam" data-i18n-placeholder="location_placeholder"><small class="field-error" data-error="location"></small></label>
+                <fieldset class="form-field full-field delivery-options"><legend data-i18n="delivery_method">Kaedah serahan</legend><label><input type="radio" name="delivery" value="meetup" checked><span><i class="bi bi-people"></i><strong data-i18n="meetup_only">COD / jumpa sahaja</strong></span></label><label><input type="radio" name="delivery" value="post"><span><i class="bi bi-box-seam"></i><strong data-i18n="post_available">Pos juga tersedia</strong></span></label></fieldset>
+                <div class="form-field full-field"><span data-i18n="item_photo">Gambar barang</span><label class="upload-box" for="itemImage"><span class="upload-icon"><i class="bi bi-cloud-arrow-up" aria-hidden="true"></i></span><span><strong data-i18n="add_photo">Tambah gambar</strong><small data-i18n="photo_hint">JPG, PNG atau WebP · sehingga 4 gambar, jumlah maks 2 MB</small></span><input id="itemImage" type="file" accept="image/png,image/jpeg,image/webp" multiple hidden><span id="uploadPreview" class="upload-preview"></span></label><small class="field-error" data-error="image"></small></div>
+              </div>
+              <div class="form-actions"><p><span class="privacy-icon"><i class="bi bi-shield-lock" aria-hidden="true"></i></span><span data-i18n="seller_privacy">Maklumat hubungan peribadi tak dipaparkan.</span></p><button class="button button-primary" type="submit"><span data-i18n="publish_listing">Terbitkan listing</span><span><i class="bi bi-arrow-up-right" aria-hidden="true"></i></span></button></div>
+            </form>
+            <aside class="sell-aside"><article class="seller-card surface"><p class="eyebrow" data-i18n="your_impact">IMPAK AWAK</p><div class="impact-big"><i class="bi bi-stars" aria-hidden="true"></i> <strong id="sellerCount">1</strong></div><h3 data-i18n="items_on_market">barang awak di marketplace</h3><p data-i18n="sell_encouragement">Setiap barang yang dijual bantu orang lain berjimat dan kurangkan pembaziran.</p><div class="seller-stat"><span data-i18n="earnings">Potensi hasil</span><strong id="sellerEarnings">RM 18</strong></div></article><article class="tip-card"><div class="tip-star"><i class="bi bi-stars" aria-hidden="true"></i></div><p class="eyebrow" data-i18n="quick_tip">TIP RINGKAS</p><h3 data-i18n="tip_title">Ceritakan kisah barang.</h3><p data-i18n="tip_desc">Jujur tentang keadaan barang dan letak harga berpatutan. Pembeli suka tahu apa yang mereka dapat.</p><span class="tip-dash"></span></article></aside>
+          </div>
+        </section>
+
+        <section class="page" id="page-profile" aria-labelledby="profileTitle">
+          <div class="profile-cover"><div class="cover-sun"></div><div class="cover-shape shape-one"></div><div class="cover-shape shape-two"></div><span class="cover-label" data-i18n="community_member">AHLI KOMUNITI juaija</span></div>
+          <div class="profile-overlap"><div class="avatar avatar-large" id="profileAvatar">a</div><div class="profile-main-info"><div class="profile-name-row"><h1 id="profileTitle">@alyarahman</h1><button class="button button-outline" id="editProfileButton"><span class="icon" data-icon="edit"></span><span data-i18n="edit_profile">Edit profil</span></button></div><div class="profile-lower-row"><span class="member-since"><span class="icon" data-icon="calendar"></span><span data-i18n="member_since">Ahli sejak 2024</span></span><div class="profile-stats"><div><strong id="profileListingsCount">1</strong><span data-i18n="listings">Senarai</span></div><div><strong id="profileSoldCount">0</strong><span data-i18n="items_sold">Terjual</span></div><div><strong id="profileRating">—</strong><span data-i18n="seller_rating">Rating penjual</span></div></div></div><p class="profile-bio" id="profileBio"></p></div></div>
+          <div class="profile-content-grid"><section class="profile-listings-section"><div class="section-title-row"><div><h2 data-i18n="your_listings">Listing awak</h2></div><button class="text-button" data-page="sell"><span data-i18n="add_new">Tambah baru</span><span><i class="bi bi-plus-lg" aria-hidden="true"></i></span></button></div><div class="listing-grid profile-listing-grid" id="profileListings"></div></section><aside class="profile-aside"><article class="surface saved-card"><div class="saved-card-head"><div><p class="eyebrow" data-i18n="bookmarked">DISIMPAN</p><h3 data-i18n="saved_items">Barang simpanan</h3></div><span class="saved-count" id="savedCount">0</span></div><div id="savedItemsList" class="saved-items-list"></div><button class="text-button" data-page="explore"><span data-i18n="find_more">Cari lagi</span><span><i class="bi bi-arrow-right" aria-hidden="true"></i></span></button></article></aside></div>
+        </section>
+
+        <section class="page" id="page-notifications" aria-labelledby="notificationsTitle">
+          <div class="page-heading"><div><h1 id="notificationsTitle" data-i18n="notifications">Notifikasi</h1></div><button class="button button-outline" id="markAllRead"><span data-i18n="mark_all_read">Tandakan semua dibaca</span></button></div>
+          <div class="notification-layout"><div class="surface notifications-panel"><div class="notification-filter"><button class="notif-tab active" data-notif-filter="all"><span data-i18n="all_updates">Semua</span></button><button class="notif-tab" data-notif-filter="unread"><span data-i18n="unread">Belum dibaca</span></button></div><div id="notificationList" class="notification-list"></div></div><aside class="notification-aside"><img class="notif-aside-logo" src="assets/logo.png" alt=""><p class="eyebrow" data-i18n="good_things_happen">KEMAS KINI JUAL BELI</p><h2 data-i18n="notification_note_title">Semua perkembangan akaun awak di sini.</h2><p data-i18n="notification_note_body">Semak status pesanan, listing dan pengesahan tanpa terlepas apa-apa.</p><button class="text-button" data-page="explore"><span data-i18n="explore_market">Teroka pasaran</span><span><i class="bi bi-arrow-up-right" aria-hidden="true"></i></span></button></aside></div>
+        </section>
+
+        <section class="page" id="page-orders" aria-labelledby="ordersTitle">
+          <div class="page-heading"><h1 id="ordersTitle" data-i18n="orders">Pesanan</h1></div>
+          <div class="surface orders-panel">
+            <div class="orders-tabs" role="group" aria-label="Pesanan" data-i18n-aria-label="orders">
+              <button type="button" class="orders-tab active" data-order-filter="all" data-i18n="all_orders" aria-pressed="true">Semua pesanan</button>
+              <button type="button" class="orders-tab" data-order-filter="active" data-i18n="active_orders" aria-pressed="false">Sedang berjalan</button>
+              <button type="button" class="orders-tab" data-order-filter="done" data-i18n="completed_orders" aria-pressed="false">Selesai</button>
+              <button type="button" class="orders-tab" data-order-filter="cancelled" data-i18n="order_cancelled" aria-pressed="false">Dibatalkan</button>
+            </div>
+            <div class="orders-tools">
+              <label class="form-field orders-search"><span data-i18n="order_search">Cari nama barang atau ID pesanan</span><input id="ordersSearch" type="search" data-i18n-placeholder="order_search" placeholder="Cari nama barang atau ID pesanan"></label>
+              <div class="orders-filter-pair"><label class="form-field"><span data-i18n="order_role">Jenis pesanan</span><select id="ordersRole"><option value="all" data-i18n="order_all_roles">Pembelian &amp; jualan</option><option value="buying" data-i18n="order_buying">Pembelian</option><option value="selling" data-i18n="order_selling">Jualan</option></select></label><label class="form-field"><span data-i18n="sort_by">Susun:</span><select id="ordersSort"><option value="newest" data-i18n="order_newest">Terbaharu</option><option value="oldest" data-i18n="order_oldest">Terlama</option><option value="price-low" data-i18n="sort_price_low">Harga terendah</option><option value="price-high" data-i18n="sort_price_high">Harga tertinggi</option><option value="name" data-i18n="order_name">Nama barang</option></select></label></div>
+            </div>
+            <div id="ordersList" class="orders-list" aria-live="polite"></div>
+            <div class="orders-footer"><label class="orders-page-size"><span data-i18n="show">Papar</span><select id="ordersShow"><option value="10">10</option><option value="20">20</option><option value="50">50</option></select></label><div class="orders-pagination" id="ordersPagination" hidden><span id="ordersPageLabel"></span><div><button type="button" class="button button-outline" id="ordersPrevious" data-i18n-aria-label="previous_page" aria-label="Halaman sebelumnya"><i class="bi bi-chevron-left" aria-hidden="true"></i></button><button type="button" class="button button-outline" id="ordersNext" data-i18n-aria-label="next_page" aria-label="Halaman seterusnya"><i class="bi bi-chevron-right" aria-hidden="true"></i></button></div></div></div>
+          </div>
+        </section>
+        <section class="page" id="page-verify" aria-labelledby="verifyTitle">
+          <div class="page-heading verification-page-heading"><h1><i class="bi bi-mortarboard-fill" aria-hidden="true"></i><span id="verifyTitle" data-i18n="verify_student">Pengesahan pelajar</span></h1><button type="button" class="verification-info-button" id="verificationInfoButton" data-i18n-aria-label="verification_info" aria-label="Maklumat pengesahan pelajar"><span aria-hidden="true">i</span></button></div>
+          <div class="verify-layout">
+            <article class="surface verify-card" id="verificationUserCard">
+              <div id="verificationStatus"></div>
+              <form id="verifyForm" class="verify-form" novalidate>
+                <label class="form-field"><span data-i18n="verification_matric">Nombor matrik</span><div class="student-email-input"><input type="text" name="matric" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" autocomplete="off" placeholder="2026123456" aria-describedby="studentEmailDomain" required><span id="studentEmailDomain">@student.uitm.edu.my</span></div></label>
+                <label class="form-field"><span data-i18n="verification_letter">Surat tawaran</span><input type="file" name="offerLetter" accept="application/pdf,image/jpeg,image/png" required><small data-i18n="verification_upload_hint">PDF, JPG atau PNG · maksimum 5 MB</small><small class="field-error" data-error="offerLetter"></small></label>
+                <p id="verificationReadStatus" role="status" class="verification-read-status"></p>
+                <div class="verification-study-fields">
+                  <label class="form-field"><span data-i18n="verification_session">Sesi kemasukan</span><select name="session" required><option value="">—</option><option value="1" data-i18n="verification_session_1">Sesi 1 · Oktober</option><option value="2" data-i18n="verification_session_2">Sesi 2 · Mac</option></select></label>
+                  <label class="form-field"><span data-i18n="verification_year">Tahun akademik bermula</span><input name="academicYear" type="number" min="2000" max="2099" step="1" placeholder="2025" required></label>
+                  <label class="form-field"><span data-i18n="verification_start">Bulan mula pengajian</span><input name="startMonth" type="month" required></label>
+                  <label class="form-field"><span data-i18n="verification_semesters">Jumlah semester</span><input name="semesters" type="number" min="1" max="16" step="1" placeholder="6" required></label>
+                </div>
+                <p class="verification-date-hint" data-i18n="verification_date_hint">Sesi 1 dianggarkan bermula Oktober; Sesi 2 pada Mac tahun berikutnya. Betulkan bulan mula mengikut surat.</p>
+                <div class="verification-estimate" id="verificationEstimate" aria-live="polite"></div>
+                <label class="verification-confirm"><input type="checkbox" name="confirmed" required><span data-i18n="verification_confirm">Saya sudah menyemak butiran ini dengan surat tawaran dan masih berstatus pelajar aktif.</span></label>
+                <p id="verificationError" class="field-error" data-error="submission" role="alert"></p>
+                <button type="submit" name="submitVerification" class="button button-primary" data-i18n="verify_button">Hantar pengesahan</button>
+              </form>
+              <p class="verify-warning" data-i18n="verification_warning">Lencana diaktifkan selepas penghantaran. Admin akan menyemak surat dan boleh menarik balik lencana. Lencana juga tamat secara automatik apabila tempoh pengajian berakhir.</p>
+            </article>
+            <section class="surface verification-admin-panel" id="verificationAdminPanel" hidden></section>
+          </div>
+        </section>
+        <section class="page" id="page-settings" aria-labelledby="settingsTitle">
+          <div class="page-heading"><div><h1 id="settingsTitle" data-i18n="settings">Tetapan</h1></div></div>
+          <div class="settings-layout">
+            <div class="settings-main surface">
+              <section class="settings-section account-settings" aria-labelledby="accountSettingsTitle">
+                <div class="settings-icon icon-account"><i class="bi bi-person-circle" aria-hidden="true"></i></div>
+                <div class="settings-copy"><h2 id="accountSettingsTitle" data-i18n="account">Akaun</h2></div>
+                <div class="account-details">
+                  <label class="avatar-upload-control"><span class="avatar avatar-small" id="settingsAvatar"></span><span><strong data-i18n="change_avatar">Tukar avatar</strong><small data-i18n="avatar_hint">JPG, PNG atau WebP</small></span><input id="avatarImage" type="file" accept="image/png,image/jpeg,image/webp" hidden></label>
+                  <div class="account-identities">
+                    <div class="account-field"><small data-i18n="username_label">Nama pengguna</small><strong id="settingsUsername">@alyarahman</strong></div>
+                    <div class="account-field"><small data-i18n="email">E-mel</small><span id="settingsEmail">alya@juaija.my</span></div>
+                  </div>
+                  <button type="button" class="button button-outline account-edit-button" id="editAccountButton"><span class="icon" data-icon="edit"></span><span data-i18n="edit_profile">Edit profil</span></button>
+                </div>
+              </section>
+              <div class="settings-divider"></div>
+              <div class="settings-section verification-settings"><a class="settings-verify-link" href="#verify" data-page="verify"><span class="settings-icon"><i class="bi bi-mortarboard" aria-hidden="true"></i></span><span class="settings-verify-copy"><strong data-i18n="verify_student">Pengesahan pelajar</strong><small data-i18n="verify_settings_desc">Sahkan e-mel institusi untuk mendapatkan lencana pelajar.</small></span><i class="bi bi-arrow-right" aria-hidden="true"></i></a></div>
+              <div class="settings-divider"></div>
+              <div class="settings-section appearance-settings">
+                <div class="settings-icon icon-appearance"><i class="bi bi-circle-half" aria-hidden="true"></i></div>
+                <div class="settings-copy"><h2 data-i18n="appearance">Penampilan</h2><p data-i18n="appearance_desc">Pilih suasana yang selesa untuk mata.</p></div>
+                <div class="theme-control" role="group" data-i18n-aria-label="appearance" aria-label="Penampilan">
+                  <button type="button" data-theme-choice="light" class="theme-option active" aria-pressed="true"><span class="theme-swatch swatch-light"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"></path></svg></span><span data-i18n="light">Cerah</span></button>
+                  <button type="button" data-theme-choice="dark" class="theme-option" aria-pressed="false"><span class="theme-swatch swatch-dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 14a8.5 8.5 0 0 1-10.6-10.6A8.5 8.5 0 1 0 20.6 14Z"></path><path d="M17 3v4m-2-2h4"></path></svg></span><span data-i18n="dark">Gelap</span></button>
+                </div>
+              </div>
+              <div class="settings-divider"></div>
+              <div class="settings-section language-settings">
+                <div class="settings-icon icon-language"><i class="bi bi-translate" aria-hidden="true"></i></div>
+                <div class="settings-copy"><h2 data-i18n="language">Bahasa</h2><p data-i18n="language_desc">Bahasa pilihan untuk seluruh pengalaman.</p></div>
+                <div class="language-control" role="group" data-i18n-aria-label="language" aria-label="Bahasa"><button type="button" class="language-option active" data-lang-choice="ms">BM</button><button type="button" class="language-option" data-lang-choice="en">EN</button></div>
+              </div>
+              <div class="settings-divider"></div>
+              <div class="settings-section privacy-section"><a class="privacy-trigger" href="terms.html" target="_blank" rel="noopener"><span class="settings-icon icon-privacy"><i class="bi bi-shield-lock" aria-hidden="true"></i></span><span class="privacy-trigger-copy"><strong data-i18n="privacy">Privasi &amp; data</strong><small data-i18n="privacy_desc">Maklumat peribadi dan penggunaan platform.</small></span><i class="bi bi-arrow-right privacy-arrow" aria-hidden="true"></i></a></div>
+              <div class="settings-divider"></div>
+              <div class="settings-section signout-section"><button type="button" id="signOutButton" class="button button-outline danger-text"><i class="bi bi-box-arrow-right" aria-hidden="true"></i><span data-i18n="sign_out">Log keluar</span></button></div>
+            </div>
+            <aside class="settings-aside"><img class="settings-logo" src="assets/logo.png" alt="juaija"><h2 data-i18n="footer_tagline">Barang baik, harga pelajar.</h2></aside>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer"><div class="auth-legal-footer"><span>© <span id="copyrightYear">2026</span> juaija</span><div class="auth-legal-links"><a href="about.html" target="_blank" rel="noopener" data-i18n="about">Tentang</a><a href="terms.html" target="_blank" rel="noopener" data-i18n="terms">Terma</a></div></div></footer>
+
+      <nav class="mobile-nav" data-i18n-aria-label="mobile_navigation" aria-label="Navigasi mudah alih"><button class="active" data-page="home"><span class="icon" data-icon="home"></span><small data-i18n="nav_home">Ringkasan</small></button><button data-page="explore"><span class="icon" data-icon="search"></span><small data-i18n="nav_explore">Teroka</small></button><button class="mobile-sell" data-page="sell"><span class="icon"><i class="bi bi-plus-lg" aria-hidden="true"></i></span><small data-i18n="sell">Jual</small></button><button data-page="orders"><span class="icon" data-icon="bag"></span><small data-i18n="orders">Pesanan</small></button><button data-page="settings"><span class="icon" data-icon="settings"></span><small data-i18n="settings">Tetapan</small></button></nav>
+    </div>
+
+    <section id="authScreen" class="auth-screen" data-i18n-aria-label="login_or_signup" aria-label="Log masuk atau cipta akaun">
+      <div class="auth-visual">
+        <div class="auth-brand-lockup">
+          <a class="brand auth-brand" href="#"><img class="brand-logo" src="assets/logo.png" alt="juaija"></a>
+          <p class="auth-tagline" data-i18n="tagline">Barang baik, harga pelajar.</p>
+        </div>
+      </div>
+      <div class="auth-main">
+        <div class="auth-box">
+          <div class="auth-title-row"><h1 id="authFormTitle" class="auth-form-title" data-i18n="sign_in_title">Log Masuk</h1><div class="auth-language" role="group" data-i18n-aria-label="language" aria-label="Bahasa">
+            <button type="button" data-auth-lang="ms" class="active">BM</button>
+            <button type="button" data-auth-lang="en">EN</button>
+          </div></div>
+          <form id="loginForm" class="auth-form" novalidate>
+            <label class="form-field">
+              <span data-i18n="username_or_email">Nama pengguna atau e-mel</span>
+              <input name="identity" autocomplete="username" required placeholder="Masukkan nama pengguna atau e-mel" data-i18n-placeholder="login_identity_placeholder">
+              <small class="field-error" data-error="identity"></small>
+            </label>
+            <label class="form-field">
+              <span data-i18n="password">Kata laluan</span>
+              <div class="password-wrap">
+                <input name="password" type="password" autocomplete="current-password" required placeholder="Masukkan kata laluan" data-i18n-placeholder="login_password_placeholder">
+                <button type="button" class="password-toggle" data-i18n-aria-label="show_password" data-i18n-title="show_password" aria-label="Lihat kata laluan" aria-pressed="false"><i class="bi bi-eye-fill" aria-hidden="true"></i></button>
+              </div>
+              <small class="field-error" data-error="password"></small>
+            </label>
+            <button class="button button-primary auth-submit" type="submit"><span data-i18n="sign_in">Masuk</span><span><i class="bi bi-arrow-right" aria-hidden="true"></i></span></button>
+            <p class="auth-error" id="authError" role="alert"></p>
+          </form>
+          <form id="signupForm" class="auth-form signup-form" hidden novalidate>
+            <label class="form-field">
+              <span class="username-label-row"><span data-i18n="username_label">Nama pengguna</span><button type="button" class="username-info" id="usernameInfoButton" aria-label="Maklumat nama pengguna"><i class="bi bi-info-circle-fill"></i></button></span>
+              <small id="signupUsernameHint" class="username-rules" data-i18n="username_rules_hint" hidden>3–20 aksara: huruf, nombor, titik (.) atau garis bawah (_). Titik hanya di tengah dan tidak berturutan.</small>
+              <input name="username" minlength="3" maxlength="20" autocomplete="username" aria-describedby="signupUsernameHint" required placeholder="contoh: namapengguna" data-i18n-placeholder="username_placeholder">
+              <small class="field-error" data-error="username"></small>
+            </label>
+            <label class="form-field">
+              <span data-i18n="email">E-mel</span>
+              <input name="email" type="email" autocomplete="email" required placeholder="nama@email.com" data-i18n-placeholder="email_placeholder">
+              <small class="field-error" data-error="email"></small>
+            </label>
+            <label class="form-field">
+              <span data-i18n="password_min">Kata laluan (min. 8 aksara)</span>
+              <input name="password" type="password" minlength="8" autocomplete="new-password" required placeholder="Kata laluan sekurang-kurangnya 8 aksara" data-i18n-placeholder="password_placeholder">
+              <small class="field-error" data-error="password"></small>
+            </label>
+            <button class="button button-primary auth-submit" type="submit"><span data-i18n="create_account">Cipta akaun</span><span><i class="bi bi-arrow-right" aria-hidden="true"></i></span></button>
+          </form>
+          <div class="demo-card">
+            <div class="demo-card-head"><span class="demo-icon"><i class="bi bi-lightning-charge" aria-hidden="true"></i></span><div><strong data-i18n="saved_login">Akaun tersimpan</strong><small data-i18n="saved_login_hint">Gunakan butiran ini untuk log masuk</small></div></div>
+            <div class="demo-credentials"><span><small data-i18n="username_label">Nama pengguna</small><strong id="demoUsername">@alyarahman</strong></span><span><small data-i18n="password">Kata laluan</small><strong>juaija123</strong></span></div>
+            <button type="button" id="demoLoginButton" class="demo-login"><span data-i18n="continue_demo">Teruskan dengan akaun tersimpan</span><span><i class="bi bi-arrow-right" aria-hidden="true"></i></span></button>
+          </div>
+          <div class="auth-divider"><span data-i18n="or">atau</span></div>
+          <p class="signup-prompt"><span data-i18n="new_to_juaija">Baru di juaija?</span> <button type="button" id="showSignup" data-i18n="create_account">Cipta akaun</button></p>
+          <footer class="auth-legal-footer">
+            <span>© <span id="authCopyrightYear">2026</span> juaija</span>
+            <div class="auth-legal-links"><a href="about.html" target="_blank" rel="noopener" data-i18n="about">Tentang</a><a href="terms.html" target="_blank" rel="noopener" data-i18n="terms">Terma</a></div>
+          </footer>
+        </div>
+      </div>
+    </section>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+    <div id="modalRoot"></div>
+  </body>
+</html>

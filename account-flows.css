@@ -1,0 +1,83 @@
+/* Orders and verification share readable controls and contained responsive rows. */
+body .page-wrap:has(#page-orders.active),body .page-wrap:has(#page-verify.active){padding-top:18px!important}
+#page-orders>.page-heading,#page-verify>.page-heading{margin-top:0!important;margin-bottom:22px!important;padding-top:0!important}
+#page-orders .orders-panel{padding:22px!important;min-width:0}
+#page-orders .orders-tabs{display:flex!important;flex-wrap:wrap!important;gap:8px!important;border:0!important;padding:0!important;margin:0 0 24px!important}
+#page-orders .orders-tab{min-height:46px!important;padding:10px 16px!important;font-size:17px!important;line-height:1.3!important}
+.orders-tools{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) 100px;gap:18px;margin-bottom:26px}
+.orders-tools .orders-search{grid-column:1/-1}
+#page-orders .form-field{min-width:0;gap:8px!important}
+#page-orders .form-field input,#page-orders .form-field select,#page-verify .form-field input:not([type=checkbox]),#page-verify .form-field select{width:100%!important;min-width:0!important;min-height:50px!important;font-size:17px!important;background:#fff!important;color:#000!important;border:1px solid #8295d8!important;border-radius:var(--radius)!important;padding:10px 12px!important;box-sizing:border-box}
+#page-orders .form-field>span,#page-verify .form-field>span{font-size:17px!important;line-height:1.45!important}
+#page-orders .orders-empty{display:block!important;min-height:0!important;margin:0!important;padding:28px 0!important;text-align:center;font-size:20px!important;line-height:1.5!important;background:transparent!important;border:0!important}
+.orders-list{min-width:0}
+.order-entry{padding:22px 0;border-bottom:1px solid #d7dcf0;min-width:0}
+.order-entry:first-child{padding-top:0}.order-entry:last-child{border-bottom:0;padding-bottom:0}
+.order-entry-heading{display:flex;justify-content:space-between;align-items:start;gap:12px;flex-wrap:wrap;margin-bottom:16px;font-size:16px;line-height:1.4}
+.order-reference{overflow-wrap:anywhere;min-width:0}.order-state{font-weight:700;color:#000}
+.order-entry-body{display:flex;align-items:flex-start;gap:18px;min-width:0}
+.order-entry-image{width:88px;height:88px;object-fit:cover;border-radius:var(--radius);flex:none}
+.order-entry-copy{display:flex;flex-direction:column;gap:7px;min-width:0;overflow-wrap:anywhere;font-size:17px;line-height:1.45}
+#page-orders .order-entry-copy h2{font-size:22px!important;line-height:1.35!important;margin:0!important}
+.order-entry-price{font-size:24px}.order-entry-copy time{font-size:16px}
+.order-next-step{font-size:17px;line-height:1.5;margin:18px 0 12px}
+.order-entry-actions{display:flex;flex-wrap:wrap;gap:10px}.order-entry-actions:empty{display:none}
+#page-orders .order-entry-actions .button{font-size:17px!important;min-height:48px!important;white-space:normal;line-height:1.4!important}
+.orders-pagination{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:24px;font-size:16px}
+.orders-pagination>div{display:flex;gap:10px}.orders-pagination[hidden]{display:none!important}
+.orders-pagination button{min-width:48px}.button:disabled{cursor:not-allowed!important;opacity:.5!important}
+.verification-page-heading{justify-content:flex-start!important;align-items:center!important;gap:14px!important;flex-wrap:nowrap!important}
+.verification-page-heading h1{min-width:0;margin:0!important;overflow-wrap:break-word}
+body #verificationInfoButton{display:grid!important;place-items:center!important;flex:none;width:44px!important;height:44px!important;padding:0!important;border:0!important;background:transparent!important;color:#000!important;font-size:24px!important;cursor:pointer}
+#verificationInfoButton>span{display:grid;place-items:center;width:25px;height:25px;border:2px solid currentColor;border-radius:50%;font-family:Arial,sans-serif;font-size:18px;font-weight:700;line-height:1}
+#verificationInfoButton:hover{color:#8295d8!important}
+#page-verify .verify-layout{display:block!important;max-width:920px}
+#page-verify .verify-card,#verificationAdminPanel{padding:26px!important;min-width:0}
+#page-verify [hidden]{display:none!important}
+#verificationStatus{min-width:0}
+#page-verify .verification-status-title{font-size:22px!important;line-height:1.4!important;margin:0 0 18px!important}
+.verification-details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 24px;margin:20px 0 24px}
+.verification-details>div{min-width:0}.verification-details>div:first-child,.verification-details>div:nth-child(2){grid-column:1/-1}
+.verification-details dt{font-weight:400;font-size:17px;line-height:1.4;margin-bottom:6px}
+.verification-details dd{font-size:18px;font-weight:700;line-height:1.45;margin:0;overflow-wrap:anywhere}
+.verification-file-link{display:inline-block;border:0;background:transparent;color:#5369aa;padding:5px 0;font-size:17px;font-weight:700;cursor:pointer;margin-left:12px;text-decoration:none}
+.verification-file-link:hover{text-decoration:none;color:#000}
+#page-verify .verify-form{display:grid!important;gap:20px!important;margin-top:26px!important}
+#page-verify .verify-form[hidden]{display:none!important}
+#page-verify .form-field{display:flex!important;flex-direction:column!important;gap:8px!important;min-width:0}
+.student-email-input{display:flex;align-items:center;gap:0;min-width:0;border:1px solid #8295d8;border-radius:var(--radius);background:#fff;overflow:hidden}
+#page-verify .student-email-input input{border:0!important;border-radius:0!important;flex:1 1 110px!important;width:110px!important;min-width:0!important;font-size:18px!important}
+.student-email-input>span{flex:0 1 auto;min-width:0;overflow-wrap:anywhere;padding:10px 12px 10px 0;color:#000;font-size:17px!important}
+#page-verify input[type=file]{line-height:1.5;white-space:normal}
+#page-verify input[type=file]::file-selector-button{border:0;border-radius:var(--radius);padding:8px 12px;margin:0 12px 5px 0;background:#8295d8;color:#fff;font:inherit;cursor:pointer}
+.verification-study-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+#page-verify small,#page-verify .verification-date-hint,#verificationReadStatus{font-size:16px!important;line-height:1.5!important;overflow-wrap:anywhere;margin:0}
+#verificationReadStatus:empty,.field-error:empty{display:none!important}
+.verification-estimate{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding:18px;border-radius:var(--radius);background:#f2f4fc}
+.verification-estimate:empty{display:none}.verification-estimate>span{display:grid;gap:6px;font-size:17px;line-height:1.45}.verification-estimate strong{font-size:18px}.verification-estimate>p{grid-column:1/-1;margin:0;font-size:16px;line-height:1.5}
+.verification-confirm{display:flex;align-items:flex-start;gap:12px;font-size:17px;line-height:1.5}
+#page-verify .verification-confirm input{width:22px!important;height:22px!important;min-height:22px!important;flex:none;margin:2px 0 0!important;accent-color:#8295d8;appearance:auto!important}
+#page-verify .verify-warning{margin:24px 0 0!important;padding:0!important;border:0!important;background:transparent!important;font-size:17px!important;line-height:1.65!important}
+#page-verify .field-error{font-size:17px!important;line-height:1.5!important}
+.verification-admin-tabs,.verification-review-actions{display:flex;flex-wrap:wrap;gap:12px}
+.verification-review-card{padding:24px 0;border-bottom:1px solid #d7dcf0}.verification-review-card:last-child{border-bottom:0;padding-bottom:0}
+.verification-review-card h2{font-size:22px!important;overflow-wrap:anywhere}.verification-review-card p{font-size:17px;line-height:1.5;overflow-wrap:anywhere}
+body .verification-info-dialog,body .verification-review-dialog,body .order-confirm-dialog{width:min(640px,94vw)!important;max-height:calc(100dvh - 32px)!important;overflow-y:auto!important;padding:62px 26px 26px!important}
+.verification-info-dialog h2,.verification-review-dialog h2,.order-confirm-dialog h2{font-size:26px!important;line-height:1.3!important;margin:0 0 18px!important}
+.verification-info-dialog p,.verification-review-dialog p,.order-confirm-dialog p{font-size:18px!important;line-height:1.6!important}
+body .verification-document-dialog{width:min(980px,94vw)!important;height:90dvh!important;max-height:90dvh!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;padding:58px 20px 20px!important}
+.verification-document-dialog h2{font-size:20px!important;overflow-wrap:anywhere}.verification-document-dialog iframe{width:100%;flex:1;min-height:0;border:0}.verification-document-dialog img{display:block;max-width:100%;min-height:0;object-fit:contain;flex:1}
+body[data-theme=dark] #page-orders .orders-panel,body[data-theme=dark] #page-verify .verify-card,body[data-theme=dark] #verificationAdminPanel{background:#000!important;color:#fff!important}
+body[data-theme=dark] #page-orders .order-state,body[data-theme=dark] #verificationInfoButton{color:#fff!important}
+body[data-theme=dark] .verification-estimate{background:#171c2d;color:#fff}
+body[data-theme=dark] .verification-file-link{color:#b9c6ff}
+body[data-theme=dark] #page-orders .form-field input,body[data-theme=dark] #page-orders .form-field select,body[data-theme=dark] #page-verify .form-field input:not([type=checkbox]),body[data-theme=dark] #page-verify .form-field select,body[data-theme=dark] .student-email-input,body[data-theme=dark] .student-email-input>span{background:#000!important;color:#fff!important}
+@media(max-width:760px){
+  body .page-wrap:has(#page-orders.active),body .page-wrap:has(#page-verify.active){padding-top:14px!important}
+  #page-orders .orders-panel,#page-verify .verify-card,#verificationAdminPanel{padding:18px 16px!important}
+  .orders-tools{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}.orders-tools>.form-field:last-child{grid-column:1/-1;max-width:140px}
+  #page-orders .orders-tab{font-size:16px!important;padding:10px 12px!important}
+  .order-entry-image{width:64px;height:64px}.order-entry-body{gap:14px}#page-orders .order-entry-copy h2{font-size:20px!important}
+  .verification-details,.verification-study-fields{gap:18px 14px}
+}
+@media(max-width:430px){.verification-details,.verification-study-fields,.verification-estimate{grid-template-columns:minmax(0,1fr)}.orders-tools{grid-template-columns:minmax(0,1fr)}.student-email-input{flex-wrap:wrap}.student-email-input>span{padding-left:12px}.verification-page-heading h1{font-size:30px!important}.order-entry-actions .button{width:100%}.verification-file-link{margin-left:0;display:block}.orders-pagination{align-items:flex-start}}
