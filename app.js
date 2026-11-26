@@ -308,7 +308,7 @@
     const wallet=demoState.wallets[DEFAULT_USER.id]||(demoState.wallets[DEFAULT_USER.id]={balance:0,transactions:[]});
     if(Number(wallet.balance||0)<180){wallet.balance=180;wallet.transactions=wallet.transactions||[];if(!wallet.transactions.some(transaction=>transaction.id==='demo-wallet-topup'))wallet.transactions.push({id:'demo-wallet-topup',type:'topup',amount:180,bank:'Online banking',at:now-5*86400_000});}
   }
-  const freshState = () => {const demoState={users:[{...DEFAULT_USER},...sampleSellerAccounts.map(user=>({...user}))],currentUserId:DEFAULT_USER.id,listings:sampleListings.map(x=>({...x,image:x.image||productPhotos[x.category]})),favorites:[],orders:[],notifications:defaultNotifications(),activityEvents:[],settings:{lang:'ms',theme:'light'},profileEdits:{},wallets:{[DEFAULT_USER.id]:{balance:0,transactions:[]}}};seedDemoAccount(demoState);return demoState;};
+  const freshState = () => {const demoState={users:[{...DEFAULT_USER},...sampleSellerAccounts.map(user=>({...user}))],currentUserId:null,listings:sampleListings.map(x=>({...x,image:x.image||productPhotos[x.category]})),favorites:[],orders:[],notifications:defaultNotifications(),activityEvents:[],settings:{lang:'ms',theme:'light'},profileEdits:{},wallets:{[DEFAULT_USER.id]:{balance:0,transactions:[]}}};seedDemoAccount(demoState);return demoState;};
   let state = loadState();
   let currentPage = 'home';
   let ordersController, verificationController;

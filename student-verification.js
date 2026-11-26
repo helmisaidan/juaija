@@ -37,7 +37,11 @@
       state.users.push({...adminAccount,username});
     }
     const preset=state.users.find(user=>user.id==='demo-user');
-    if(preset&&!preset.verification){preset.studentEmail='2026132497@student.uitm.edu.my';preset.verification={status:'auto',session:2,academicYear:2025,semesters:6,studentEmail:preset.studentEmail,letter:null,source:'preset',submittedAt:now};}
+    if(preset){
+      const demoLetter={id:'preset-offer-letter-demo',name:'surattawaran20260324220652.pdf',type:'application/pdf',url:'assets/surattawaran20260324220652.pdf'};
+      if(!preset.verification){preset.studentEmail='2026132497@student.uitm.edu.my';preset.verification={status:'auto',session:2,academicYear:2025,semesters:6,studentEmail:preset.studentEmail,letter:demoLetter,source:'preset',submittedAt:now};}
+      else if(preset.verification.source==='preset'&&!preset.verification.letter?.id)preset.verification.letter=demoLetter;
+    }
     synchronize(state,now);
   }
   function submit(state,userId,data,now=Date.now()){

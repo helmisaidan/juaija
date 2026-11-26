@@ -8,7 +8,7 @@ Open `index.html` in a modern browser. This is a static application with no buil
 
 ## Demo account
 
-The starter account is signed in automatically on a new browser profile.
+On a new browser profile, the sign-in page is shown with the demo account details prefilled. Select “Sign in” to enter the demo account.
 
 - Username: `@zulhelmi`
 - Email: `zulhelmi@juaija.my`
